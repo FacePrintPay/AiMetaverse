@@ -1,0 +1,22 @@
+{
+  "task": "Generate unit tests",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "frameworks": [
+      "pytest",
+      "unittest",
+      "jest",
+      "vitest",
+      "mocha"
+    ],
+    "patterns": [
+      "arrange_act_assert",
+      "mock",
+      "stub",
+      "fixture",
+      "parameterized"
+    ]
+  }
+}

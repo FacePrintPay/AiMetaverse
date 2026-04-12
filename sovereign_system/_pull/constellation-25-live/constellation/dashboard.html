@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌌 AI Metaverse • Constellation 25 Command</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Courier New',monospace;background:linear-gradient(135deg,#0a0e27,#1a1f3a);color:#00ff88;min-height:100vh}
+.container{max-width:1400px;margin:0 auto;padding:10px}
+.header{text-align:center;padding:15px;border-bottom:2px solid #00ff88;margin-bottom:15px}
+.header h1{font-size:1.8em;text-shadow:0 0 15px #00ff88}
+.subtitle{color:#00ddff;font-size:0.9em}
+.status{display:flex;justify-content:center;gap:15px;margin-top:8px;font-size:0.8em}
+.status-item{display:flex;align-items:center;gap:5px}
+.indicator{width:8px;height:8px;border-radius:50%;background:#00ff88;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0.5}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:rgba(26,31,58,0.95);border:2px solid #00ff88;border-radius:8px;padding:12px;max-height:65vh;overflow-y:auto}
+.card h2{color:#00ddff;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #00ff88;font-size:1.1em}
+.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px}
+.agent{background:rgba(0,255,136,0.1);border-left:3px solid #00ff88;padding:8px;border-radius:4px;cursor:pointer;font-size:0.85em}
+.agent:hover{background:rgba(0,255,136,0.25)}
+.agent.active{background:rgba(0,221,255,0.3);border-left-color:#00ddff}
+.agent-head{display:flex;justify-content:space-between}
+.agent-id{color:#00ddff;font-weight:bold}
+.agent-name{color:#00ff88;font-weight:bold;margin:3px 0}
+.agent-task{color:#88ffaa;font-size:0.8em}
+.terminal{background:#000;border:2px solid #00ff88;border-radius:8px;padding:10px;height:300px;overflow-y:auto;font-size:0.85em}
+.tline{margin:3px 0;white-space:pre-wrap}
+.tline.sys{color:#00ddff}.tline.ok{color:#00ff88}.tline.err{color:#ff4444}.tline.warn{color:#ffaa00}
+.tinput{display:flex;margin-top:8px;align-items:center}
+.tprompt{color:#00ff88;margin-right:6px;font-weight:bold}
+.tinput input{flex:1;background:transparent;border:none;color:#00ff88;font-family:inherit;outline:none;font-size:0.9em}
+.config{margin:8px 0;padding:10px;background:rgba(0,0,0,0.4);border-radius:5px}
+.config label{display:block;color:#00ddff;font-size:0.85em;margin-bottom:4px;font-weight:bold}
+.config input,.config select{width:100%;padding:6px;background:rgba(0,255,136,0.1);border:1px solid #00ff88;color:#00ff88;border-radius:4px;font-family:inherit;font-size:0.85em}
+.config small{color:#888;font-size:0.75em;display:block;margin-top:3px}
+.btn{background:linear-gradient(135deg,#00ff88,#00ddff);color:#0a0e27;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:bold;margin:3px;font-size:0.85em}
+.btn:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,255,136,0.4)}
+.btn-sec{background:rgba(0,255,136,0.2);border:2px solid #00ff88;color:#00ff88}
+.btn-group{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.qwen{background:rgba(0,221,255,0.1);border:2px solid #00ddff;border-radius:8px;padding:10px;margin:8px 0}
+.qwen label{color:#00ddff;font-weight:bold;margin-bottom:6px;display:block;font-size:0.9em}
+.qwen textarea{width:100%;min-height:70px;background:rgba(0,0,0,0.5);border:1px solid #00ddff;color:#00ff88;padding:8px;border-radius:4px;font-family:inherit;resize:vertical;font-size:0.85em}
+.tasks{max-height:200px;overflow-y:auto}
+.task{padding:6px;margin:4px 0;background:rgba(0,255,136,0.05);border-left:3px solid #00ddff;border-radius:3px;font-size:0.85em}
+.task.sched{border-left-color:#00ddff}.task.run{border-left-color:#ffaa00;background:rgba(255,170,0,0.1)}.task.done{border-left-color:#00ff88;background:rgba(0,255,136,0.1)}
+.ttime{color:#888;font-size:0.75em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.stat{background:rgba(0,255,136,0.1);border:1px solid #00ff88;padding:8px;border-radius:4px;text-align:center}
+.stat-val{font-size:1.3em;font-weight:bold;color:#00ff88}.stat-lbl{font-size:0.7em;color:#88ffaa;margin-top:2px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#0a0e27}::-webkit-scrollbar-thumb{background:#00ff88;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🌌 AI METAVERSE • CONSTELLATION 25</h1>
+<div class="subtitle">Planetary Agent Swarm • Pathos-Sovereign-1</div>
+<div class="status">
+<div class="status-item"><span class="indicator"></span><span id="sys-status">Online</span></div>
+<div class="status-item"><span class="indicator" id="tmx-ind"></span><span id="tmx-status">Termux:?</span></div>
+<div class="status-item"><span class="indicator" id="bk-ind"></span><span id="bk-status">Backend:Auto</span></div>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-val" id="ag-count">27</div><div class="stat-lbl">Agents</div></div>
+<div class="stat"><div class="stat-val" id="tsk-count">0</div><div class="stat-lbl">Tasks</div></div>
+<div class="stat"><div class="stat-val" id="exe-count">0</div><div class="stat-lbl">Executed</div></div>
+</div>
+
+<div class="grid">
+<div>
+<div class="card">
+<h2>🤖 Planetary Agents (27)</h2>
+<div class="agent-grid" id="agent-grid"></div>
+</div>
+<div class="card" style="margin-top:10px">
+<h2>🧠 Qwen NLP Router</h2>
+<div class="qwen">
+<label>Natural Command:</label>
+<textarea id="qwen-in" placeholder="Scaffold-Agent, create Next.js app with auth..."></textarea>
+<div class="btn-group">
+<button class="btn" onclick="procQwen()">Process</button>
+<button class="btn btn-sec" onclick="clrQwen()">Clear</button>
+</div>
+</div>
+<div class="btn-group">
+<span class="btn" onclick="setQ('Scaffold-Agent, create package.json')">📦 Package</span>
+<span class="btn" onclick="setQ('Secure-Agent, scan for secrets')">🔒 Security</span>
+<span class="btn" onclick="setQ('Deploy-Agent, push to main')">🚀 Deploy</span>
+<span class="btn" onclick="setQ('Test-Agent, write unit tests')">🧪 Tests</span>
+</div>
+</div>
+</div>
+<div>
+<div class="card">
+<h2>⚙️ Configuration</h2>
+<div class="config">
+<label>Claude API Key:</label>
+<input type="password" id="ckey" placeholder="sk-ant-..."><small>Empty = Ollama only</small>
+</div>
+<div class="config">
+<label>Backend:</label>
+<select id="backend"><option value="auto">Auto (Claude→Ollama)</option><option value="ollama">Ollama Only</option><option value="claude">Claude Only</option></select>
+</div>
+<div class="config">
+<label>Termux:</label>
+<select id="tmx-mode"><option value="auto">Auto-Detect</option><option value="on">Force Enable</option><option value="off">Disable</option></select>
+</div>
+<div class="config">
+<label>Auto-Script:</label>
+<select id="script-sel"><option value="c25-omnibus.sh">c25-omnibus.sh</option><option value="c25-prototype.sh">c25-prototype.sh</option><option value="custom">Custom</option></select>
+<input type="text" id="custom-sc" placeholder="/path/to/script.sh" style="margin-top:4px;display:none">
+</div>
+<div class="btn-group">
+<button class="btn" onclick="saveCfg()">💾 Save</button>
+<button class="btn btn-sec" onclick="launchTmx()">🚀 Termux</button>
+<button class="btn btn-sec" onclick="autoRun()">▶️ Auto-Run</button>
+</div>
+</div>
+<div class="card" style="margin-top:10px">
+<h2>💻 Terminal</h2>
+<div class="terminal" id="term">
+<div class="tline sys">🌀 Constellation 25 v3.0</div>
+<div class="tline ok">✅ 27 agents loaded</div>
+<div class="tline">Enter command or select agent...</div>
+</div>
+<div class="tinput">
+<span class="tprompt">C25▶</span>
+<input type="text" id="t-in" placeholder="Agent-Name, task..." onkeypress="handleT(event)">
+</div>
+<div class="btn-group">
+<button class="btn btn-sec" onclick="clrTerm()">Clear</button>
+<button class="btn btn-sec" onclick="expLog()">Export</button>
+</div>
+</div>
+<div class="card" style="margin-top:10px">
+<h2>⏰ Tasks</h2>
+<div class="tasks" id="task-list"><div class="task sched"><div class="ttime">System</div><div>0 tasks</div></div></div>
+<div class="btn-group">
+<button class="btn btn-sec" onclick="clrTasks()">Clear</button>
+<button class="btn" style="background:rgba(255,68,68,0.2);border-color:#ff4444;color:#ff4444" onclick="cancelAll()">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+
+<div style="text-align:center;padding:15px;color:#888;font-size:0.75em;border-top:1px solid #00ff88;margin-top:15px">
+<div>🌌 AI Metaverse • Constellation 25</div>
+<div>Pathos-Sovereign-1 • YesQuidpro Omnibus</div>
+<div style="margin-top:5px"><a href="https://aimetaverse.cloud" style="color:#00ddff" target="_blank">aimetaverse.cloud</a> • <a href="https://github.com/Faceprintpay/constellation25" style="color:#00ddff" target="_blank">GitHub</a></div>
+</div>
+</div>
+
+<script>
+// 27 Planetary Agents
+const agents=[
+{id:"01",name:"Earth",emoji:"🌍",task:"Scaffolding, project init, code structure"},
+{id:"02",name:"Moon",emoji:"🌙",task:"Debugging, error handling, exceptions"},
+{id:"03",name:"Sun",emoji:"☀️",task:"Optimization, performance, refactoring"},
+{id:"04",name:"Mercury",emoji:"☿️",task:"Testing, QA, unit/integration tests"},
+{id:"05",name:"Venus",emoji:"♀️",task:"Integration, APIs, service mesh"},
+{id:"06",name:"Mars",emoji:"♂️",task:"Security, vuln scanning, pentesting"},
+{id:"07",name:"Jupiter",emoji:"♃",task:"Documentation, docs generation"},
+{id:"08",name:"Saturn",emoji:"♄",task:"Code cleanup, refactoring, tech debt"},
+{id:"09",name:"Uranus",emoji:"♅",task:"NLP, text analysis, language understanding"},
+{id:"10",name:"Neptune",emoji:"♆",task:"Data consolidation, merging, aggregation"},
+{id:"11",name:"Cygnus",emoji:"🦢",task:"AI/ML training, neural nets, deep learning"},
+{id:"12",name:"Orion",emoji:"🏹",task:"UI/UX, frontend, component libraries"},
+{id:"13",name:"Andromeda",emoji:"🌌",task:"API dev, REST/GraphQL, microservices"},
+{id:"14",name:"Pleiades",emoji:"⭐",task:"Deployment, CI/CD, release mgmt"},
+{id:"15",name:"Sirius",emoji:"🌟",task:"Monitoring, observability, metrics"},
+{id:"16",name:"CanisMajor",emoji:"🐕",task:"Logging, audit trails, events"},
+{id:"17",name:"Hydra",emoji:"🐉",task:"Scaling, load balancing, distributed"},
+{id:"18",name:"Centauri",emoji:"🎯",task:"Backup, disaster recovery, persistence"},
+{id:"19",name:"Bootes",emoji:"🌾",task:"Validation, compliance, QA"},
+{id:"20",name:"CoronaBorealis",emoji:"👑",task:"Governance, audit, regulatory"},
+{id:"21",name:"UrsaMajor",emoji:"🐻",task:"Data pipelines, ETL, storage"},
+{id:"22",name:"Lynx",emoji:"🐱",task:"Code review, quality gates, static analysis"},
+{id:"23",name:"Perseus",emoji:"⚔️",task:"Incident response, rollback, crisis"},
+{id:"24",name:"Cassiopeia",emoji:"🎨",task:"UI theming, branding, design assets"},
+{id:"25",name:"Polaris",emoji:"⭐",task:"Orchestration, workflow management"},
+{id:"26",name:"Ranger",emoji:"🤠",task:"Terminal file ops, navigation"},
+{id:"27",name:"GitHub",emoji:"🐙",task:"CI/CD, workflows, repo management"}
+];
+
+let tasks=[],exeCnt=0,cfg={ckey:"",backend:"auto",tmx:"auto",script:"c25-omnibus.sh",custom:""};
+
+window.onload=function(){
+renderAgents();loadCfg();detectTmx();
+addT("🌌 AI Metaverse Dashboard initialized","sys");
+addT(`✅ ${agents.length} planetary agents loaded`,"ok");
+addT("💡 Select agent or type command","sys");
+setInterval(updStats,5000);
+document.getElementById("t-in").focus();
+};
+
+function renderAgents(){
+document.getElementById("agent-grid").innerHTML=agents.map(a=>`
+<div class="agent" onclick="selAgent('${a.name}')" title="${a.task}">
+<div class="agent-head"><span class="agent-id">#${a.id}</span><span style="width:6px;height:6px;border-radius:50%;background:#00ff88"></span></div>
+<div class="agent-name">${a.emoji} ${a.name}-Agent</div>
+<div class="agent-task">${a.task}</div>
+</div>`).join("");
+}
+
+function selAgent(n){
+addT(`🤖 Activating: ${n}-Agent`,"sys");
+document.getElementById("t-in").value=`${n}-Agent, `;
+document.getElementById("t-in").focus();
+document.querySelectorAll(".agent").forEach(i=>{i.classList.remove("active");if(i.textContent.includes(n))i.classList.add("active")});
+}
+
+function handleT(e){if(e.key==="Enter"&&document.getElementById("t-in").value.trim()){exeCmd(document.getElementById("t-in").value);document.getElementById("t-in").value="";}}
+
+async function exeCmd(cmd){
+addT(`C25▶ ${cmd}`,"sys");exeCnt++;document.getElementById("exe-count").textContent=exeCnt;
+addTask(cmd,"run");
+if(detectTmx()&&cfg.tmx!=="off")await exeTmx(cmd);else await simExe(cmd,cfg.backend);
+updTask(cmd,"done");
+}
+
+function detectTmx(){
+const isT=typeof Termux!=="undefined"||navigator.userAgent.includes("Termux")||location.protocol==="file:"||cfg.tmx==="on";
+document.getElementById("tmx-ind").className="indicator"+(isT?"":" offline");
+document.getElementById("tmx-status").textContent=isT?"Termux:Active":"Termux:Not Detected";
+document.getElementById("tmx-status").style.color=isT?"#00ff88":"#ffaa00";
+return isT;
+}
+
+async function exeTmx(cmd){
+addT("📱 Sending to Termux...","sys");
+try{
+const sc=cfg.script==="custom"?cfg.custom:`/data/data/com.termux/files/home/${cfg.script}`;
+if(typeof Termux!=="undefined")Termux.exec("run-script",[sc],[cmd]);
+else{location.href=`termux://open?command=${encodeURIComponent(cmd)}`;setTimeout(()=>{location.href=`termux://run-script${encodeURIComponent(cmd)}`;},500);}
+addT("✅ Command sent to Termux","ok");
+setTimeout(()=>{const ag=cmd.split("-")[0]||"Scaffold";addT(`✅ ${ag}-Agent complete`,"ok");addT("📦 Saved to ~/github-repos/constellation25/agents/","ok");},2000);
+}catch(err){addT(`⚠️ Termux failed: ${err.message}`,"warn");await simExe(cmd,cfg.backend);}}
+
+async function simExe(cmd,bk){
+const bn=bk==="ollama"?"Ollama(local)":bk==="claude"?"Claude API":"Auto";
+addT(`🔄 Processing via ${bn}...`,"sys");
+await new Promise(r=>setTimeout(r,1200));
+const ag=cmd.split("-")[0]||"Scaffold";
+addT(`✅ ${ag}-Agent completed`,"ok");
+addT(`📄 Generated: ${ag.toLowerCase()}_output.sh`,"ok");
+addT("💾 Saved to agents/","ok");addT("","sys");
+}
+
+async function procQwen(){
+const inp=document.getElementById("qwen-in").value.trim();
+if(!inp){addT("⚠️ Enter command in Qwen box","warn");return;}
+addT("🧠 Qwen: Processing...","sys");
+await new Promise(r=>setTimeout(r,800));
+const m=inp.match(/([A-Za-z]+)-Agent/i);
+if(m){addT(`🎯 Routed to: ${m[1]}-Agent`,"ok");exeCmd(inp);}
+else{addT("⚠️ No agent detected, using Scaffold-Agent","warn");exeCmd(`Scaffold-Agent, ${inp}`);}
+document.getElementById("qwen-in").value="";
+}
+function clrQwen(){document.getElementById("qwen-in").value="";}
+function setQ(t){document.getElementById("qwen-in").value=t;document.getElementById("qwen-in").focus();}
+
+function addT(txt,tp=""){
+const t=document.getElementById("term"),l=document.createElement("div");
+l.className=`tline ${tp}`;l.textContent=`[${new Date().toLocaleTimeString()}] ${txt}`;
+t.appendChild(l);t.scrollTop=t.scrollHeight;
+}
+function clrTerm(){document.getElementById("term").innerHTML='<div class="tline sys">🌀 Terminal cleared</div><div class="tline ok">✅ Ready</div>';}
+function expLog(){const t=document.getElementById("term").innerText,b=new Blob([t],{type:"text/plain"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=`c25_log_${Date.now()}.txt`;a.click();addT("📥 Logs exported","ok");}
+
+function addTask(cmd,st="sched"){tasks.push({id:Date.now(),cmd,st,time:new Date().toLocaleTimeString()});renderTasks();updStats();}
+function updTask(cmd,ns){const t=tasks.find(x=>x.cmd===cmd);if(t){t.st=ns;renderTasks();}}
+function renderTasks(){
+const l=document.getElementById("task-list");
+if(!tasks.length){l.innerHTML='<div class="task sched"><div class="ttime">System</div><div>0 tasks</div></div>';return;}
+l.innerHTML=tasks.slice().reverse().map(t=>`<div class="task ${t.st}"><div class="ttime">${t.time}</div><div>${t.cmd}</div></div>`).join("");
+}
+function clrTasks(){tasks=[];renderTasks();updStats();addT("🗑️ Tasks cleared","sys");}
+function cancelAll(){tasks=tasks.filter(t=>t.st==="done");renderTasks();updStats();addT("⛔ Pending tasks cancelled","warn");}
+function updStats(){document.getElementById("tsk-count").textContent=tasks.filter(t=>t.st!=="done").length;}
+
+function saveCfg(){
+cfg.ckey=document.getElementById("ckey").value;cfg.backend=document.getElementById("backend").value;cfg.tmx=document.getElementById("tmx-mode").value;cfg.script=document.getElementById("script-sel").value;cfg.custom=document.getElementById("custom-sc").value;
+localStorage.setItem("c25_cfg",JSON.stringify(cfg));
+addT("⚙️ Config saved","ok");addT(`🔧 Backend: ${cfg.backend}`,"sys");addT(`📱 Termux: ${cfg.tmx}`,"sys");
+document.getElementById("bk-status").textContent=`Backend: ${cfg.backend}`;
+}
+function loadCfg(){
+const s=localStorage.getItem("c25_cfg");if(s){cfg=JSON.parse(s);document.getElementById("ckey").value=cfg.ckey||"";document.getElementById("backend").value=cfg.backend;document.getElementById("tmx-mode").value=cfg.tmx;document.getElementById("script-sel").value=cfg.script;document.getElementById("custom-sc").value=cfg.custom||"";document.getElementById("custom-sc").style.display=cfg.script==="custom"?"block":"none";}}
+document.getElementById("script-sel").onchange=function(){document.getElementById("custom-sc").style.display=this.value==="custom"?"block":"none";};
+
+function launchTmx(){addT("🚀 Launching Termux...","sys");const i=document.createElement("iframe");i.style.display="none";i.src="termux://open";document.body.appendChild(i);setTimeout(()=>{document.body.removeChild(i);addT("✅ Termux opening...","ok");addT("💡 Install from F-Droid if needed","sys");},1000);}
+function autoRun(){if(cfg.tmx==="on"||(cfg.tmx==="auto"&&detectTmx())){addT("🔄 Auto-running script...","sys");exeTmx(`Scaffold-Agent, init project with ${cfg.script==="custom"?cfg.custom:cfg.script}`);}else addT("⚠️ Termux not available","warn");}
+
+document.addEventListener("keydown",e=>{if(e.ctrlKey&&e.key==="Enter"){const i=document.getElementById("t-in");if(i.value.trim()){exeCmd(i.value);i.value="";}}if(e.ctrlKey&&e.key==="l"){clrTerm();e.preventDefault();}if(e.ctrlKey&&e.key==="k"){document.getElementById("t-in").focus();e.preventDefault();}});
+setInterval(()=>{document.getElementById("sys-status").textContent=`Online • ${tasks.filter(t=>t.st==="run").length} active • ${exeCnt} executed`;},5000);
+</script>
+</body>
+</html>

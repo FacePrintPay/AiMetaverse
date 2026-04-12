@@ -1,0 +1,186 @@
+.
+├── .gitignore
+├── .vercel
+│   ├── README.txt
+│   └── project.json
+├── AiKre8tive_TermsOfService.txt
+├── Dockerfile
+├── README.md
+├── Sovereign_Fallback_Key.txt
+├── agent_loop.py
+├── agent_memory.json
+├── agents
+│   ├── agent_alpha.sh
+│   ├── agent_beta.sh
+│   ├── auto_deprecate_agent.py
+│   ├── obx7
+│   │   └── manifest.json
+│   ├── ping_agents.sh
+│   └── sec_auditx.py
+├── ai-kre8tive-stargate
+│   ├── .gitignore
+│   ├── README.md
+│   ├── app
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── next.config.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.mjs
+│   ├── public
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   └── tsconfig.json
+├── arcai_deploy.sh
+├── backend
+│   ├── agents
+│   │   ├── .keep
+│   │   ├── Callisto.py
+│   │   ├── Ceres.py
+│   │   ├── Charon.py
+│   │   ├── Deimos.py
+│   │   ├── Earth.py
+│   │   ├── Enceladus.py
+│   │   ├── Eris.py
+│   │   ├── Europa.py
+│   │   ├── Ganymede.py
+│   │   ├── Haumea.py
+│   │   ├── Io.py
+│   │   ├── Jupiter.py
+│   │   ├── Luna.py
+│   │   ├── Makemake.py
+│   │   ├── Mars.py
+│   │   ├── Matrix.py
+│   │   ├── Mercury.py
+│   │   ├── Neptune.py
+│   │   ├── Phobos.py
+│   │   ├── Pluto.py
+│   │   ├── Recon.py
+│   │   ├── Saturn.py
+│   │   ├── Sun.py
+│   │   ├── Titan.py
+│   │   ├── Triton.py
+│   │   ├── Uranus.py
+│   │   ├── Venus.py
+│   │   ├── sovereign_private.asc
+│   │   └── sovereign_public.asc
+│   └── matrix
+│       └── .keep
+├── branding
+│   └── badge.svg
+├── broadcast_whisper_echo.sh
+├── buzzblast.sh
+├── components
+│   ├── Brand.js
+│   └── Obx7Prompt.tsx
+├── data
+│   └── agents
+│       └── system_agents.json
+├── deploy_agents.sh
+├── docs
+│   └── sovereign_manifesto.md
+├── ecosystem.25agents.config.js
+├── ecosystem.config.j
+├── ecosystem.config.js
+├── final_sync.sh
+├── fix_aiapirepo.sh
+├── generate_sovereign_files.py
+├── git_autocommit.sh
+├── index.html
+├── inject_versedna.sh
+├── keys
+│   ├── .keep
+│   └── authorized_keys
+├── kre8tive_file_tree.txt
+├── kre8tive_tree_pretty.txt
+├── launch_presskit.sh
+├── logs
+│   ├── .keep
+│   ├── Callisto.log
+│   ├── Callisto.py.log
+│   ├── Ceres.log
+│   ├── Ceres.py.log
+│   ├── Charon.log
+│   ├── Charon.py.log
+│   ├── Deimos.log
+│   ├── Deimos.py.log
+│   ├── Earth.log
+│   ├── Earth.py.log
+│   ├── Enceladus.log
+│   ├── Enceladus.py.log
+│   ├── Eris.log
+│   ├── Eris.py.log
+│   ├── Europa.log
+│   ├── Europa.py.log
+│   ├── Ganymede.log
+│   ├── Ganymede.py.log
+│   ├── Haumea.log
+│   ├── Haumea.py.log
+│   ├── Io.log
+│   ├── Io.py.log
+│   ├── Jupiter.log
+│   ├── Jupiter.py.log
+│   ├── Luna.log
+│   ├── Luna.py.log
+│   ├── Makemake.log
+│   ├── Makemake.py.log
+│   ├── Mars.log
+│   ├── Mars.py.log
+│   ├── Matrix.log
+│   ├── Matrix.py.log
+│   ├── Mercury.log
+│   ├── Mercury.py.log
+│   ├── Neptune.log
+│   ├── Neptune.py.log
+│   ├── Phobos.log
+│   ├── Phobos.py.log
+│   ├── Pluto.log
+│   ├── Pluto.py.log
+│   ├── Recon.log
+│   ├── Recon.py.log
+│   ├── Saturn.log
+│   ├── Saturn.py.log
+│   ├── Sun.log
+│   ├── Sun.py.log
+│   ├── Titan.log
+│   ├── Titan.py.log
+│   ├── Triton.log
+│   ├── Triton.py.log
+│   ├── Uranus.log
+│   ├── Uranus.py.log
+│   ├── Venus.log
+│   ├── Venus.py.log
+│   ├── agent_registry.log
+│   ├── cron.log
+│   ├── deploy_20250704_1918.log
+│   ├── hybrid_visual_agents.log
+│   ├── obsidian
+│   │   ├── agent_alpha_log.txt
+│   │   ├── agent_beta_log.txt
+│   │   ├── obsidian.log
+│   │   └── server.log
+│   ├── patch_recon.log
+│   ├── run_task_start.log
+│   ├── second_turing_telemetry.log
+│   ├── sovereign_blocks.log
+│   └── whispersync.log
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── pushed_apis.json
+├── scripts
+│   ├── .github
+│   │   └── workflows
+│   │       └── deploy.yml
+│   └── whisper_holiday_bash.sh
+├── text.txt
+├── vercel.json
+├── vite.config.js
+└── whisper_auto_loop.sh
+
+21 directories, 163 files

@@ -1,0 +1,6 @@
+{
+  "appName": { "message": "Perplexity Omnibox" },
+  "appAuthor": { "message": "Adam Lui" },
+  "appDesc": { "message": "Perplexity AI-dən nəticələr əldə etmək üçün ünvan çubuğunda @perplexity yazın" },
+  "prefix_ask": { "message": "Soruşmag" }
+}

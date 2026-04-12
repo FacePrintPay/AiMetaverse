@@ -1,0 +1,25 @@
+{
+  "name": "DuckDuckGPT", "symbol": "🐤", "shortName": "DDGPT", "slug": "duckduckgpt", "configKeyPrefix": "duckDuckGPT",
+  "author": [
+    { "name": "Adam Lui", "url": "https://github.com/adamlui" }, { "name": "KudoAI", "url": "https://www.kudoai.com" }],
+  "urls": {
+    "aiwebAssets": "https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions@latest/assets",
+    "apis": { "chatShare": "https://chat-share.kudoai.workers.dev" },
+    "app": "https://www.duckduckgpt.com",
+    "assets": "https://cdn.jsdelivr.net/gh/KudoAI/duckduckgpt@latest/assets",
+    "chatgptjs": "https://chatgpt.js.org",
+    "contributors": "https://docs.duckduckgpt.com/#-contributors",
+    "discuss": "https://github.com/KudoAI/duckduckgpt/discussions",
+    "donate": { "github": "https://github.com/sponsors/KudoAI" },
+    "github": "https://github.com/KudoAI/duckduckgpt",
+    "publisher": "https://www.kudoai.com",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": {
+      "alternativeTo": "https://alternativeto.net/software/duckduckgpt/about/",
+      "g2": "https://www.g2.com/products/duckduckgpt/take_survey",
+      "productHunt": "https://www.producthunt.com/products/duckduckgpt/reviews/new"
+    },
+    "support": "https://support.ddgpt.com",
+    "update": { "gm": "https://gm.ddgpt.com" }
+  }
+}

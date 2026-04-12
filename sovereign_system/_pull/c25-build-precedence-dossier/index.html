@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-build-precedence-dossier</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-build-precedence-dossier</h1><p style="color:#888">Lines: 36 | Deps: pip  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+TS=$(date -u +%Y%m%dT%H%M%SZ)
+ROOT="${HOME}/precedence_dossier_${TS}"
+mkdir -p "${ROOT}"/{timeline,examples/gamma_07}
+echo "🚀 Building Sovereign Precedence Dossier: ${ROOT}"
+echo "2025-11-15 08:23:17 -0500|gamma_07|Sovereign agent memory implementation" &gt; "${ROOT}/timeline/gamma_first_ships.txt"
+cat &gt; "${ROOT}/examples/gamma_07/run.sh" &lt;&lt; 'YYY'
+#!/data/data/com.termux/files/usr/bin/bash
+DB="${HOME}/.gamma7/memory.db"
+mkdir -p "$(dirname "${DB}")"
+[ -f "${DB}" ] || sqlite3 "${DB}" "CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,content TEXT,timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);"
+case "${1:-}" in
+store) sqlite3 "${DB}" "INSERT INTO memories(content)VALUES('${2}')"; echo "✅ Stored: ${2}" ;;
+recall) sqlite3 "${DB}" "SELECT timestamp,content FROM memories WHERE content LIKE '%${2}%' ORDER BY timestamp DESC LIMIT 3" ;;
+*) echo "Gamma #7 — Offline sovereign memory"; echo "Usage: \$0 store 'text' | recall 'keyword'";;
+esac
+YYY
+chmod +x "${ROOT}/examples/gamma_07/run.sh"
+cd "${ROOT}" && find . -type f -exec sha256sum {} \; | sort &gt; hash_chain.txt</pre></body></html>

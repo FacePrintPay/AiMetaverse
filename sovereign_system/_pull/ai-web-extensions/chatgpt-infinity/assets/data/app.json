@@ -1,0 +1,32 @@
+{
+  "name": "ChatGPT Infinity", "symbol": "∞", "slug": "chatgpt-infinity",
+  "configKeyPrefix": "chatGPTinfinity",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "aiwebAssets": "https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions@latest/assets",
+    "app": "https://chatgptinfinity.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@latest/assets",
+    "chatgptjs": "https://chatgpt.js.org",
+    "contributors": "https://docs.chatgptautorefresh.com/#-contributors",
+    "discuss": "https://github.com/adamlui/chatgpt-infinity /discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/chatgpt-infinity",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": {
+      "alternativeTo": "https://alternativeto.net/software/chatgpt-infinity/about/",
+      "chrome": "https://chrome.chatgptinfinity.com/reviews",
+      "edge": "https://edge.chatgptinfinity.com",
+      "firefox": "https://ff.chatgptinfinity.com",
+      "productHunt": "https://www.producthunt.com/products/chatgpt-infinity/reviews/new"
+    },
+    "support": "https://support.chatgptinfinity.com",
+    "uninstall": "https://forms.gle/T1hCZ5A5yAnPfLTn8",
+    "update": { "gm": "https://gm.chatgptinfinity.com" },
+    "welcome": "https://chatgptinfinity.com/welcome"
+  }
+}

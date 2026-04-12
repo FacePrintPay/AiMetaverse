@@ -1,0 +1,17 @@
+I fix broken Bash/Python scripts and automate repetitive tasks.
+
+Runs locally (Linux / Termux). No SaaS. No cloud.
+
+What I do:
+- Debug failing scripts
+- Build simple task runners / watchers
+- Batch jobs, cron, file queues
+- Cleanup & automation
+
+Rate:
+$50 flat for small fixes
+$75/hr if larger (I confirm first)
+
+I can start today.
+
+DM me.

@@ -1,0 +1,7 @@
+     43843b  /data/data/com.termux/files/home/backups/checkpoint_20260315_204357/projects/foodlion/mybuyoxfoodlion-pitch/pitch.html
+     43843b  /data/data/com.termux/files/home/backups/checkpoint_20260315_204357/checkpoint_20260315_204357/projects/foodlion/mybuyoxfoodlion-pitch/pitch.html
+     27099b  /data/data/com.termux/files/home/constellation25/PaThosAi/virtual-platform/docs/agents.html
+      9617b  /data/data/com.termux/files/home/constellation25/gamma-artifact.html
+      6812b  /data/data/com.termux/files/home/constellation25/PaThosAi/virtual-platform/docs/explainer.html
+      1622b  /data/data/com.termux/files/home/constellation25_workspace/CONSOLIDATION_REPORT.html
+      1269b  /data/data/com.termux/files/home/constellation25/ui/dashboard.html

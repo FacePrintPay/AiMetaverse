@@ -1,0 +1,10 @@
+{
+    "version": "3.0",
+    "github_org": "FacePrintPay",
+    "github_repo": "constellation25",
+    "vercel_project": "constellation25",
+    "totalrecall_enabled": true,
+    "agent_count": 25,
+    "heartbeat_interval": 30,
+    "log_retention_days": 90
+}

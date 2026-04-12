@@ -1,0 +1,20 @@
+{
+  "agent": "OBX-7",
+  "role": "Interactive Logic Advisor",
+  "trigger": "sovereign_return",
+  "voice_hash": "<ENCRYPTED_VOICEPRINT_HASH>",
+  "ui": "advisory_buttons",
+  "endpoint": "/api/obx7",
+  "actions": {
+    "run_whisper_graph_agent": "bash ./scripts/initiate_obsidian_panel.sh",
+    "cancel": "noop"
+  },
+  "autocorrect": {
+    "check": [
+      "obsidian_brain.json",
+      "whisper_graph_agent.py",
+      "scripts/initiate_obsidian_panel.sh"
+    ],
+    "repair_script": "scripts/autocorrect_obx7.sh"
+  }
+}

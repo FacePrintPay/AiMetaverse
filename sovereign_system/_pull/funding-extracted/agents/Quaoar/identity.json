@@ -1,0 +1,11 @@
+{
+  "name": "Quaoar",
+  "tier": "sun",
+  "role": "sovereign",
+  "llm": "claude",
+  "deps": "bash,python3,git",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "d9f360e0eebd7eb8",
+  "status": "active"
+}

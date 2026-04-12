@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-install-qrencode</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-install-qrencode</h1><p style="color:#888">Lines: 33 | Deps: git  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+echo "🔧 Installing qrencode in Termux..."
+# 1. Prerequisites
+pkg update -y && pkg upgrade -y
+pkg install -y git cmake make clang libpng zlib
+# 2. Clean any existing clone
+rm -rf ~/libqrencode
+# 3. Clone and prepare build
+git clone https://github.com/fukuchi/libqrencode.git ~/libqrencode
+cd ~/libqrencode
+mkdir build && cd build
+# 4. Fix for older CMake versions
+cmake .. -DCMAKE_POLICY_DEFAULT_CMP0054=NEW || {
+  echo "❌ CMake failed. Trying with compatibility flags..."
+  cmake .. -DCMAKE_POLICY_VERSION=3.5
+}
+# 5. Compile and install
+make && make install
+# 6. Verify
+if command -v qrencode &gt;/dev/null 2&gt;&1; then</pre></body></html>

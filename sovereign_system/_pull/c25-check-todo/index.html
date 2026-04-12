@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-check-todo</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-check-todo</h1><p style="color:#888">Lines: 36 | Deps: pip  | C25 FacePrintPay</p><pre>#!/usr/bin/env bash
+#
+# Copyright 2025 The Fuchsia Authors
+#
+# Licensed under a BSD-style license &lt;LICENSE-BSD&gt;, Apache License, Version 2.0
+# &lt;LICENSE-APACHE or https://www.apache.org/licenses/LICENSE-2.0&gt;, or the MIT
+# license &lt;LICENSE-MIT or https://opensource.org/licenses/MIT&gt;, at your option.
+# This file may not be copied, modified, or distributed except according to
+# those terms.
+set -euo pipefail
+# This allows us to leave XODO comments in this file and have them still be
+# picked up by this script without having the script itself trigger false
+# positives. The alternative would be to exclude this script entirely, which
+# would mean that we couldn't use XODO comments in this script.
+KEYWORD=$(echo XODO | sed -e 's/X/T/')
+# Make sure `rg` is installed (if this fails, `set -e` above will cause the
+# script to exit).
+rg --version &gt;/dev/null
+# -H: Print filename (default for multiple files/recursive)
+# -n: Print line number</pre></body></html>

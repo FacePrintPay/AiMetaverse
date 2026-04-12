@@ -1,0 +1,64 @@
+{
+  "plan_id": "plan_1765339776414180143",
+  "goal": "Build a 10-slide Banani-ready Series A deck for SovereignGTP with valuation, ROI, compliance, and outreach sections.",
+  "created_at": "2025-12-10T04:09:36.648122Z",
+  "status": "pending",
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "Draft valuation narrative",
+      "description": "Generate a $10M Series A valuation thesis.",
+      "agent": "agent_valuation",
+      "inputs": {
+        "source": "goal_and_context",
+        "params": {}
+      },
+      "dependencies": [],
+      "outputs": {
+        "task_id": null,
+        "output_file": null
+      },
+      "status": "pending",
+      "notes": []
+    },
+    {
+      "id": "step-2",
+      "title": "Build ROI model",
+      "description": "Create 3-year county ROI model for VideoCourts pilot.",
+      "agent": "agent_roi",
+      "inputs": {
+        "source": "goal_and_context",
+        "params": {}
+      },
+      "dependencies": [
+        "step-1"
+      ],
+      "outputs": {
+        "task_id": null,
+        "output_file": null
+      },
+      "status": "pending",
+      "notes": []
+    },
+    {
+      "id": "step-3",
+      "title": "Draft outreach deck skeleton",
+      "description": "Create outreach copy for counties and investors.",
+      "agent": "agent_outreach",
+      "inputs": {
+        "source": "goal_and_context",
+        "params": {}
+      },
+      "dependencies": [
+        "step-1",
+        "step-2"
+      ],
+      "outputs": {
+        "task_id": null,
+        "output_file": null
+      },
+      "status": "pending",
+      "notes": []
+    }
+  ]
+}

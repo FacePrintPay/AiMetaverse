@@ -1,0 +1,25 @@
+{
+  "plan_id": "plan_<unix_nano>",
+  "goal": "High-level user request in plain language",
+  "created_at": "ISO-8601 timestamp",
+  "status": "pending | running | completed | failed | cancelled",
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "Short description",
+      "description": "What needs to happen in this step",
+      "agent": "agent_valuation",
+      "inputs": {
+        "source": "user_prompt | prior_step_output | file_ref",
+        "params": {}
+      },
+      "dependencies": [],
+      "outputs": {
+        "task_id": null,
+        "output_file": null
+      },
+      "status": "pending | queued | running | completed | failed",
+      "notes": []
+    }
+  ]
+}

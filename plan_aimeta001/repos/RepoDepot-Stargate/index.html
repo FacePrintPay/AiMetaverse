@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Kre8tive.Space — Portfolio Index</title>
+  <meta name="description" content="Domains, GoDaddy sites, Vercel builds, and GitHub repos — one searchable catalog."/>
+  <style>
+    :root{
+      --bg1:#0b1020; --bg2:#1b1b3a; --card:#0f1630cc;
+      --text:#e9ecff; --muted:#aab3d6; --line:#273058;
+      --accent:#7c5cff; --accent2:#19e6b3; --warn:#ffcc66; --bad:#ff5c7c;
+      --shadow:0 18px 60px rgba(0,0,0,.45); --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% -10%, #7c5cff55, transparent 60%),
+        radial-gradient(900px 700px at 110% 10%, #19e6b344, transparent 55%),
+        linear-gradient(180deg,var(--bg2),var(--bg1));
+      min-height:100vh;
+    }
+    .wrap{max-width:1200px;margin:0 auto;padding:24px 14px 70px}
+    header{
+      background:linear-gradient(135deg,rgba(124,92,255,.28),rgba(25,230,179,.12));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px; padding:16px;
+      box-shadow:var(--shadow);
+      position:sticky; top:10px; backdrop-filter:blur(14px);
+      z-index:5;
+    }
+    .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:grid;place-items:center;color:#071022;font-weight:900;
+      box-shadow:0 10px 30px rgba(124,92,255,.35);
+    }
+    h1{margin:0;font-size:18px;letter-spacing:.2px}
+    .sub{margin:2px 0 0;color:var(--muted);font-size:12.5px}
+    .pitch{
+      margin:10px 0 0; color:#d7dcff; font-size:13px; line-height:1.45;
+      opacity:.95;
+    }
+    .kpis{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(8,12,28,.55);
+      padding:8px 10px;border-radius:999px;
+      display:flex;gap:8px;align-items:center;
+      font-size:12px;color:var(--muted);
+    }
+    .pill b{color:var(--text)}
+    .controls{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .search{
+      flex:1;min-width:220px;background:white;color:#111;
+      border-radius:999px;display:flex;align-items:center;gap:10px;
+      padding:10px 14px;box-shadow:0 12px 30px rgba(0,0,0,.25);
+    }
+    .search input{border:0;outline:0;width:100%;font-size:14px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{
+      padding:9px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(8,12,28,.35);
+      cursor:pointer;font-size:12.5px;
+      user-select:none;
+    }
+    .tab.active{background:rgba(124,92,255,.25);border-color:rgba(124,92,255,.55)}
+    .grid{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(8,12,28,.55);
+      border-radius:var(--r); overflow:hidden;
+      box-shadow:0 12px 34px rgba(0,0,0,.28);
+      transition:.2s transform,.2s border;
+    }
+    .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.22)}
+    .thumb{height:150px;background:#0a0f22;border-bottom:1px solid rgba(255,255,255,.08);position:relative}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.95}
+    .badge{
+      position:absolute;left:10px;top:10px;
+      background:rgba(8,12,28,.65);
+      border:1px solid rgba(255,255,255,.12);
+      padding:6px 10px;border-radius:999px;
+      font-size:12px;color:#dfe5ff;
+      backdrop-filter:blur(10px);
+    }
+    .body{padding:14px}
+    .name{font-weight:900;font-size:14.5px;line-height:1.15}
+    .desc{margin-top:8px;color:var(--muted);font-size:12.5px;line-height:1.35;min-height:34px}
+    .meta{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;color:#cbd2ffb8;font-size:12px}
+    .actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    a.btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:12px;
+      text-decoration:none;font-weight:900;font-size:12.5px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);color:var(--text);
+    }
+    a.btn.primary{background:linear-gradient(135deg,rgba(124,92,255,.9),rgba(25,230,179,.35));border-color:transparent}
+    .hint{margin-top:10px;color:var(--muted);font-size:12px}
+    .footer{margin-top:26px;color:var(--muted);font-size:12px;text-align:center;opacity:.9}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="top">
+        <div class="brand">
+          <div class="logo">K8</div>
+          <div>
+            <h1>Kre8tive.Space — Portfolio Index</h1>
+            <div class="sub">Domains • GoDaddy Sites • GitHub • Vercel • One catalog</div>
+            <div class="pitch" id="pitch"></div>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="pill">🧩 <b id="kTotal">—</b> items</div>
+          <div class="pill">🌐 <b id="kDomains">—</b> domains</div>
+          <div class="pill">🧾 <b id="kSites">—</b> GoDaddy sites</div>
+          <div class="pill">💻 <b id="kGit">—</b> GitHub repos</div>
+          <div class="pill">▲ <b id="kVercel">—</b> Vercel projects</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="search">
+          <span>🔎</span>
+          <input id="q" placeholder="Search everything… (ex: bitpayy, sovereign, ai, courts)"/>
+        </div>
+        <div class="tabs" id="tabs">
+          <div class="tab active" data-tab="all">All</div>
+          <div class="tab" data-tab="domain">Domains</div>
+          <div class="tab" data-tab="godaddy">GoDaddy Sites</div>
+          <div class="tab" data-tab="github">GitHub</div>
+          <div class="tab" data-tab="vercel">Vercel</div>
+        </div>
+      </div>
+
+      <div class="hint">Tip: thumbnails use a public screenshot service. Some sites may block it — links still work. 🔗</div>
+    </header>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="footer">
+      Built for #MrGGTP • “Ship fast, prove it later (with receipts).”
+    </div>
+  </div>
+
+<script>
+  // <= 325-letter elevator pitch
+  const PITCH = "Explore a real, verifiable catalog of CyGel’s IP holdings: domains, live GoDaddy builds, GitHub R&D, and Vercel projects—organized like a product shelf. Each card links to a deploy, a repo, or a property, showing the scope of a solo operator building in the shadows.";
+  document.getElementById('pitch').textContent = PITCH.slice(0, 325);
+
+  const COMPLIANCE_BLOCKLIST = [
+    "just42night",
+    "just42night.com",
+    "just42night.godaddysites.com",
+    "just42nightcom.godaddysites.com"
+  ].map(s=>s.toLowerCase());
+
+  const safe = (s="") => !COMPLIANCE_BLOCKLIST.some(b => (s||"").toLowerCase().includes(b));
+
+  const thumbFor = (url) => {
+    // Screenshot thumbnail (works great for GoDaddy + most domains)
+    // If a site blocks it, you still get the 🔗 link.
+    return `https://image.thum.io/get/width/900/${encodeURIComponent(url)}`;
+  };
+
+  const elGrid = document.getElementById('grid');
+  const elQ = document.getElementById('q');
+
+  const state = { tab:"all", q:"", items:[] };
+
+  function setKPIs({domains=0, sites=0, git=0, vercel=0}) {
+    const total = domains + sites + git + vercel;
+    document.getElementById('kTotal').textContent = total;
+    document.getElementById('kDomains').textContent = domains;
+    document.getElementById('kSites').textContent = sites;
+    document.getElementById('kGit').textContent = git;
+    document.getElementById('kVercel').textContent = vercel;
+  }
+
+  function card(item){
+    const url = item.url || item.github_url || item.deploy_url || "#";
+    const desc = (item.description || item.desc || "").trim();
+    const metaBits = [];
+
+    if (item.kind === "github") {
+      metaBits.push(`⭐ ${item.stars ?? 0}`);
+      metaBits.push(`🍴 ${item.forks ?? 0}`);
+    }
+    if (item.kind === "vercel") {
+      if (item.createdAt) metaBits.push(`🕒 ${new Date(item.createdAt).toLocaleDateString()}`);
+      if (item.projectId) metaBits.push(`ID ${item.projectId.slice(0,6)}…`);
+    }
+
+    const primary = (item.kind === "github") ? item.github_url
+                  : (item.kind === "vercel") ? (item.deploy_url || item.url)
+                  : item.url;
+
+    const secondary = (item.kind === "github") ? (item.deploy_url || "")
+                     : (item.kind === "vercel") ? (item.github_url || "")
+                     : "";
+
+    const badge = item.kind === "domain" ? "DOMAIN"
+                : item.kind === "godaddy" ? "GODADDY"
+                : item.kind === "github" ? "GITHUB"
+                : "VERCEL";
+
+    return `
+      <div class="card">
+        <div class="thumb">
+          <img loading="lazy" src="${thumbFor(primary)}" alt="thumb"/>
+          <div class="badge">${badge}</div>
+        </div>
+        <div class="body">
+          <div class="name">${item.name}</div>
+          <div class="desc">${desc || "—"}</div>
+          <div class="meta">${metaBits.map(x=>`<span>${x}</span>`).join("")}</div>
+          <div class="actions">
+            <a class="btn primary" href="${primary}" target="_blank" rel="noopener">🔗 Open</a>
+            ${secondary ? `<a class="btn" href="${secondary}" target="_blank" rel="noopener">🔗 Secondary</a>` : ``}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function render(){
+    const q = (state.q||"").toLowerCase().trim();
+    const tab = state.tab;
+
+    const filtered = state.items
+      .filter(x => safe(x.name) && safe(x.url||"") && safe(x.github_url||"") && safe(x.deploy_url||""))
+      .filter(x => tab==="all" ? true : x.kind===tab)
+      .filter(x => !q ? true : (
+        (x.name||"").toLowerCase().includes(q) ||
+        (x.url||"").toLowerCase().includes(q) ||
+        (x.github_url||"").toLowerCase().includes(q) ||
+        (x.deploy_url||"").toLowerCase().includes(q) ||
+        (x.description||"").toLowerCase().includes(q)
+      ));
+
+    elGrid.innerHTML = filtered.map(card).join("");
+  }
+
+  function wireTabs(){
+    document.getElementById('tabs').addEventListener('click', (e)=>{
+      const t = e.target.closest('.tab');
+      if (!t) return;
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      state.tab = t.dataset.tab;
+      render();
+    });
+  }
+
+  function wireSearch(){
+    elQ.addEventListener('input', (e)=>{
+      state.q = e.target.value || "";
+      render();
+    });
+  }
+
+  async function loadAll(){
+    const [godaddy, github, vercelProjects, vercelDeploys] = await Promise.all([
+      fetch('/data/godaddy.json').then(r=>r.json()),
+      fetch('/data/github.json').then(r=>r.json()),
+      fetch('/data/vercel_projects.json').then(r=>r.json()).catch(()=>[]),
+      fetch('/data/vercel_deployments.json').then(r=>r.json()).catch(()=>[])
+    ]);
+
+    const domains = (godaddy.domains||[]).map(d => ({
+      kind:"domain", name:d.name, url:d.url, description:"IP holding • domain property"
+    }));
+
+    const sites = (godaddy.sites||[]).map(s => ({
+      kind:"godaddy", name:s.name, url:s.url, description:"GoDaddy Websites + Marketing build"
+    }));
+
+    const repos = (github||[]).map(r => ({
+      kind:"github",
+      name:r.name,
+      github_url:r.url,
+      deploy_url:`https://${(r.name||"").toLowerCase().replace(/[^a-z0-9-]/g,'-')}.kre8tive.space`,
+      description:r.description || "GitHub R&D repository",
+      stars:r.stargazerCount || 0,
+      forks:r.forkCount || 0
+    }));
+
+    // Vercel projects list (from API/JSON)
+    const vproj = (vercelProjects||[]).map(p => ({
+      kind:"vercel",
+      name:p.name,
+      url:`https://${p.name}.vercel.app`,
+      description:"Vercel project",
+      projectId:p.id,
+      createdAt:p.createdAt ? (typeof p.createdAt === "number" ? p.createdAt : Date.parse(p.createdAt)) : null
+    }));
+
+    // Optional: attach latest deployment URL by project name if deploys exist
+    if (Array.isArray(vercelDeploys) && vercelDeploys.length){
+      const byName = new Map();
+      for (const d of vercelDeploys){
+        if (!d || !d.name) continue;
+        if (!byName.has(d.name)) byName.set(d.name, d);
+      }
+      for (const p of vproj){
+        const hit = byName.get(p.name);
+        if (hit && hit.url) p.url = `https://${hit.url}`;
+      }
+    }
+
+    state.items = [...domains, ...sites, ...repos, ...vproj];
+
+    setKPIs({
+      domains: domains.length,
+      sites: sites.length,
+      git: repos.length,
+      vercel: vproj.length
+    });
+
+    wireTabs();
+    wireSearch();
+    render();
+  }
+
+  loadAll().catch(err=>{
+    elGrid.innerHTML = `<div class="card"><div class="body"><div class="name">Load failed</div><div class="desc">${(err&&err.message)||err}</div></div></div>`;
+  });
+
+  // Auto-refresh
+  setInterval(()=>location.reload(), 5 * 60 * 1000);
+</script>
+</body>
+</html>

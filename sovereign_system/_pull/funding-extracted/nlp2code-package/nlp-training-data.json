@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "name": "PaTHos OS NLP2Code Training Dataset",
+    "version": "2.0.0",
+    "created": "2025-03-21",
+    "author": "Constellation25 / CyGeL Co - DBA KRE8TIVE KONCEPTZ",
+    "license": "Proprietary - Evaluation Only",
+    "description": "Complete NLP training data for PaTHos OS including Constellation25, SovereignGPT, Planetary Agents, Agentik, C25, Automation AI, Search AI, Agent AI, Contact Center AI, and Quality AI"
+  },
+  "intents": [
+    {
+      "intent": "answer_generation",
+      "description": "Generate answers based on ingested data using RAG",
+      "utterances": ["What is a home loan?", "How do you compute EMI?", "Explain the loan calculation process"],
+      "entities": ["loan_type", "amount", "tenure", "interest_rate"],
+      "responses": {"success": "Based on the provided context, {answer}", "no_context": "I couldn't find information about that."}
+    },
+    {
+      "intent": "conversation_summary",
+      "description": "Generate concise summaries of conversations",
+      "utterances": ["Summarize this conversation", "What was discussed?", "Give me the key points"],
+      "entities": ["conversation_id", "participants", "duration"],
+      "responses": {"success": "Summary: {summary}", "error": "Unable to generate summary."}
+    },
+    {
+      "intent": "dialog_orchestration",
+      "description": "Manage conversation flow and routing (DialogGPT)",
+      "utterances": ["I need help with my order", "Transfer me to an agent", "Start over"],
+      "entities": ["intent", "context", "user_id"],
+      "responses": {"route": "Routing to {agent_type}", "clarify": "Could you please clarify {question}?"}
+    },
+    {
+      "intent": "training_utterances",
+      "description": "Generate training utterance suggestions for intents",
+      "utterances": ["Generate training utterances", "Suggest training data", "Create training examples"],
+      "entities": ["intent_name", "language", "count"],
+      "responses": {"success": "Generated {count} utterances for intent {intent_name}", "error": "Unable to generate utterances."}
+    },
+    {
+      "intent": "test_case_generation",
+      "description": "Generate NLP batch test cases for intents",
+      "utterances": ["Generate test cases", "Create test suite", "Build test cases for intent"],
+      "entities": ["intent_name", "test_type", "language"],
+      "responses": {"success": "Generated {count} test cases for {intent_name}", "error": "Unable to generate test cases."}
+    }
+  ],
+  "models": [
+    {
+      "name": "Answer Generation Model",
+      "version": "3.0",
+      "base_model": "Llama 3.1 8B Instruct",
+      "accuracy": "97%",
+      "tps": 37,
+      "latency": 0.92,
+      "languages": ["EN", "FR", "DE", "JA", "PL", "ES"],
+      "regions": ["US", "DE", "EU"],
+      "deployment_date": "2025-05-06"
+    },
+    {
+      "name": "Conversation Summary Model",
+      "version": "2.0",
+      "base_model": "Mistral 7B Instruct v0.2",
+      "accuracy": "100%",
+      "tps": 71,
+      "latency": 2.00,
+      "languages": ["EN", "FR", "DE", "JA", "PL", "ZH", "ES", "TR"],
+      "regions": ["US", "DE", "JP"],
+      "deployment_date": "2025-09-23"
+    },
+    {
+      "name": "DialogGPT Model",
+      "version": "1.1",
+      "base_model": "Llama-3.1-8B-Instruct",
+      "accuracy": "96%",
+      "tps": 45,
+      "latency": 1.20,
+      "languages": ["EN", "FR", "DE", "JA", "PL", "ES"],
+      "regions": ["US", "DE"],
+      "deployment_date": "2025-05-26"
+    }
+  ],
+  "guardrails": [
+    {"name": "restrict_toxicity", "type": "content_moderation", "enabled": true, "input": true, "output": true},
+    {"name": "restrict_topics", "type": "topic_filtering", "enabled": true, "topics": ["politics", "violence", "religion"]},
+    {"name": "detect_prompt_injections", "type": "security", "enabled": true, "input": true, "output": false},
+    {"name": "filter_responses", "type": "content_filtering", "enabled": true, "input": false, "output": true, "patterns": ["\\b(yep|nah|ugh|meh|huh)\\b"]}
+  ],
+  "genai_features": {
+    "automation_ai": ["Agent Node", "Prompt Node", "Repeat Responses", "Rephrase Responses", "Rephrase User Query", "Automatic Dialog Generation", "Conversation Test Cases Suggestion", "Conversation Summary", "NLP Batch Test Cases Suggestion", "Training Utterance Suggestions"],
+    "search_ai": ["Answer Generation", "Enrich Chunks with LLM", "Metadata Extractor Agent", "Query Rephrase for Advanced Search API", "Query Transformation", "Result Type Classification", "Transform Documents with LLM", "Vector Generation - Image", "Vector Generation - Text"],
+    "agent_ai": ["Agent Coaching", "Conversation Summary", "Generating Opposite Utterance Suggestions", "Generating Similar Answer Suggestions", "Generating Similar Utterance Suggestions", "Sentiment Analysis"],
+    "contact_center_ai": ["Agent Response Rephrasing", "Conversation Summary", "Disposition Prediction for Agent Wrap-Up", "Sentiment Analysis"],
+    "quality_ai": ["Advanced Topic Discovery", "Agent Empathy Identification", "By Hold Adherence", "By Transfer Adherence", "By Value Adherence validation", "Churn & Escalation Identification", "Conversation Phase Identification", "Crutch Word Usage Detection", "Default Script Adherence", "Post Conversation Sentiment Analysis", "Topic Modelling"]
+  },
+  "build_scripts": {"python": "pathos_python_layer.py", "java": "PathosJavaLayer.java", "cpp": "pathos_core.cpp", "julia": "pathos_ml.jl"},
+  "compliance": {
+    "executive_order": "Executive Order No. 24 - Advancing Trustworthy Artificial Intelligence That Benefits All North Carolinians",
+    "us_ai_action_plan": "America's AI Action Plan - July 23, 2025",
+    "company": "Kre8tive Koncepts LLC - Privately held North Carolina Technology Incubator",
+    "subsidiary_of": "Mobile Titan Inc."
+  }
+}

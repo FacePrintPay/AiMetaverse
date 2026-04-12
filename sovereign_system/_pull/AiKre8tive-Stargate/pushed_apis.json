@@ -1,0 +1,111 @@
+{
+  "https://developers.google.com/products": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Explore our suite of developer products designed to fuel your innovation, streamline development, and unlock new features and growth for your projects.",
+    "twitter:card": "summary",
+    "twitter:image": "https://developers.google.com/static/site-assets/images/home/developers-social-media.png"
+  },
+  "https://developers.google.com/identity": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Enable users to sign into apps and authorize apps to use Google services\n",
+    "twitter:card": "summary_large_image"
+  },
+  "https://developers.google.com/workspace": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Enhance and connect to Google Workspace apps.",
+    "twitter:card": "summary_large_image"
+  },
+  "https://developers.google.com/admob": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Discover how to monetize your mobile apps with targeted in-app advertising that matches criteria you set.\n",
+    "twitter:card": "summary_large_image"
+  },
+  "https://developers.google.com/google-ads": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#009688",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Promote your website, products, and app to the right users with Google Ads.",
+    "twitter:card": "summary_large_image"
+  },
+  "https://developers.google.com/search": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Google Search Central provides SEO resources to help you get your website on Google Search. Learn how to make your website more discoverable today.",
+    "apple-itunes-app": "app-id=1512522198",
+    "twitter:card": "summary_large_image"
+  },
+  "https://developers.google.com/program": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "twitter:card": "summary_large_image"
+  },
+  "https://developers.google.com/solutions/catalog": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Explore the Google for Developers solutions and architectures catalog to see our collection of developer resources and cross-product integration solutions.",
+    "twitter:card": "summary",
+    "twitter:image": "https://developers.google.com/static/site-assets/images/home/developers-social-media.png"
+  },
+  "https://developers.google.com/events": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Register for upcoming Google for Developer events, workshops, and conferences or browse our directory of past events that are available on demand.",
+    "twitter:card": "summary",
+    "twitter:image": "https://developers.google.com/static/site-assets/images/home/developers-social-media.png"
+  },
+  "https://developers.google.com/learn": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Advance your skill set by exploring our large collection of documentation, guides, resources, courses, and additional training for developers.",
+    "robots": "noindex",
+    "twitter:card": "summary",
+    "twitter:image": "https://developers.google.com/static/site-assets/images/home/developers-social-media.png"
+  },
+  "https://developers.google.com/community": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Join a Google community for developers to network, share stories, and learn together about web and mobile app development, cloud, AI, and other topics.",
+    "twitter:card": "summary",
+    "twitter:image": "https://developers.google.com/static/site-assets/images/home/developers-social-media.png"
+  },
+  "https://developers.google.com/": {
+    "google-signin-client-id": "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com",
+    "google-signin-scope": "profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award",
+    "theme-color": "#fff",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Explore developer resources, community events, and inspirational stories to help you build smarter and ship faster.",
+    "twitter:card": "summary",
+    "twitter:image": "https://developers.google.com/static/site-assets/images/home/developers-social-media.png",
+    "google-site-verification": "u63GsPxC7nSL9_iKT6-jN0FpOze5tBvZ0yeeayDob7g"
+  },
+  "https://console.cloud.google.com/freetrial?redirectPath=/products/solutions/catalog&utm_source=developers.google.com&utm_medium=et&utm_campaign=FY24-Q1-DGC-HP-Google-Cloud-card": {
+    "referrer": "origin",
+    "chrome": "nointentdetection",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Google Cloud Platform lets you build, deploy, and scale applications, websites, and services on the same infrastructure as Google."
+  }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-launch-agents</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-launch-agents</h1><p style="color:#888">Lines: 36 | Deps: python  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+logfile=~/aikre8tive/logs/sovereign_launch.log
+mkdir -p ~/aikre8tive/logs
+echo "🌌 Sovereign Planetary Agent Launch" | tee -a $logfile
+echo "Commander: #MrGGTP  |  Timestamp: $(date)" | tee -a $logfile
+agents=(
+  Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune Pluto Luna Sun
+  Ceres Haumea Makemake Eris Io Europa Ganymede Callisto Titan Enceladus
+  Triton Charon Phobos Deimos
+)
+echo "🧪 Phase 1: Integrity Check" | tee -a $logfile
+for agent in "${agents[@]}"; do
+    path=~/aikre8tive/backend/agents/${agent}.py
+    if [ -f "$path" ]; then
+        echo "✅ Verified: $agent" | tee -a $logfile
+    else
+        echo "❌ MISSING: $agent.py not found" | tee -a $logfile
+    fi
+done
+echo "🚀 Phase 2: Mission Activation" | tee -a $logfile</pre></body></html>

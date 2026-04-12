@@ -1,0 +1,3 @@
+T001|investor|run full revenue swarm for fiverr + upwork + gumroad
+T002|allinone|refresh full yesquid all-in-one pipeline
+T003|swarm|launch sovereignGTP swarm + monetize existing offers

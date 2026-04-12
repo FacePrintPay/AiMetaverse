@@ -1,0 +1,30 @@
+{
+  "name": "ChatGPT Auto-Continue", "symbol": "≫", "slug": "chatgpt-auto-continue",
+  "configKeyPrefix": "chatGPTautoContinue",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "aiwebAssets": "https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions@latest/assets",
+    "app": "https://chatgptautocontinue.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/chatgpt-auto-continue@latest/assets",
+    "chatgptjs": "https://chatgpt.js.org",
+    "contributors": "https://docs.chatgptautocontinue.com/#-contributors",
+    "discuss": "https://github.com/adamlui/chatgpt-auto-continue/discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/chatgpt-auto-continue",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": {
+      "chrome": "https://chrome.chatgptautocontinue.com/reviews",
+      "edge": "https://edge.chatgptautocontinue.com",
+      "firefox": "https://ff.chatgptautocontinue.com"
+    },
+    "support": "https://support.chatgptautocontinue.com",
+    "uninstall": "https://forms.gle/SxKz5tvFb9DRAhRt5",
+    "update": { "gm": "https://gm.chatgptautocontinue.com" },
+    "welcome": "https://chatgptautocontinue.com/welcome"
+  }
+}

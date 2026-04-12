@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Git Status — Untracked Files Report</title>
+  <style>
+    :root { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial; }
+    body { margin: 0; padding: 24px; background: #0b0f14; color: #e6edf3; }
+    h1 { margin: 0 0 8px; font-size: 20px; }
+    .sub { margin: 0 0 18px; color: #9fb0c0; font-size: 13px; line-height: 1.4; }
+    .bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0 16px; }
+    input[type="search"]{
+      flex: 1;
+      min-width: 220px;
+      padding: 10px 12px;
+      border: 1px solid #223044;
+      background: #0f1621;
+      color: #e6edf3;
+      border-radius: 10px;
+      outline: none;
+    }
+    button{
+      padding: 10px 12px;
+      border: 1px solid #223044;
+      background: #111a26;
+      color: #e6edf3;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover{ background:#162235; }
+    .meta { display:flex; gap: 12px; flex-wrap: wrap; color:#9fb0c0; font-size: 12px; }
+    .card {
+      border: 1px solid #223044;
+      background: #0f1621;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .cardhead{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #223044;
+      background: #0d131c;
+    }
+    .tag { font-size: 12px; color:#9fb0c0; }
+    pre {
+      margin: 0;
+      padding: 12px;
+      overflow: auto;
+      white-space: pre;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .muted { color:#9fb0c0; }
+    .list { margin-top: 14px; }
+    .row { display:flex; gap: 10px; align-items: baseline; padding: 8px 12px; border-top: 1px solid #162235; }
+    .row:first-child { border-top: none; }
+    .path { flex: 1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+    .pill { font-size: 11px; color:#0b0f14; background:#9fb0c0; padding: 2px 8px; border-radius: 999px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Untracked Files Report</h1>
+  <p class="sub">
+    Snapshot of <span class="muted">git status</span> untracked output. Use search to filter, copy to clipboard, or export the filtered list.
+  </p>
+
+  <div class="bar">
+    <input id="q" type="search" placeholder="Filter (e.g. .env, TotalRecall, node_modules, .key, agentik)..." />
+    <button id="copyAll">Copy all</button>
+    <button id="copyFiltered">Copy filtered</button>
+    <button id="exportFiltered">Export filtered .txt</button>
+  </div>
+
+  <div class="meta">
+    <div>Total items: <span id="total">0</span></div>
+    <div>Showing: <span id="shown">0</span></div>
+    <div>Generated: <span id="gen"></span></div>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <div class="cardhead">
+      <div class="tag">Raw input</div>
+      <button id="toggleRaw">Hide raw</button>
+    </div>
+    <pre id="raw"></pre>
+  </div>
+
+  <div class="card list" style="margin-top:14px;">
+    <div class="cardhead">
+      <div class="tag">Parsed paths</div>
+      <div class="tag">Tip: click a line to copy that single path</div>
+    </div>
+    <div id="rows"></div>
+  </div>
+
+<script>
+(() => {
+  const RAW_TEXT = String.raw`Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        ../.aimetaverse_key
+        ../.aimetaverse_master_key
+        ../.bash_history                                              ../.bashrc
+        ../.bashrc.backup
+        ../.bashrc.broken
+        ../.cache/
+        ../.cargo/
+        ../.cloudflared/
+        ../.config/
+        ../.dashboard_pid
+        ../.env
+        ../.fleet_pid
+        ../.gitconfig
+        ../.gnupg/
+        ../.html_viewer.log                                           ../.html_viewer.pid
+        ../.lesshst
+        ../.local/
+        ../.npm/
+        ../.npmrc
+        ../.sovereign_api.pid
+        ../.sovereign_orchestrator.pid                                ../.ssh/
+        ../.termux/
+        ../.venv/                                                     ../.wget-hsts
+        ../.zshrc                                                     ../.zshrc.broken
+        ../1M5B_REVENUE_ROUTING.sh
+        ../8_real_gigs_now.sh
+        ../AGENTIK/
+        ../AiMetaverseVault/
+        ../AiMetaverse_D404_FINAL.sha256
+        ../AiMetaverse_D404_GCP_REAL/                                 ../AiMetaverse_D404_REAL_BUILD/
+        ../AiMetaverse_D404_SOURCE_RECOVERED_20251209.tar.gz
+        ../CLAIM_48.sh
+        ../CLAIM_48_49_50.sh
+        ../CyGel_LLM_Archive/                                         ../EXTRACTED_ALL_ARTIFACTS/                                   ../Kre8tiveKonceptz_RepoDepo/                                 ../PATHOS_COMPILE_SNAPSHOT_20251205_151506.tar.gz
+        ../PATHOS_COMPILE_SNAPSHOT_20251205_151506/                   ../PATHOS_OS/
+        ../README.md
+        ../SOVEREIGNGTP_V2_FINAL/
+        ../SOVEREIGN_GTP_MASTER/
+        ../SOVEREIGN_GTP_MASTER_20251209_0009/
+        ../SOVEREIGN_GTP_MASTER_20251209_0017/
+        ../SOVEREIGN_MASTER/
+        ../SOVEREIGN_VAULT/
+        ../SovereignEmpire/
+        ../SovereignGTP/                                              ../SovereignSwarm/                                            ../SovereignVault
+        ../TheKre8tive/
+        ../TotalRecall/
+        ../TotalRecall_MrGGTP_20251210_134606_ULTRA.tar.gz
+        ../TotalRecall_MrGGTP_20251210_143906_ULTRA.tar.gz
+        ../TotalRecall_MrGGTP_20251210_195848_ULTRA.tar.gz
+        ../TotalRecall_OpenAI_20251210_132653/
+        ../TotalRecall_OpenAI_20251210_134615/
+        ../TotalRecall_OpenAI_20251210_195218/
+        ../ULTIMATE_RECOVERY_20251210_130704/                         ../ULTIMATE_RECOVERY_20251210_153536/
+        ../ULTIMATE_RECOVERY_20251210_154328/
+        ../ULTIMATE_RECOVERY_20251210_165202/
+        ../ULTIMATE_RECOVERY_20251210_165833/
+        ../ULTIMATE_RECOVERY_20251210_172617/                         ../ULTIMATE_RECOVERY_20251210_173959/
+        ../YesQuid/
+        ../YesQuidExtracts/
+        ../YesQuidImmutable/                                          ../YesQuidLogs/
+        ../YesQuid_FullStack_Build/
+        ../YesQuid_RESURRECTED_CREDENTIALS/
+        ../agent-dashboard/
+        ../agent_anomaly.sh                                           ../agent_ap.sh
+        ../agent_ar.sh                                                ../agent_architect.sh
+        ../agent_banking.sh                                           ../agent_compliance.sh
+        ../agent_customer_support.sh                                  ../agent_definitions.broken.1765324474.sh                     ../agent_definitions.sh
+        ../agent_governance.sh                                        ../agent_government.sh
+        ../agent_healthcare.sh                                        ../agent_hospitality.sh                                       ../agent_hr_ops.sh
+        ../agent_insurance.sh                                         ../agent_it_support.sh                                        ../agent_manufacturing.sh
+        ../agent_observability.sh                                     ../agent_performance.sh
+        ../agent_procurement.sh                                       ../agent_recruiter.sh
+        ../agent_roi.sh                                               ../agent_sales_enablement.sh
+        ../agent_security.sh                                          ../agent_university.sh                                        ../agent_valuation.sh
+        ./                                                            ../agentikctl.sh                                              ../agents/
+        ../agentswarm_prospectus.html                                 ../aimetaverse_1000_tasks.sh
+        ../aimetaverse_1000_tasks.txt                                 ../alpha.py                                                   ../anthropic-export-20251212_044228.zip
+        ../anthropic-export-20251212_044228/                          ../apirepo.py                                                 ../architect_enqueue.py
+        ../architect_planner.py                                       ../archives/
+        ../atlas.py                                                   ../bart.ai/
+        ../bash-all.sh                                                ../batch_send.sh                                              ../batches/
+        ../beta.py                                                    ../bin/
+        ../boot_mesh.sh                                               ../bootstrap_thekre8tive_monorepo.sh
+        ../check_backlog.sh                                           ../chimera.py
+        ../chronos.py                                                 ../completed_tasks_summary.txt
+        ../coterie.py                                                 ../earth.py                                                   ../echo.py
+        ../exports/                                                   ../f6s_env.sh                                                 ../faceprintpay_monorepo_bootstrap.sh
+        ../full_stack_integration.sh                                  ../gamma.py                                                   ../gen_all_pdf.sh
+        ../generate_prospectus.sh                                     ../gmail_metadata_clone.sh
+        ../grok-bash-server/                                          ../guardian.py
+        ../helio.py                                                   ../hempchoices_rebuild_pass1.sh
+        ../html_recovery/                                             ../index.html                                                 ../install_sovereign.log
+        ../integrations/                                              ../intel/
+        ../jupiter.py                                                 ../kre8tive-feed/
+        ../kre8tive-portfolio/                                        ../kre8tive_cloudflare_feed.sh
+        ../lambda.py                                                  ../launch_100.sh                                              ../launch_1000.sh
+        ../launch_1000_revenue_tasks.py                               ../launch_1000_revenue_tasks.sh                               ../logs/                                                      ../mars.py                                                    ../mercury.py
+        ../models/                                                    ../money_now.sh                                               ../monitor_tasks.sh                                           ../my_script.sh                                               ../neptune.py
+        ../node_modules/                                              ../nohup.out                                                  ../normalize_batches.sh                                       ../omega.py                                                   ../orchestrator.sh
+        ../orchestrator/                                              ../outputs/                                                   ../package-lock.json                                          ../package.json                                               ../pathos.sh
+        ../pids/                                                      ../plan_1765339776414180143.json                              ../plan_1765339776834945990.json                              ../plan_schema.json                                           ../plans/
+        ../pluto.py                                                   ../profiles/                                                  ../publish_episode.sh                                         ../push_to_hempchoices_drive.sh
+        ../quanta.py                                                  ../r2-upload.sh                                               ../reference/                                                 ../repodepo_backend_demo_C.sh                                 ../repodepo_backend_demo_C_fixed.sh
+        ../repodepo_backend_tiein.sh                                  ../repodepo_fix_live_demo_js.sh                               ../repodepo_harvest_and_integrate_v3.sh                       ../repodepo_harvest_and_integrate_v3.sh.bak.1765534547        ../repodepo_one.sh                                            ../repos/                                                     ../retarget_push.sh
+        ../revenue_guides.json                                        ../revenue_mesh_swarm.sh                                      ../revenue_now.sh                                             ../run_plan_strict.sh                                         ../saturn.py                                                  ../scribe.py                                                  ../secure_zip.sh
+        ../seed_1000_tasks.sh                                         ../send_task.sh                                               ../serve_videocourts_web.sh                                   ../setup_videocourts_mvp.sh                                   ../sovereign-architect/                                       ../sovereign-backup.log                                       ../sovereign-gtp/
+        ../sovereign-gumroad/                                         ../sovereignGTP/                                              ../sovereign_api.py                                           ../sovereign_architect_build.sh                               ../sovereign_architect_build.sh~kkk                           ../sovereign_architect_profile.json                           ../sovereign_architect_setup.sh
+        ../sovereigngtp_full_stack_install.sh                         ../sovereignvault/                                            ../stop_mesh.sh                                               ../storage/                                                   ../swarm_add_agi_kre8tive_landing.sh                          ../swarm_api/                                                 ../swarm_tasks.py
+        ../targets/                                                   ../tasks.log                                                  ../tasks/                                                     ../thekre8tive_push.sh                                        ../tools/                                                     ../total_recall_fixed.sh                                      ../totalrecall/
+        ../ultimate_recovery.sh                                       ../update_real_1000.sh                                        ../upload_to_legyc_index.py                                   ../uranus.py                                                  ../uvicorn.log                                                ../uvicorn_key_rotation.log                                   ../vault.py
+        ../venus.py
+... (truncated in report for readability)`;
+
+  const rawEl = document.getElementById("raw");
+  const rowsEl = document.getElementById("rows");
+  const qEl = document.getElementById("q");
+  const totalEl = document.getElementById("total");
+  const shownEl = document.getElementById("shown");
+  const genEl = document.getElementById("gen");
+  const toggleRawBtn = document.getElementById("toggleRaw");
+
+  // Render raw
+  rawEl.textContent = RAW_TEXT;
+
+  // Parse: grab tokens that look like paths beginning with ../ or ./
+  const paths = Array.from(
+    new Set(
+      RAW_TEXT
+        .split(/\s+/g)
+        .map(s => s.trim())
+        .filter(s => s.startsWith("../") || s.startsWith("./"))
+    )
+  ).sort((a,b) => a.localeCompare(b));
+
+  totalEl.textContent = String(paths.length);
+  genEl.textContent = new Date().toLocaleString();
+
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    // fallback
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+
+  function render(filter=""){
+    rowsEl.innerHTML = "";
+    const f = filter.trim().toLowerCase();
+
+    const filtered = paths.filter(p => !f || p.toLowerCase().includes(f));
+    shownEl.textContent = String(filtered.length);
+
+    filtered.forEach((p) => {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.title = "Click to copy this path";
+
+      const path = document.createElement("div");
+      path.className = "path";
+      path.textContent = p;
+
+      const pill = document.createElement("div");
+      pill.className = "pill";
+      pill.textContent = p.endsWith("/") ? "dir" : "file";
+
+      row.appendChild(path);
+      row.appendChild(pill);
+
+      row.addEventListener("click", async () => {
+        await copyText(p);
+        pill.textContent = "copied";
+        setTimeout(() => pill.textContent = (p.endsWith("/") ? "dir" : "file"), 700);
+      });
+
+      rowsEl.appendChild(row);
+    });
+
+    // store last filtered for export/copy
+    window.__AGENTIK_FILTERED = filtered;
+  }
+
+  render("");
+
+  qEl.addEventListener("input", () => render(qEl.value));
+
+  document.getElementById("copyAll").addEventListener("click", async () => {
+    await copyText(paths.join("\n"));
+    alert("Copied ALL paths to clipboard.");
+  });
+
+  document.getElementById("copyFiltered").addEventListener("click", async () => {
+    const filtered = window.__AGENTIK_FILTERED || [];
+    await copyText(filtered.join("\n"));
+    alert("Copied FILTERED paths to clipboard.");
+  });
+
+  document.getElementById("exportFiltered").addEventListener("click", () => {
+    const filtered = window.__AGENTIK_FILTERED || [];
+    const blob = new Blob([filtered.join("\n") + "\n"], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "untracked_files_filtered.txt";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  let rawVisible = true;
+  toggleRawBtn.addEventListener("click", () => {
+    rawVisible = !rawVisible;
+    rawEl.parentElement.classList.toggle("hidden", !rawVisible);
+    toggleRawBtn.textContent = rawVisible ? "Hide raw" : "Show raw";
+  });
+})();
+</script>
+</body>
+</html>

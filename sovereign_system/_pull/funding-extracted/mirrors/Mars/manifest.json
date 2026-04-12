@@ -1,0 +1,8 @@
+{
+  "agent": "Mars",
+  "mirror_created": "2026-03-17T02:54:07-04:00",
+  "source": "/data/data/com.termux/files/home/constellation25/agents/Mars",
+  "mirror": "/data/data/com.termux/files/home/constellation25/mirrors/Mars",
+  "sync_interval": 30,
+  "status": "live"
+}

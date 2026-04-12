@@ -1,0 +1,11 @@
+{
+  "name": "Eris",
+  "tier": "sun",
+  "role": "optimize",
+  "llm": "claude",
+  "deps": "python3,nodejs",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "b329a248743d043d",
+  "status": "active"
+}

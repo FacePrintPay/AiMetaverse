@@ -1,0 +1,8 @@
+{
+  "agent": "Eris",
+  "mirror_created": "2026-03-17T02:54:07-04:00",
+  "source": "/data/data/com.termux/files/home/constellation25/agents/Eris",
+  "mirror": "/data/data/com.termux/files/home/constellation25/mirrors/Eris",
+  "sync_interval": 30,
+  "status": "live"
+}

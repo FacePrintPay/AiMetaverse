@@ -1,0 +1,29 @@
+{
+  "agents": [
+    {"id": "01", "name": "Earth", "color": "#27c93f", "role": "Foundational Code Structure", "desc": "Parse input, create tasks"},
+    {"id": "02", "name": "Moon", "color": "#c8d0e0", "role": "Syntax Error Resolution", "desc": "AST scanning, auto-fix"},
+    {"id": "03", "name": "Sun", "color": "#ffaa00", "role": "Performance Optimization", "desc": "Code profiling, bottlenecks"},
+    {"id": "04", "name": "Mercury", "color": "#b8b8d0", "role": "Unit Test Generation", "desc": "Jest/Vitest scaffolding"},
+    {"id": "05", "name": "Venus", "color": "#f5c842", "role": "Regression Testing", "desc": "Test coverage analysis"},
+    {"id": "06", "name": "Mars", "color": "#ff5f56", "role": "Security Scanning", "desc": "OWASP vulnerability detection"},
+    {"id": "07", "name": "Jupiter", "color": "#e8a242", "role": "Code Documentation", "desc": "JSDoc, README generation"},
+    {"id": "08", "name": "Saturn", "color": "#f5a623", "role": "Boundary Enforcement", "desc": "Type safety, validation"},
+    {"id": "09", "name": "Uranus", "color": "#7ed3c1", "role": "API Integration", "desc": "REST/GraphQL clients"},
+    {"id": "10", "name": "Neptune", "color": "#4a90e2", "role": "Code Deduplication", "desc": "DRY principle enforcement"},
+    {"id": "11", "name": "Pluto", "color": "#9b59b6", "role": "Edge Cases", "desc": "Boundary condition testing"},
+    {"id": "12", "name": "Orion", "color": "#e74c3c", "role": "Architecture Review", "desc": "System design patterns"},
+    {"id": "13", "name": "Pleiades", "color": "#3498db", "role": "Microservices Orchestrator", "desc": "Service mesh configuration"},
+    {"id": "14", "name": "Andromeda", "color": "#9b59b6", "role": "UI/UX Optimization", "desc": "Component rendering perf"},
+    {"id": "15", "name": "Cygnus", "color": "#1abc9c", "role": "AI/ML Integration", "desc": "Model deployment pipeline"},
+    {"id": "16", "name": "Sirius", "color": "#3498db", "role": "Deployment Scaling", "desc": "K8s, Docker orchestration"},
+    {"id": "17", "name": "Canis Major", "color": "#e67e22", "role": "Virtual Env Management", "desc": "Python/Node env setup"},
+    {"id": "18", "name": "Hydra", "color": "#c0392b", "role": "Technical Debt Resolution", "desc": "Refactoring priorities"},
+    {"id": "19", "name": "Vulcan", "color": "#e74c3c", "role": "Proof-Stack Validation", "desc": "Formal verification"},
+    {"id": "20", "name": "Polaris", "color": "#34495e", "role": "Biometric Authentication", "desc": "Fingerprint/face ID integration"},
+    {"id": "21", "name": "Lyra", "color": "#9b59b6", "role": "Marketplace Logic", "desc": "Agent economy protocols"},
+    {"id": "22", "name": "Draco", "color": "#16a085", "role": "Sovereign Protocol Enforcement", "desc": "Privacy, encryption"},
+    {"id": "23", "name": "Phoenix", "color": "#e67e22", "role": "Auto-Recovery", "desc": "Self-healing systems"},
+    {"id": "24", "name": "Auriga", "color": "#f39c12", "role": "Auto-Recovery", "desc": "Backup, rollback systems"},
+    {"id": "25", "name": "Perseus", "color": "#3498db", "role": "Zero-Trust Network Perimeter", "desc": "Network security policies"}
+  ]
+}

@@ -1,0 +1,40 @@
+TOTAL RECALL — ARC / AIM TEMPORAL CORRELATION REPORT
+Generated: 2025-12-19T10:19:22-05:00
+Host: localhost
+--------------------------------------------------
+
+## Total Recall Artifacts
+
+Source: /data/data/com.termux/files/home/totalrecall
+2025-12-08 00:50:30.093408744 -0500  /data/data/com.termux/files/home/totalrecall/logger.py
+2025-12-16 13:26:44.656000086 -0500  /data/data/com.termux/files/home/totalrecall/orchestrator/banner.sh
+2025-12-16 13:26:44.672000086 -0500  /data/data/com.termux/files/home/totalrecall/orchestrator/scan.sh
+2025-12-16 13:26:44.684000086 -0500  /data/data/com.termux/files/home/totalrecall/orchestrator/hash.sh
+2025-12-16 13:26:44.696000086 -0500  /data/data/com.termux/files/home/totalrecall/orchestrator/trace.sh
+2025-12-16 13:26:44.708000086 -0500  /data/data/com.termux/files/home/totalrecall/orchestrator/run.sh
+2025-12-16 13:26:44.736000086 -0500  /data/data/com.termux/files/home/totalrecall/viewer/index.html
+2025-12-16 13:26:44.744000086 -0500  /data/data/com.termux/files/home/totalrecall/vercel.json
+2025-12-16 13:26:44.756000086 -0500  /data/data/com.termux/files/home/totalrecall/.gitignore
+
+Source: /data/data/com.termux/files/home/totalrecall_output
+2025-12-14 22:00:47.303293424 -0500  /data/data/com.termux/files/home/totalrecall_output/index.json
+
+## ARC / ARCAI Artifacts
+
+⚠ No artifacts found for pattern: arc[_-]?ai|\barc\b
+
+## AIM Artifacts (NOT AIME)
+
+⚠ No artifacts found for pattern: \baim\b
+
+## Secondary AI References
+
+⚠ No artifacts found for pattern: \bai\b
+
+## Notes
+- All findings are filesystem-backed.
+- Correlation is temporal only.
+- No execution, monitoring, or ingestion is asserted.
+- AIM and ARC are treated as independent signals.
+
+END OF REPORT

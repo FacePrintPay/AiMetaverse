@@ -1,0 +1,6 @@
+[VENUS-04] PLACEHOLDER RESOLUTION PROTOCOL
+1. [DATE/DEADLINE] → Replace with: "Upon service of complaint" or actual CCPA request date if located
+2. [DEFENDANT/ENTITY] → Replace with: "Google LLC, Alphabet Inc., [Subsidiary Name]" per service records
+3. [EXHIBIT/FILE] → Replace with: "See Exhibit [X], filed herewith"
+4. [DOLLAR/DAMAGES] → Replace with: "Statutory damages pursuant to Cal. Civ. Code §1798.150(c) and applicable state law"
+5. [GENERAL/TBD] → Replace with: "As further detailed in the verified complaint and supporting declarations"

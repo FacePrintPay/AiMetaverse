@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  orchestrator:
+    build: ./orchestrator
+    container_name: c25-orchestrator
+    restart: unless-stopped
+    volumes:
+      - ../logs:/app/logs
+      - ../TotalRecall:/app/TotalRecall
+    networks:
+      - c25-net
+
+  api-backend:
+    build: ./api-backend
+    container_name: c25-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - orchestrator
+    networks:
+      - c25-net
+
+  earth-agent:
+    build: ./agents/earth
+    container_name: c25-earth
+    depends_on:
+      - orchestrator
+    networks:
+      - c25-net
+
+networks:
+  c25-net:
+    driver: bridge

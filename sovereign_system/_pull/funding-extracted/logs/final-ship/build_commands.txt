@@ -1,0 +1,10 @@
+bash "$FOUND" 2>&1 | tail -5
+bash ~/C25_TOTALRECALL_BUILD.sh 2>&1 | tee ~/agent_logs/totalrecall_build.log
+cd "$DIR"
+cd ~
+git add -A 2>/dev/null
+git commit -m "C25 Cygnus: package + vercel config $(date +%Y-%m-%d)" \
+git push 2>/dev/null | tail -1
+mkdir -p "$LOG_DIR"
+mkdir -p "$OUT"/{system,network,files,evidence,bard,git,legal,agents,builds,artifacts,forensic}
+python3 << 'EOF'

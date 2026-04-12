@@ -1,0 +1,30 @@
+{
+  "task": "Security analysis",
+  "models": [
+    "ollama/llama3",
+    "perseus-agent"
+  ],
+  "data": {
+    "vulnerabilities": [
+      "sql_injection",
+      "xss",
+      "csrf",
+      "path_traversal",
+      "insecure_deserialization",
+      "broken_auth"
+    ],
+    "tools": [
+      "bandit",
+      "semgrep",
+      "snyk",
+      "owasp"
+    ],
+    "severity": [
+      "critical",
+      "high",
+      "medium",
+      "low",
+      "info"
+    ]
+  }
+}

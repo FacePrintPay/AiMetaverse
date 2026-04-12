@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyBuyo × Food Lion — Biometric Payments Pilot Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5C842;
+    --lion-red: #E8202A;
+    --lion-dark: #1A0A00;
+    --green: #00FF88;
+    --cyan: #00E5FF;
+    --violet: #9B59FF;
+    --white: #F5F0E8;
+    --gray: #A89880;
+    --bg: #0A0500;
+    --card: #110A02;
+    --border: rgba(245,200,66,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,5,0,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+  }
+  .nav-brand { font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 3px; color: var(--gold); }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    color: var(--gray); text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 1px; font-weight: 600; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: #000; border: none;
+    font-family: 'Bebas Neue'; letter-spacing: 2px; font-size: 1rem;
+    padding: 6px 18px; cursor: pointer; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--lion-red); color: #fff; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 100px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,32,42,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(245,200,66,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 20%, rgba(0,229,255,0.06) 0%, transparent 60%);
+  }
+
+  .stars {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(245,200,66,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 35%, rgba(245,200,66,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 15%, rgba(0,229,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 85%, rgba(155,89,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 90%, rgba(245,200,66,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 45%, rgba(0,255,136,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.2) 0%, transparent 100%);
+    animation: starFloat 20s linear infinite;
+  }
+  @keyframes starFloat { 0% { transform: translateY(0); } 100% { transform: translateY(-20px); } }
+
+  .eyebrow {
+    font-family: 'Share Tech Mono'; font-size: 0.8rem; color: var(--green);
+    letter-spacing: 4px; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    animation: fadeIn 0.8s ease;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ''; flex: 1; max-width: 80px; height: 1px; background: var(--green);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue'; font-size: clamp(3.5rem, 9vw, 8rem);
+    line-height: 0.95; letter-spacing: 4px; margin-bottom: 1rem;
+    animation: slideUp 0.8s ease 0.2s both;
+  }
+  .hero-title .red { color: var(--lion-red); }
+  .hero-title .gold { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--gray);
+    max-width: 680px; margin: 1.5rem auto 2.5rem;
+    font-weight: 500; letter-spacing: 0.5px;
+    animation: slideUp 0.8s ease 0.4s both;
+  }
+  .hero-sub strong { color: var(--white); }
+
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+    margin-bottom: 3rem;
+    animation: slideUp 0.8s ease 0.6s both;
+  }
+  .badge {
+    border: 1px solid var(--border); padding: 6px 16px;
+    font-family: 'Share Tech Mono'; font-size: 0.75rem; color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: slideUp 0.8s ease 0.8s both;
+  }
+  .btn-primary {
+    background: var(--gold); color: #000; border: none;
+    font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 3px;
+    padding: 14px 40px; cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--lion-red); color: #fff; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3);
+    font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 3px;
+    padding: 14px 40px; cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 2rem; position: relative; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Share Tech Mono'; font-size: 0.75rem; color: var(--green);
+    letter-spacing: 4px; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue'; font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 3px; line-height: 1; margin-bottom: 1rem;
+  }
+  .section-title .accent { color: var(--gold); }
+
+  .divider {
+    width: 60px; height: 3px; background: var(--gold); margin: 1.5rem 0;
+  }
+
+  /* ── STORY SECTION ── */
+  .story-bg {
+    background: linear-gradient(135deg, rgba(232,32,42,0.05) 0%, rgba(17,10,2,1) 50%);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  @media (max-width: 768px) { .story-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .story-text p { color: var(--gray); margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.7; }
+  .story-text p strong { color: var(--white); }
+
+  .headline-card {
+    border: 1px solid var(--gold); padding: 2rem;
+    background: rgba(245,200,66,0.04);
+    position: relative;
+  }
+  .headline-card::before {
+    content: '📰 HEADLINE';
+    position: absolute; top: -12px; left: 1rem;
+    background: var(--bg); padding: 0 8px;
+    font-family: 'Share Tech Mono'; font-size: 0.7rem; color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .headline-text {
+    font-family: 'Bebas Neue'; font-size: 1.6rem; line-height: 1.2;
+    color: var(--white); letter-spacing: 1px; margin-bottom: 1rem;
+  }
+  .headline-text .hl-red { color: var(--lion-red); }
+  .headline-text .hl-gold { color: var(--gold); }
+  .headline-meta {
+    font-family: 'Share Tech Mono'; font-size: 0.75rem; color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ── MARKET STATS ── */
+  .stats-strip {
+    background: var(--card); border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+    padding: 3rem 2rem;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2,1fr); } }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue'; font-size: 3rem; color: var(--gold); letter-spacing: 2px;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Share Tech Mono'; font-size: 0.72rem; color: var(--gray);
+    letter-spacing: 2px; text-transform: uppercase; margin-top: 0.5rem;
+  }
+  .stat-source { font-size: 0.65rem; color: rgba(168,152,128,0.5); margin-top: 0.3rem; }
+
+  /* ── PRODUCT ── */
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;
+  }
+  @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+
+  .product-card {
+    border: 1px solid var(--border); padding: 2rem;
+    background: var(--card); transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .product-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0); transition: transform 0.3s;
+  }
+  .product-card:hover { border-color: rgba(245,200,66,0.5); transform: translateY(-4px); }
+  .product-card:hover::after { transform: scaleX(1); }
+
+  .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .card-title {
+    font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--gold);
+    letter-spacing: 2px; margin-bottom: 0.75rem;
+  }
+  .card-body { color: var(--gray); font-size: 0.95rem; line-height: 1.6; }
+
+  /* ── PILOT PLAN ── */
+  .pilot-bg {
+    background: rgba(0,229,255,0.02);
+    border-top: 1px solid rgba(0,229,255,0.15); border-bottom: 1px solid rgba(0,229,255,0.15);
+  }
+
+  .phases { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+  .phase {
+    display: grid; grid-template-columns: 120px 1fr; gap: 0;
+    border: 1px solid var(--border); margin-bottom: -1px;
+    background: var(--card); transition: all 0.2s;
+  }
+  .phase:hover { border-color: rgba(245,200,66,0.4); z-index: 1; }
+
+  .phase-num {
+    background: var(--gold); color: #000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 1.5rem 1rem;
+    font-family: 'Bebas Neue'; text-align: center;
+  }
+  .phase-label { font-size: 0.65rem; letter-spacing: 2px; }
+  .phase-big { font-size: 2.5rem; line-height: 1; }
+  .phase-content { padding: 1.5rem 2rem; }
+  .phase-title {
+    font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 2px;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .phase-body { color: var(--gray); font-size: 0.95rem; }
+  .phase-time {
+    font-family: 'Share Tech Mono'; font-size: 0.75rem; color: var(--cyan);
+    letter-spacing: 1px; margin-top: 0.5rem;
+  }
+
+  /* ── LOI ── */
+  .loi-wrapper {
+    border: 2px solid var(--gold); padding: 3rem;
+    background: var(--card); max-width: 800px; margin: 3rem auto 0;
+    position: relative;
+  }
+  .loi-wrapper::before {
+    content: 'LETTER OF INTENT — DRAFT';
+    position: absolute; top: -14px; left: 2rem;
+    background: var(--bg); padding: 0 12px;
+    font-family: 'Share Tech Mono'; font-size: 0.75rem; color: var(--gold);
+    letter-spacing: 3px;
+  }
+  .loi-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .loi-logo { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); letter-spacing: 3px; }
+  .loi-date { font-family: 'Share Tech Mono'; font-size: 0.8rem; color: var(--gray); text-align: right; }
+
+  .loi-body { font-size: 0.95rem; color: var(--gray); line-height: 1.8; }
+  .loi-body p { margin-bottom: 1rem; }
+  .loi-body strong { color: var(--white); }
+  .loi-body .loi-para-title { color: var(--gold); font-weight: 700; font-size: 1rem; }
+
+  .loi-sigs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .sig-block { }
+  .sig-line { border-bottom: 1px solid rgba(255,255,255,0.4); height: 40px; margin-bottom: 0.5rem; }
+  .sig-label { font-family: 'Share Tech Mono'; font-size: 0.7rem; color: var(--gray); letter-spacing: 2px; }
+
+  /* ── ROI ── */
+  .roi-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;
+  }
+  @media (max-width: 768px) { .roi-grid { grid-template-columns: 1fr; } }
+
+  .roi-card {
+    border: 1px solid var(--border); padding: 2rem; background: var(--card);
+  }
+  .roi-card-title {
+    font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--cyan);
+    letter-spacing: 2px; margin-bottom: 1rem;
+  }
+  .roi-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .roi-item:last-child { border-bottom: none; }
+  .roi-key { color: var(--gray); font-size: 0.9rem; }
+  .roi-val { font-family: 'Share Tech Mono'; color: var(--green); font-size: 0.9rem; }
+
+  /* ── COMPETITIVE ── */
+  .comp-table {
+    width: 100%; border-collapse: collapse; margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  .comp-table th {
+    background: var(--gold); color: #000;
+    font-family: 'Bebas Neue'; letter-spacing: 2px; font-size: 1rem;
+    padding: 1rem 1.5rem; text-align: left;
+  }
+  .comp-table td {
+    padding: 0.9rem 1.5rem; border-bottom: 1px solid var(--border);
+    color: var(--gray);
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr.highlight td { background: rgba(245,200,66,0.06); color: var(--white); }
+  .comp-table .check { color: var(--green); font-size: 1.1rem; }
+  .comp-table .cross { color: var(--lion-red); font-size: 1.1rem; }
+  .comp-table .partial { color: var(--gold); font-size: 1.1rem; }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .profile-card {
+    border: 1px solid var(--gold); padding: 2.5rem;
+    background: rgba(245,200,66,0.03); text-align: center;
+  }
+  .profile-avatar {
+    width: 80px; height: 80px; border: 2px solid var(--gold);
+    border-radius: 50%; margin: 0 auto 1rem;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .profile-name { font-family: 'Bebas Neue'; font-size: 1.6rem; letter-spacing: 3px; }
+  .profile-title { color: var(--gold); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 1rem; }
+  .profile-bio { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+  .profile-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; justify-content: center; }
+  .tag {
+    border: 1px solid var(--border); padding: 3px 10px;
+    font-family: 'Share Tech Mono'; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center; padding: 100px 2rem;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,32,42,0.1) 0%, transparent 70%);
+  }
+  .cta-section .section-title { font-size: clamp(2.5rem, 6vw, 5rem); }
+  .cta-section p { color: var(--gray); max-width: 600px; margin: 1rem auto 2.5rem; font-size: 1.05rem; }
+
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    max-width: 800px; margin: 3rem auto 0;
+  }
+  @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-card {
+    border: 1px solid var(--border); padding: 1.5rem;
+    background: var(--card); text-align: center;
+  }
+  .contact-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .contact-label {
+    font-family: 'Share Tech Mono'; font-size: 0.7rem; color: var(--gray);
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.3rem;
+  }
+  .contact-val { color: var(--white); font-size: 0.9rem; word-break: break-all; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Share Tech Mono'; font-size: 0.72rem; color: var(--gray);
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .footer-brand { color: var(--gold); letter-spacing: 2px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .fade-in {
+    opacity: 0; animation: fadeIn 0.8s ease forwards;
+    animation-play-state: paused;
+  }
+  .fade-in.visible { animation-play-state: running; }
+
+  /* ── CONFIDENTIAL BANNER ── */
+  .conf-banner {
+    background: rgba(232,32,42,0.1); border: 1px solid rgba(232,32,42,0.3);
+    padding: 0.6rem 2rem; text-align: center;
+    font-family: 'Share Tech Mono'; font-size: 0.75rem;
+    color: var(--lion-red); letter-spacing: 3px;
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    nav, .conf-banner { position: static; }
+    body { background: #fff; color: #000; }
+    .hero-bg, .stars { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Confidential banner -->
+<div class="conf-banner">⚠ CONFIDENTIAL — PILOT PROPOSAL — FACEPRINTPAY INC. / MYBUYO™ × FOOD LION</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-brand">MYBUYO × FOOD LION</div>
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#product">Platform</a>
+    <a href="#pilot">Pilot Plan</a>
+    <a href="#roi">ROI</a>
+    <a href="#loi">LOI</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="window.print()">PRINT / PDF</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars"></div>
+  <div style="position:relative; z-index:1;">
+    <div class="eyebrow">PILOT PROPOSAL · MARCH 2026</div>
+    <div class="hero-title">
+      <span class="red">FOOD</span> <span class="gold">LION</span><br>
+      MEETS THE FUTURE<br>
+      <span style="color:var(--white);">OF CHECKOUT</span>
+    </div>
+    <p class="hero-sub">
+      FacePrintPay Inc. proposes a <strong>MyBuyo™ Biometric Payment Gateway</strong> pilot program — positioning Food Lion as the <strong>first major U.S. grocery chain</strong> to offer frictionless face-and-fingerprint checkout at self-service kiosks.
+    </p>
+    <div class="hero-badges">
+      <div class="badge">SELF-CHECKOUT INTEGRATION</div>
+      <div class="badge">FACIAL · FINGERPRINT · PALM</div>
+      <div class="badge">TOTALRECALL™ VAULT</div>
+      <div class="badge">NORTH CAROLINA–BORN TECH</div>
+      <div class="badge">AHOLD DELHAIZE COMPATIBLE</div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#pilot" class="btn-primary">VIEW PILOT PLAN</a>
+      <a href="#loi" class="btn-outline">READ THE LOI</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story" class="story-bg">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text">
+        <div class="section-label">THE STORY</div>
+        <div class="section-title">A HOMETOWN <span class="accent">INVENTION</span></div>
+        <div class="divider"></div>
+        <p>What you're about to read isn't a pitch from a Silicon Valley startup — it's a proposal from someone who <strong>stocks the shelves</strong>. Someone who knows what it feels like when a customer holds up a self-checkout line fumbling for a card or a phone.</p>
+        <p>Cygel White, founder of <strong>FacePrintPay Inc.</strong>, has been building sovereign biometric AI infrastructure since 2022. After returning to work at a local Food Lion store in North Carolina, he showed his assistant manager the <strong>MyBuyo™ Retail Biometrics Payment Gateway</strong> — and the reaction was immediate.</p>
+        <p>This proposal formalizes that conversation into a corporate-level pilot opportunity. Food Lion, under President <strong>Greg Finchum</strong> — himself a 36-year company veteran — has consistently led innovation in the Southeast grocery market. This is the next chapter.</p>
+        <p>The headline practically writes itself.</p>
+      </div>
+      <div>
+        <div class="headline-card">
+          <div class="headline-text">
+            <span class="hl-red">FOOD LION</span> STOCKING CLERK<br>
+            WHO <span class="hl-gold">INVENTED BIOMETRIC CHECKOUT</span><br>
+            BRINGS TECHNOLOGY HOME —<br>
+            MAKES FOOD LION <span class="hl-red">FIRST</span> U.S. GROCER<br>
+            TO GO <span class="hl-gold">FACE-PAY</span>
+          </div>
+          <div class="headline-meta">— SALISBURY POST / BUSINESS NORTH CAROLINA / GROCERY DIVE</div>
+        </div>
+        <div style="margin-top:1.5rem; border: 1px solid var(--border); padding: 1.5rem; background: var(--card);">
+          <div class="section-label" style="margin-bottom:0.75rem;">WHY NOW</div>
+          <p style="color:var(--gray); font-size:0.9rem; line-height:1.7;">
+            J.P. Morgan + PopID are actively deploying biometric terminals to U.S. <strong style="color:var(--white);">grocery stores in H2 2025–2026</strong>. Amazon One is live at 100+ Whole Foods. JPMorgan is specifically targeting grocery. Food Lion has an 18-month window to be <strong style="color:var(--gold);">first in its competitive class</strong> before this becomes table stakes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET STATS -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">$5.8T</div>
+      <div class="stat-label">Global Biometric Payments</div>
+      <div class="stat-source">Goode Intelligence, by 2026</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">47%</div>
+      <div class="stat-label">Consumers Ready to Pay Biometrically In-Store</div>
+      <div class="stat-source">Javelin Strategy 2024</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1,100+</div>
+      <div class="stat-label">Food Lion Stores — 10 SE States</div>
+      <div class="stat-source">Ahold Delhaize USA</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">&lt;1s</div>
+      <div class="stat-label">Avg. Biometric Transaction Time</div>
+      <div class="stat-source">J.P. Morgan / PopID Pilots</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT -->
+<section id="product">
+  <div class="container">
+    <div class="section-label">THE PLATFORM</div>
+    <div class="section-title">MYBUYO™ <span class="accent">BIOMETRIC GATEWAY</span></div>
+    <div class="divider"></div>
+    <p style="color:var(--gray); max-width:680px; font-size:1.05rem; line-height:1.7;">
+      MyBuyo™ is a retail biometric payment gateway built by FacePrintPay Inc. — a sovereign AI and identity infrastructure company headquartered in North Carolina. The platform is designed specifically for self-checkout and integrated POS environments.
+    </p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="card-icon">👁</div>
+        <div class="card-title">FACE RECOGNITION PAY</div>
+        <div class="card-body">Customers enroll once, pay by looking at the terminal. No phone. No card. No friction. Sub-second authentication tied to encrypted biometric templates — never raw biometric data stored.</div>
+      </div>
+      <div class="product-card">
+        <div class="card-icon">🖐</div>
+        <div class="card-title">FINGERPRINT + PALM</div>
+        <div class="card-body">Multi-modal biometric options give customers choice. Fingerprint on kiosk rail or palm hover — both tied to the same secure vault. Supports customers who opt out of facial recognition.</div>
+      </div>
+      <div class="product-card">
+        <div class="card-icon">🔗</div>
+        <div class="card-title">SELF-CHECKOUT INTEGRATION</div>
+        <div class="card-body">Drop-in SDK and API layer designed for existing self-checkout terminals. Compatible with major grocery checkout hardware. Minimal retrofit required — biometrics replace PIN pad step.</div>
+      </div>
+      <div class="product-card">
+        <div class="card-icon">🏛</div>
+        <div class="card-title">TOTALRECALL™ VAULT</div>
+        <div class="card-body">SHA256-anchored forensic logging of every transaction event. Immutable audit trail with timestamp and terminal ID. Built-in compliance infrastructure for Ahold Delhaize enterprise security standards.</div>
+      </div>
+      <div class="product-card">
+        <div class="card-icon">🛡</div>
+        <div class="card-title">PRIVACY-FIRST ARCHITECTURE</div>
+        <div class="card-body">Zero raw biometric storage. All templates are encrypted mathematical representations. Consent-based enrollment workflow. Built with BIPA, state biometric privacy law, and PCI DSS alignment in mind.</div>
+      </div>
+      <div class="product-card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">MERCHANT ANALYTICS DASHBOARD</div>
+        <div class="card-body">Real-time throughput data, transaction velocity, enrolled customer metrics, and shrink-reduction analytics. Gives store management and corporate visibility into pilot performance at every level.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="section-label">COMPETITIVE LANDSCAPE</div>
+    <div class="section-title">WHERE MYBUYO™ <span class="accent">STANDS</span></div>
+    <div class="divider"></div>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>SOLUTION</th>
+          <th>GROCERY FOCUS</th>
+          <th>NC / SE REGION</th>
+          <th>SELF-CHECKOUT NATIVE</th>
+          <th>FORENSIC AUDIT LOG</th>
+          <th>ACQUISITION POTENTIAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>MyBuyo™ (FacePrintPay)</strong></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓ NC-BORN</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓ TOTALRECALL™</span></td>
+          <td><span class="check">✓ AVAILABLE</span></td>
+        </tr>
+        <tr>
+          <td>Amazon One</td>
+          <td><span class="partial">~ Whole Foods only</span></td>
+          <td><span class="cross">✗ Amazon ecosystem</span></td>
+          <td><span class="partial">~ Palm only</span></td>
+          <td><span class="cross">✗ Not disclosed</span></td>
+          <td><span class="cross">✗ Amazon-proprietary</span></td>
+        </tr>
+        <tr>
+          <td>PopID / JP Morgan</td>
+          <td><span class="partial">~ QSR primary</span></td>
+          <td><span class="cross">✗ National generic</span></td>
+          <td><span class="partial">~ Retrofit required</span></td>
+          <td><span class="cross">✗ Limited</span></td>
+          <td><span class="cross">✗ JV partnership only</span></td>
+        </tr>
+        <tr>
+          <td>CLEAR</td>
+          <td><span class="cross">✗ Travel/events focus</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="partial">~ Basic</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PILOT PLAN -->
+<section id="pilot" class="pilot-bg">
+  <div class="container">
+    <div class="section-label">PILOT STRUCTURE</div>
+    <div class="section-title">THE <span class="accent">3-PHASE</span> ROLLOUT PLAN</div>
+    <div class="divider"></div>
+    <p style="color:var(--gray); max-width:680px; font-size:1.05rem; line-height:1.7;">
+      We propose a structured, low-risk pilot beginning with a single North Carolina store — ideally one with existing self-checkout infrastructure — with clear success metrics and an expansion pathway tied to quantifiable outcomes.
+    </p>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num" style="background:var(--gold);">
+          <div class="phase-label">PHASE</div>
+          <div class="phase-big">01</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">SINGLE-STORE PILOT — PROOF OF CONCEPT</div>
+          <div class="phase-body">Deploy MyBuyo™ on 2–4 self-checkout kiosks at one designated Food Lion location. Customer enrollment station at store entrance. Full biometric payment capability alongside existing payment methods — customers opt in voluntarily. Forensic logging active from Day 1 via TotalRecall™.</div>
+          <div class="phase-time">📅 MONTHS 1–3 · KPIs: Enrollment rate, transaction velocity, customer satisfaction NPS, error rate</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num" style="background:var(--cyan); color:#000;">
+          <div class="phase-label">PHASE</div>
+          <div class="phase-big">02</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">REGIONAL EXPANSION — 5–10 STORES</div>
+          <div class="phase-body">Based on Phase 1 data, expand to 5–10 NC/SC locations. Introduce MyBuyo™ loyalty integration — biometric identity linked to Food Lion MVP loyalty program for seamless rewards. Add Food Lion-branded enrollment portal (web + in-app). Deeper analytics dashboard deployed to regional management.</div>
+          <div class="phase-time">📅 MONTHS 4–9 · KPIs: Checkout time reduction %, repeat biometric usage rate, shrink delta</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num" style="background:var(--violet);">
+          <div class="phase-label">PHASE</div>
+          <div class="phase-big">03</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">CHAIN-WIDE ROLLOUT + ACQUISITION / LICENSING DISCUSSION</div>
+          <div class="phase-body">Full deployment across Food Lion's 1,100+ store network. Present performance data to Ahold Delhaize USA executive team. Open formal discussions on technology licensing, acquisition, or exclusive partnership structure. MyBuyo™ becomes a Food Lion proprietary capability — a competitive moat no Southeast competitor can replicate.</div>
+          <div class="phase-time">📅 MONTHS 10–18 · MILESTONE: Ahold Delhaize boardroom presentation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="roi">
+  <div class="container">
+    <div class="section-label">BUSINESS CASE</div>
+    <div class="section-title">ROI <span class="accent">PROJECTIONS</span></div>
+    <div class="divider"></div>
+
+    <div class="roi-grid">
+      <div class="roi-card">
+        <div class="roi-card-title">FOR FOOD LION STORES</div>
+        <div class="roi-item">
+          <span class="roi-key">Avg. checkout time reduction</span>
+          <span class="roi-val">~40% faster</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Self-checkout abandonment reduction</span>
+          <span class="roi-val">Est. 15–25%</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Card/payment fraud reduction</span>
+          <span class="roi-val">Near elimination</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Customer loyalty tie-in (MVP)</span>
+          <span class="roi-val">Biometric = identity</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">PR / media value (first-mover)</span>
+          <span class="roi-val">Incalculable</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Competitive differentiation window</span>
+          <span class="roi-val">12–18 months ahead</span>
+        </div>
+      </div>
+
+      <div class="roi-card">
+        <div class="roi-card-title">PILOT INVESTMENT STRUCTURE</div>
+        <div class="roi-item">
+          <span class="roi-key">Phase 1 hardware (2–4 kiosk mods)</span>
+          <span class="roi-val">Negotiable / TBD</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Software licensing (Phase 1)</span>
+          <span class="roi-val">Pilot pricing available</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Integration engineering</span>
+          <span class="roi-val">FacePrintPay handles</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Staff training required</span>
+          <span class="roi-val">Minimal — 2hr session</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Store disruption / downtime</span>
+          <span class="roi-val">Zero — additive to existing</span>
+        </div>
+        <div class="roi-item">
+          <span class="roi-key">Exit / kill clause</span>
+          <span class="roi-val">30-day termination right</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem; border: 1px solid rgba(0,255,136,0.2); padding:1.5rem; background:rgba(0,255,136,0.03);">
+      <p style="color:var(--white); font-size:1rem; line-height:1.7;">
+        <strong style="color:var(--green);">Bottom line:</strong> At a minimum viable pilot cost, Food Lion gains first-mover positioning in the Southeast grocery biometric payments market — a category where Amazon, JPMorgan, and Mastercard are all investing aggressively. The risk is low. The upside is category leadership.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- LOI -->
+<section id="loi" style="background: rgba(17,10,2,0.6);">
+  <div class="container">
+    <div class="section-label">LEGAL DOCUMENT</div>
+    <div class="section-title">LETTER OF <span class="accent">INTENT</span></div>
+    <div class="divider"></div>
+    <p style="color:var(--gray); max-width:680px; font-size:1rem; line-height:1.7; margin-bottom:1rem;">
+      The following is a draft LOI to be reviewed and executed by both parties as a non-binding expression of intent to proceed with the pilot program. A formal pilot agreement will follow.
+    </p>
+
+    <div class="loi-wrapper">
+      <div class="loi-header">
+        <div>
+          <div class="loi-logo">FACEPRINTPAY INC.</div>
+          <div style="font-family:'Share Tech Mono'; font-size:0.75rem; color:var(--gray);">MyBuyo™ Biometric Payment Gateway</div>
+        </div>
+        <div class="loi-date">
+          Date: _________________, 2026<br>
+          Ref: FPP-FL-LOI-2026-001<br>
+          Classification: Confidential
+        </div>
+      </div>
+
+      <div class="loi-body">
+        <p><strong>TO:</strong> Food Lion, LLC<br>
+        2110 Executive Drive, Salisbury, NC 28147<br>
+        Attn: Office of the President / Chief Technology Officer</p>
+
+        <p><strong>FROM:</strong> FacePrintPay Inc. (d/b/a MyBuyo™)<br>
+        Cygel White, Founder & Chief Executive Officer</p>
+
+        <p style="margin-top:1.5rem;"><span class="loi-para-title">SUBJECT: Letter of Intent — MyBuyo™ Biometric Payment Gateway Pilot Program</span></p>
+
+        <p>Dear Food Lion Leadership Team,</p>
+
+        <p>This Letter of Intent ("LOI") is submitted by FacePrintPay Inc., a technology company specializing in sovereign biometric identity infrastructure and retail payment systems, to formally express our intent to partner with Food Lion, LLC ("Food Lion") on a mutually beneficial pilot program deploying the <strong>MyBuyo™ Retail Biometric Payment Gateway</strong> at one or more Food Lion retail locations within the state of North Carolina.</p>
+
+        <p><span class="loi-para-title">1. PROPOSED PARTNERSHIP</span><br>
+        FacePrintPay Inc. proposes to deploy its proprietary MyBuyo™ biometric payment system — supporting facial recognition, fingerprint, and palm-print payment authentication — integrated with Food Lion's existing self-checkout terminal infrastructure. The pilot would allow Food Lion customers to voluntarily enroll in biometric payment, completing transactions without physical cards, mobile devices, or PIN entry.</p>
+
+        <p><span class="loi-para-title">2. PILOT SCOPE</span><br>
+        Phase 1 of the proposed pilot would be conducted at a single Food Lion store location (to be mutually agreed upon) over a period of approximately ninety (90) days, encompassing 2–4 self-checkout lanes. FacePrintPay Inc. will provide all integration engineering, system installation support, staff training materials, and a real-time analytics dashboard at no additional cost to Food Lion during the pilot period.</p>
+
+        <p><span class="loi-para-title">3. EXCLUSIVITY CONSIDERATION</span><br>
+        In exchange for Food Lion's participation as a pilot partner, FacePrintPay Inc. is prepared to offer Food Lion a right of first negotiation on an exclusive Southeast U.S. grocery partnership for a period of twelve (12) months from the conclusion of Phase 1, subject to formal agreement terms.</p>
+
+        <p><span class="loi-para-title">4. PRIVACY & COMPLIANCE</span><br>
+        All biometric data collected through the MyBuyo™ system is processed in accordance with applicable state biometric privacy laws, PCI DSS standards, and Ahold Delhaize enterprise data governance requirements. No raw biometric data is stored; all templates are encrypted representations. Customer enrollment is strictly opt-in with written consent obtained at enrollment.</p>
+
+        <p><span class="loi-para-title">5. NON-BINDING NATURE</span><br>
+        This Letter of Intent is non-binding and does not constitute a legally enforceable agreement. It is intended solely to express the mutual interest of both parties in exploring the proposed partnership and to guide subsequent good-faith negotiations toward a formal Pilot Agreement.</p>
+
+        <p><span class="loi-para-title">6. NEXT STEPS</span><br>
+        FacePrintPay Inc. respectfully requests an introductory meeting with Food Lion's technology and operations leadership to present a full live demonstration of the MyBuyo™ platform and discuss pilot implementation logistics. We are prepared to travel to Salisbury, NC at Food Lion's convenience.</p>
+
+        <p style="margin-top:1rem;">Respectfully submitted,</p>
+      </div>
+
+      <div class="loi-sigs">
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-label">CYGEL WHITE · FOUNDER & CEO · FACEPRINTPAY INC.</div>
+        </div>
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-label">AUTHORIZED REPRESENTATIVE · FOOD LION, LLC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding-top:60px;">
+  <div class="container">
+    <div class="section-label">THE INVENTOR</div>
+    <div class="section-title">WHO'S BEHIND <span class="accent">MYBUYO™</span></div>
+    <div class="divider"></div>
+
+    <div class="about-grid">
+      <div>
+        <p style="color:var(--gray); font-size:1.05rem; line-height:1.8; margin-bottom:1rem;">
+          Cygel White is a solo inventor, sovereign AI architect, and the founder of <strong style="color:var(--white);">FacePrintPay Inc.</strong> — a North Carolina–based technology company building biometric identity and payment infrastructure since 2022.
+        </p>
+        <p style="color:var(--gray); font-size:1.05rem; line-height:1.8; margin-bottom:1rem;">
+          While the company's institutional footprint spans 647+ artifacts, 417 deployments, and platforms including <strong style="color:var(--white);">Constellation25, VideoCourts™, PeNNi™, and SovereignGTP</strong>, the MyBuyo™ product emerged directly from retail observation — watching real customers struggle at real self-checkout lanes.
+        </p>
+        <p style="color:var(--gray); font-size:1.05rem; line-height:1.8;">
+          The story of a Food Lion associate pitching to his own employer to be the proving ground for next-generation American retail technology is not a PR stunt. <strong style="color:var(--white);">It's authentic — and authenticity is something no competitor can acquire or replicate.</strong>
+        </p>
+      </div>
+      <div>
+        <div class="profile-card">
+          <div class="profile-avatar">⚡</div>
+          <div class="profile-name">CYGEL WHITE</div>
+          <div class="profile-title">Founder & CEO · FacePrintPay Inc.</div>
+          <div class="profile-bio">Sovereign AI architect · biometric identity engineer · retail payment innovator · Food Lion associate · North Carolina–based founder building since 2022.</div>
+          <div class="profile-tags">
+            <div class="tag">FACEPRINTPAY INC.</div>
+            <div class="tag">MYBUYO™</div>
+            <div class="tag">CONSTELLATION25</div>
+            <div class="tag">VIDEOCOURTS™</div>
+            <div class="tag">TOTALRECALL™</div>
+            <div class="tag">NORTH CAROLINA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="section-label">LET'S BUILD THIS</div>
+  <div class="section-title">READY TO MAKE <span class="accent">HISTORY</span>?</div>
+  <p>Food Lion has led the Southeast for 69 years. The first U.S. grocery chain to deploy biometric checkout will be remembered for the next 69. Let's make it Leo's store.</p>
+  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
+    <a href="#loi" class="btn-primary">EXECUTE THE LOI</a>
+    <a href="#pilot" class="btn-outline">REVISIT PILOT PLAN</a>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">🏢</div>
+      <div class="contact-label">Company</div>
+      <div class="contact-val">FacePrintPay Inc.</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🌐</div>
+      <div class="contact-label">Platform</div>
+      <div class="contact-val">MyBuyo™ Biometric Gateway</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div class="contact-label">Location</div>
+      <div class="contact-val">North Carolina, USA</div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem; border:1px solid var(--border); padding:2rem; max-width:700px; margin-left:auto; margin-right:auto; background:var(--card);">
+    <div class="section-label" style="margin-bottom:0.75rem; text-align:left;">SEND TO FOOD LION</div>
+    <p style="color:var(--gray); font-size:0.9rem; line-height:1.7; text-align:left;">
+      Address correspondence to:<br>
+      <strong style="color:var(--white);">Greg Finchum, President · Food Lion, LLC</strong><br>
+      2110 Executive Drive, Salisbury, NC 28147<br>
+      <span style="font-family:'Share Tech Mono'; font-size:0.8rem; color:var(--gold);">Email format: g.finchum@foodlion.com</span><br><br>
+      CC: SVP Merchandising Tom Robinson · SVP Human Resources Grant Thomas<br>
+      <span style="font-size:0.8rem; color:rgba(168,152,128,0.6);">Note: Confirm current emails via Food Lion newsroom or LinkedIn before sending.</span>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">FACEPRINTPAY INC. · MYBUYO™ · © 2026</div>
+  <div>TOTALRECALL™ FORENSIC VAULT · SHA256 ANCHORED · ALL RIGHTS RESERVED</div>
+  <div>CONFIDENTIAL — NOT FOR DISTRIBUTION</div>
+</footer>
+
+<script>
+  // Intersection observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

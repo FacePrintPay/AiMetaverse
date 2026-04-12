@@ -1,0 +1,12 @@
+{
+  "system": "PaTHos-AI",
+  "builder": "#MrGGTP",
+  "mode": "batch_build",
+  "memory": "TotalRecall",
+  "objective": "Parse, understand, and enhance each index.html until build completion",
+  "completion_rule": "ALL_FILES_BUILT",
+  "retry_policy": {
+    "on_fail": true,
+    "max_retries": 3
+  },
+  "files": [

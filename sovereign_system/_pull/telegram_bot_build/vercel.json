@@ -1,0 +1,1 @@
+{"version":2,"name":"telegram_bot_build","buildCommand":"npm run build","outputDirectory":"dist","framework":null}

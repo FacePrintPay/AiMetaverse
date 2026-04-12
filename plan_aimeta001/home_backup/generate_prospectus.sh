@@ -1,0 +1,75 @@
+#!/bin/bash
+
+OUTPUT_FILE="agentswarm_prospectus.html"
+
+echo "Generating HTML prospectus..."
+
+cat << 'HTML' > "$OUTPUT_FILE"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AgentSwarm Prospectus</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<style>
+  body { font-family: monospace; background: #111; color: #ddd; padding: 2rem; }
+  h1, h2 { color: #00ffe1; }
+  pre { background: #1e1e1e; padding: 1rem; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<h1>🚀 Autonomous Monetization System — AgentSwarm</h1>
+
+<!-- ====================================================== -->
+<!--              ORCHESTRATOR CODE (PYTHON)                -->
+<!-- ====================================================== -->
+
+<h2>Autonomous Monetization Orchestrator (Python)</h2>
+<pre><code class="language-python">
+import json
+import time
+import subprocess
+
+class Agent:
+    def __init__(self, name, config):
+        self.name = name
+        self.config = config
+
+    def trigger(self, action):
+        print(f"⚡ Triggering {self.name}.{action}")
+        time.sleep(0.3)
+
+class Orchestrator:
+    def __init__(self, config):
+        self.agents = {
+            name: Agent(name, cfg)
+            for name, cfg in config["monetization_agents"].items()
+        }
+        self.chain = config["orchestration"]["trigger_chain"]
+
+    def run(self):
+        print("🚀 Starting automated monetization chain...\n")
+        for step in self.chain:
+            src, dest = step.split(" → ")
+            agent_name, action_src = src.split(".")
+            next_agent, action_dest = dest.split(".")
+
+            self.agents[agent_name].trigger(action_src)
+            self.agents[next_agent].trigger(action_dest)
+
+        print("\n🎉 Trigger chain complete.")
+
+if __name__ == "__main__":
+    with open("agents_config.json") as f:
+        config = json.load(f)
+
+    orchestrator = Orchestrator(config)
+    orchestrator.run()
+</code></pre>
+
+</body>
+</html>
+HTML
+
+echo "✔ Prospectus created at: $OUTPUT_FILE"

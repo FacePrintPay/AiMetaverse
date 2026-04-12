@@ -1,0 +1,30 @@
+{
+  "name": "ChatGPT Widescreen", "symbol": "🖥️", "slug": "chatgpt-widescreen",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "aiwebAssets": "https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions@latest/assets",
+    "app": "https://chatgptwidescreen.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/chatgpt-widescreen@latest/assets",
+    "chatgptjs": "https://chatgpt.js.org",
+    "contributors": "https://docs.chatgptwidescreen.com/#-contributors",
+    "discuss": "https://github.com/adamlui/chatgpt-widescreen/discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/chatgpt-widescreen",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": {
+      "chrome": "https://chrome.chatgptwidescreen.com/reviews",
+      "edge": "https://edge.chatgptwidescreen.com",
+      "firefox": "https://ff.chatgptwidescreen.com",
+      "productHunt": "https://www.producthunt.com/products/chatgpt-widescreen-mode/reviews/new"
+    },
+    "support": "https://support.chatgptwidescreen.com",
+    "uninstall": "https://forms.gle/F2n55B38LYP9uxXM8",
+    "update": { "gm": "https://gm.chatgptwidescreen.com" },
+    "welcome": "https://chatgptwidescreen.com/welcome"
+  }
+}

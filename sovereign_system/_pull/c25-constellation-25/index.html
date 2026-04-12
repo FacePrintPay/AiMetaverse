@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-constellation-25</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-constellation-25</h1><p style="color:#888">Lines: 36 | Deps: go pip  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+while true; do
+  clear
+  cat &lt;&lt;'PROMPT_BOX'
+╔════════════════════════════════════════════════════════════╗
+║                  AGENT PROMPT BOX                          ║
+╚════════════════════════════════════════════════════════════╝
+Type your prompt (press Enter twice to submit):
+PROMPT_BOX
+  prompt=""
+  while IFS= read -r line; do
+    [[ -z "$line" ]] && break
+    prompt="$prompt$line\n"
+  done
+  clear
+  cat &lt;&lt;'AGENT_BOX'
+╔════════════════════════════════════════════════════════════╗
+║           CONSTELLATION 25 - PLANETARY AGENTS              ║
+║                Time: $(date '+%Y-%m-%d %H:%M:%S')          ║
+║     Prompt: $prompt                                         ║</pre></body></html>

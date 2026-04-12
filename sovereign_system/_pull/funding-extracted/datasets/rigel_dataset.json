@@ -1,0 +1,23 @@
+{
+  "task": "Code synthesis and generation",
+  "models": [
+    "ollama/codellama",
+    "ollama/llama3"
+  ],
+  "data": {
+    "synthesis_types": [
+      "boilerplate",
+      "scaffold",
+      "component",
+      "api_client",
+      "test_suite"
+    ],
+    "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "bash",
+      "go"
+    ]
+  }
+}

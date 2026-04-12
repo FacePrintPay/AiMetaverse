@@ -1,0 +1,20 @@
+{
+  "task": "Multi-repo synchronization",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "orgs": [
+      "FacePrintPay",
+      "Constillation25",
+      "Kre8tive-Space",
+      "TheKre8tive"
+    ],
+    "sync_strategies": [
+      "mirror",
+      "fork_sync",
+      "cherry_pick",
+      "rebase"
+    ]
+  }
+}

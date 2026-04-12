@@ -1,0 +1,23 @@
+{
+  "task": "Data processing and transformation",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "formats": [
+      "json",
+      "csv",
+      "sqlite",
+      "parquet",
+      "xml"
+    ],
+    "transforms": [
+      "normalize",
+      "aggregate",
+      "filter",
+      "join",
+      "pivot",
+      "enrich"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-do</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-do</h1><p style="color:#888">Lines: 36 | Deps: apt go pip  | C25 FacePrintPay</p><pre>#!/usr/bin/env bash
+set -e -o pipefail
+MSRV=1.56.1
+FUZZ_DURATION=60
+FUZZ_PAUSE=2
+if [[ ${1:0:1} == - || $1 == help ]] || (( $# &gt; 1 )); then
+    echo "A script to make it easy to check & lint & test everything." &gt;&2
+    echo "It assumes rustup is installed and that cargo +release works." &gt;&2
+    echo &gt;&2
+    echo "Usage: $0 ([setup|MSRV|check|test|ignored|clippy|miri|fuzz|bench|shellcheck|help])" &gt;&2
+    echo "If no argument is provided, all parts except ignored and help are run," &gt;&2
+    echo "but setup is only done if auto-detection fails." &gt;&2
+    exit 1
+fi
+# should have been a Makefile
+# core check, Minimum supported Rust version
+if [[ $1 == setup ]] || ! rustup show | grep --silent "$MSRV"; then
+    rustup install "$MSRV" --no-self-update
+fi
+if [[ -z $1 || $1 == msrv ]]; then</pre></body></html>

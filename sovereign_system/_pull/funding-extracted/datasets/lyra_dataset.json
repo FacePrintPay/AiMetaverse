@@ -1,0 +1,23 @@
+{
+  "task": "Media processing",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "formats": [
+      "html",
+      "pdf",
+      "pptx",
+      "markdown",
+      "mp4",
+      "png"
+    ],
+    "operations": [
+      "convert",
+      "compress",
+      "resize",
+      "extract",
+      "merge"
+    ]
+  }
+}

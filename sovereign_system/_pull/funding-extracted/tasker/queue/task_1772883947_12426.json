@@ -1,0 +1,8 @@
+{
+  "id": "task_1772883947_12426",
+  "agent": "earth",
+  "task": "find /data/data/com.termux/files/home/constellation25 -name *.sh -type f",
+  "priority": "normal",
+  "status": "queued",
+  "created": "Sat Mar  7 11:45:47 UTC 2026"
+}

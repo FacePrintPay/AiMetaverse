@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-ping-agents</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-ping-agents</h1><p style="color:#888">Lines: 36 | Deps: none | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+echo "📡 Pinging Planetary Agents..."
+for agent in ./agents/*.sh; do
+  [ "$agent" = "./agents/ping_agents.sh" ] && continue
+  name=$(basename "$agent" .sh)
+  log_file="logs/${name}_ping.log"
+  nohup bash "$agent" &gt; "$log_file" 2&gt;&1 &
+  echo "✅ $name launched — logging to $log_file"
+done</pre></body></html>

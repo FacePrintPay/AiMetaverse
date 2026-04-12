@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-fp-consolidate</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-fp-consolidate</h1><p style="color:#888">Lines: 36 | Deps: git node pip  | C25 FacePrintPay</p><pre>#!/bin/bash
+# FacePrintPay Full Consolidation Script
+set -euo pipefail
+MASTER_REPO="FacePrintPay-Consolidated"
+AUDIT_DIR="$HOME/consolidation-audit"
+mkdir -p "$AUDIT_DIR"
+cd "$AUDIT_DIR"
+REPOS="videocourts PaThosAi aikre8tive VeRseD_Ai CygNusMaster- blackboxai-1742374192849 blackboxai-1742376990260 AiKre8tive_Sovereign_Genesis PoRTaLed-"
+echo "Cloning all failed repos..."
+for repo in $REPOS; do
+    echo "Cloning $repo..."
+    gh repo clone "FacePrintPay/$repo" "$repo" -- --depth 1 2&gt;/dev/null || true
+done
+echo "Parsing and pruning..."
+for repo in $REPOS; do
+    if [ -d "$repo" ]; then
+        cd "$repo"
+        find . -name "node_modules" -type d -exec rm -rf {} + 2&gt;/dev/null || true
+        find . -name "*.log" -delete 2&gt;/dev/null || true
+        cd ..</pre></body></html>

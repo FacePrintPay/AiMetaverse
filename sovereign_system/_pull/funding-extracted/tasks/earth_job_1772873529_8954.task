@@ -1,0 +1,9 @@
+{
+    "agent": "earth",
+    "job_id": "job_1772873529_8954",
+    "task": "build",
+    "input_file": "/data/data/com.termux/files/home/constellation25/json-input/test.json",
+    "status": "running",
+    "started_at": "2026-03-07T08:52:09Z",
+    "script": "/data/data/com.termux/files/home/constellation25/agents/earth-agent.sh"
+}

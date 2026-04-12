@@ -1,0 +1,8 @@
+Categories:Development
+License:MIT
+Summary:C25 Sovereign AI Agents
+Description:
+17 planetary agents for Termux.
+Autonomous repo management, debugging, archival.
+.
+Repo:https://github.com/Constillation25/c25-fdroid

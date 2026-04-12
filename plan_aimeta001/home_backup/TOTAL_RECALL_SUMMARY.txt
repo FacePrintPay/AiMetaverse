@@ -1,0 +1,38 @@
+TOTAL RECALL — STORED FORENSIC SUMMARY
+Generated: 2025-12-19T10:07:05-05:00
+Host: localhost
+--------------------------------------------
+
+## Filesystem Evidence (existing only)
+
+📂 Source: /data/data/com.termux/files/home/totalrecall
+2025-12-08 00:50:30.0934087440 /data/data/com.termux/files/home/totalrecall/logger.py
+2025-12-16 13:26:44.6560000860 /data/data/com.termux/files/home/totalrecall/orchestrator/banner.sh
+2025-12-16 13:26:44.6720000860 /data/data/com.termux/files/home/totalrecall/orchestrator/scan.sh
+2025-12-16 13:26:44.6840000860 /data/data/com.termux/files/home/totalrecall/orchestrator/hash.sh
+2025-12-16 13:26:44.6960000860 /data/data/com.termux/files/home/totalrecall/orchestrator/trace.sh
+2025-12-16 13:26:44.7080000860 /data/data/com.termux/files/home/totalrecall/orchestrator/run.sh
+2025-12-16 13:26:44.7360000860 /data/data/com.termux/files/home/totalrecall/viewer/index.html
+2025-12-16 13:26:44.7440000860 /data/data/com.termux/files/home/totalrecall/vercel.json
+2025-12-16 13:26:44.7560000860 /data/data/com.termux/files/home/totalrecall/.gitignore
+
+📂 Source: /data/data/com.termux/files/home/total_recall_runs
+
+📂 Source: /data/data/com.termux/files/home/totalrecall_output
+2025-12-14 22:00:47.3032934240 /data/data/com.termux/files/home/totalrecall_output/index.json
+
+## Temporal Boundaries
+
+First observed artifact:
+2025-12-08 00:50:30.0934087440 /data/data/com.termux/files/home/totalrecall/logger.py
+
+Last observed artifact:
+2025-12-16 13:26:44.7560000860 /data/data/com.termux/files/home/totalrecall/.gitignore
+
+## Notes
+- This summary is filesystem-backed only.
+- No scripts were executed.
+- No files were modified.
+- Correlation is temporal, not causal.
+
+END OF REPORT

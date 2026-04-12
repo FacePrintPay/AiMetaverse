@@ -1,0 +1,23 @@
+{
+  "task": "Detect and fix syntax errors",
+  "models": [
+    "ollama/codellama",
+    "saturn-agent"
+  ],
+  "data": {
+    "error_types": [
+      "SyntaxError",
+      "IndentationError",
+      "TypeError",
+      "NameError",
+      "ImportError"
+    ],
+    "fix_patterns": [
+      "missing_colon",
+      "unclosed_bracket",
+      "undefined_var",
+      "wrong_indent",
+      "bad_import"
+    ]
+  }
+}

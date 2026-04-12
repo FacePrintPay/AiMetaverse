@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-constellation</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-constellation</h1><p style="color:#888">Lines: 36 | Deps: apt curl python  | C25 FacePrintPay</p><pre>#!/bin/bash
+# ╔══════════════════════════════════════════════════════════╗
+# ║         CONSTELLATION-25  —  MAIN ORCHESTRATOR          ║
+# ║  bash ~/constellation-25/constellation.sh               ║
+# ╚══════════════════════════════════════════════════════════╝
+cd ~/constellation-25
+# ── BioAuth gate helper ──────────────────────────────────────
+bioauth() {
+  local LABEL="${1:-Authenticate}"
+  local RESULT
+  RESULT=$(termux-fingerprint 2&gt;/dev/null)
+  if echo "$RESULT" | grep -q "AUTH_RESULT_SUCCESS"; then
+    return 0
+  else
+    termux-toast -s "BioAuth failed: $LABEL"
+    return 1
+  fi
+}
+# ── GATE 1: Entry ────────────────────────────────────────────
+echo ""</pre></body></html>

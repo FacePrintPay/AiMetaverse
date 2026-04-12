@@ -1,0 +1,20 @@
+            f.write('npm install --silent 2>/dev/null\n')
+            f.write('vercel --yes --prod -e NODE_ENV=production 2>/dev/null | tail -1\n')
+            s.write('npm install --silent 2>/dev/null | tail -1\n')
+            s.write('vercel --yes --prod -e NODE_ENV=production 2>/dev/null | tail -1\n')
+            s.write('vercel --yes --prod 2>/dev/null | tail -1\n')
+        # vercel.json
+        s.write('[ ! -f vercel.json ] && echo \'{"version":2,"rewrites":[{"source":"(.*)","destination":"/index.html"}]}\' > vercel.json\n')
+        s.write('git push 2>/dev/null | tail -1\n')
+      if grep -q "build\|deploy\|vercel\|npm run" "$FOUND" 2>/dev/null; then
+    > vercel.json
+  # Add missing vercel.json
+  # Skip if already has vercel.json
+  [ -f "$DIR/vercel.json" ] && continue
+  git commit -m "C25 Cygnus: package + vercel config $(date +%Y-%m-%d)" \
+  git push 2>/dev/null | tail -1
+  grep "vercel --prod\|vercel deploy" | \
+# JUPITER — retry all failed vercel deploys
+cat "$LOGDIR/bash_vercel.txt" | \
+echo "[Mercury] vercel deploys:   $(wc -l < $LOGDIR/bash_vercel.txt)"
+grep -E "^vercel "     "$LOGDIR/full_bash_history.txt" > "$LOGDIR/bash_vercel.txt"

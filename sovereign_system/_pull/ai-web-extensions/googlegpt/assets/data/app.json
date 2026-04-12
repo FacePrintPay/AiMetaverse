@@ -1,0 +1,21 @@
+{
+  "name": "GoogleGPT", "symbol": "🤖", "slug": "googlegpt", "configKeyPrefix": "googleGPT",
+  "author": [
+    { "name": "Adam Lui", "url": "https://github.com/adamlui" }, { "name": "KudoAI", "url": "https://www.kudoai.com" }],
+  "urls": {
+    "aiwebAssets": "https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions@latest/assets",
+    "apis": { "chatShare": "https://chat-share.kudoai.workers.dev" },
+    "app": "https://www.googlegpt.io",
+    "assets": "https://cdn.jsdelivr.net/gh/KudoAI/googlegpt@latest/assets",
+    "chatgptjs": "https://chatgpt.js.org",
+    "contributors": "https://docs.googlegpt.io/#-contributors",
+    "discuss": "https://github.com/KudoAI/googlegpt/discussions",
+    "donate": { "github": "https://github.com/sponsors/KudoAI" },
+    "github": "https://github.com/KudoAI/googlegpt",
+    "publisher": "https://www.kudoai.com",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": { "g2": "https://www.g2.com/products/googlegpt/take_survey" },
+    "support": "https://support.googlegpt.io",
+    "update": { "gm": "https://gm.googlegpt.io" }
+  }
+}

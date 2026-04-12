@@ -1,0 +1,5 @@
+def new_feature(): return 'Sovereign takeover module v1'
+def new_feature(): return 'Sovereign takeover module v1'
+def new_feature(): return 'Sovereign takeover module v1'
+def new_feature(): return 'Sovereign takeover module v1'
+def new_feature(): return 'Sovereign takeover module v1'

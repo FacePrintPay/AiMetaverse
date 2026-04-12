@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-package-portfolio</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-package-portfolio</h1><p style="color:#888">Lines: 36 | Deps: git  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+set -e
+echo "🔥 CYGEL.WHITE — PACKAGING SOVEREIGN PORTFOLIO FOR \$1,000,000"
+echo "⏳ Scanning for assets..."
+# --- CONFIGURATION ---
+PORTFOLIO="/sdcard/SOVEREIGN_PORTFOLIO_1M"
+ARCHIVE="/sdcard/SOVEREIGN_PORTFOLIO_CYGEL_WHITE_1M.tar.gz"
+rm -rf "$PORTFOLIO" "$ARCHIVE" 2&gt;/dev/null || true
+mkdir -p "$PORTFOLIO/repos" "$PORTFOLIO/forensics" "$PORTFOLIO/domains"
+# --- SCAN AND COPY REPOS ---
+echo ""
+echo "📦 Scanning repositories..."
+find_and_copy() {
+    local name="$1"
+    local search_paths=(
+        "$HOME/$name"
+        "$HOME/github/FacePrintPay/$name"
+        "$HOME/sovereign-gtp/src/$name"
+        "$HOME/agentik/$name"
+    )</pre></body></html>

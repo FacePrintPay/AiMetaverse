@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-dashboard</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-dashboard</h1><p style="color:#888">Lines: 36 | Deps: go pip  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+# Sovereign GTP Dashboard - Constellation 25 with USE buttons
+# Wake lock & heartbeat (background)
+termux-wake-lock 2&gt;/dev/null || true
+(while true; do echo "[$(date '+%Y-%m-%d %H:%M:%S')] Heartbeat" &gt;&gt; ~/sovereign-gtp/logs/heartbeat.log 2&gt;/dev/null; sleep 30; done) & 2&gt;/dev/null
+while true; do
+  CHOICE=$(dialog --clear --backtitle "SOVEREIGN GTP DASHBOARD" \
+    --title "Constellation 25 - Planetary Agents" \
+    --menu "Time: $(date '+%Y-%m-%d %H:%M:%S')\nSelect agent number + Enter to USE it" \
+    35 90 25 \
+    1  "Earth      - Foundational code structures          [USE]" \
+    2  "Moon       - Syntax error resolution               [USE]" \
+    3  "Sun        - Performance optimization              [USE]" \
+    4  "Mercury    - Unit test generation                  [USE]" \
+    5  "Venus      - Regression testing                    [USE]" \
+    6  "Mars       - Security vulnerability scanning       [USE]" \
+    7  "Jupiter    - Code documentation & analysis         [USE]" \
+    8  "Saturn     - Refactoring & modernization           [USE]" \
+    9  "Uranus     - NL → documentation generation         [USE]" \
+    10 "Neptune    - Code deduplication                    [USE]" \</pre></body></html>

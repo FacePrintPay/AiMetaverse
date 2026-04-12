@@ -1,0 +1,11 @@
+{
+  "name": "Jupiter",
+  "tier": "moon",
+  "role": "validate",
+  "llm": "qwen",
+  "deps": "python3,pytest",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "9bb93685618657b5",
+  "status": "active"
+}

@@ -1,0 +1,34 @@
+name: Build C25 Docker Image
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create required directories
+        run: |
+          mkdir -p pathos constellation-25 agent_logs
+          echo '{"name":"C25","version":"1.0","agents":25,"owner":"Cygel White / FacePrintPay Inc","prior_art":"2023-03-21"}' > C25_MCP_MANIFEST.json
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: aimetaverse/constellation25:latest

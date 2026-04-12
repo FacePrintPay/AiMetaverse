@@ -1,0 +1,24 @@
+{
+  "task": "Documentation generation",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "formats": [
+      "markdown",
+      "jsdoc",
+      "pydoc",
+      "openapi",
+      "readme"
+    ],
+    "sections": [
+      "overview",
+      "installation",
+      "usage",
+      "api",
+      "examples",
+      "contributing",
+      "license"
+    ]
+  }
+}

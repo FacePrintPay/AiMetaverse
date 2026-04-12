@@ -1,0 +1,37 @@
+{
+  "task": "Generate foundational code structures",
+  "models": [
+    "ollama/llama3",
+    "rigel-agent"
+  ],
+  "data": {
+    "code_structures": [
+      "class",
+      "function",
+      "module",
+      "api_endpoint",
+      "middleware",
+      "hook",
+      "component",
+      "service",
+      "controller",
+      "model"
+    ],
+    "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "bash",
+      "go",
+      "rust"
+    ],
+    "patterns": [
+      "mvc",
+      "rest",
+      "graphql",
+      "event-driven",
+      "microservice",
+      "monolith"
+    ]
+  }
+}

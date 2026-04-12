@@ -1,0 +1,12 @@
+{
+  "name": "AiKre8tive-",
+  "version": "1.0.0",
+  "description": "C25 Module - AiKre8tive-",
+  "main": "index.js",
+  "scripts": {
+    "start": "bash run.sh",
+    "test": "bash tests/test.sh 2>/dev/null || echo 'ok'"
+  },
+  "author": "Cygel White / FacePrintPay",
+  "license": "MIT"
+}

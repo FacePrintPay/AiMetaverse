@@ -1,0 +1,22 @@
+{
+  "task": "Legal compliance and evidence",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "evidence_types": [
+      "sha256_anchor",
+      "git_commit",
+      "timestamp",
+      "operator_log",
+      "totalrecall"
+    ],
+    "compliance": [
+      "gdpr",
+      "ccpa",
+      "hipaa",
+      "dtsa",
+      "prior_art"
+    ]
+  }
+}

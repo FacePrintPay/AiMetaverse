@@ -1,0 +1,419 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# ==========================================================
+# KRE8TIVE.SPACE PORTFOLIO BUILDER (Cloudflare Pages via Git)
+# - GoDaddy domains + GoDaddy sites (cards w/ thumbnails)
+# - GitHub repos (from feed_database.json already in repo)
+# - Vercel projects (via Vercel API)
+# Output: index.html + vercel_projects.json
+# Then: git commit + push (Cloudflare Pages auto-deploys)
+# ==========================================================
+
+set -euo pipefail
+
+DOMAIN="${DOMAIN:-kre8tive.space}"
+ORG="${ORG:-FacePrintPay}"
+
+# Your Pages-connected repo is this repo (RepoDepot-Stargate)
+REPO_DIR="$(pwd)"
+
+# Pick your Vercel team (default = faceprintpays-projects)
+VERCEL_TEAM_ID="${VERCEL_TEAM_ID:-team_o5UPga40oCf1HZghhny7eiDN}"
+
+# Try to read Vercel token from common locations (you can also export VERCEL_TOKEN)
+VERCEL_TOKEN="${VERCEL_TOKEN:-}"
+
+need() { command -v "$1" >/dev/null 2>&1 || { echo "[x] missing: $1"; exit 1; }; }
+need jq
+need git
+need gh
+need curl
+
+# ---------------------------
+# GoDaddy portfolio lists
+# ---------------------------
+# Domains (apex domains)
+DOMAINS=(
+  "triadhomeservices.xyz"
+  "peanutwiz.com"
+  "just42night.com"
+  "yahweh.ltd"
+  "linked2.xyz"
+  "yehweh.ltd"
+  "viddawill.com"
+  "nlp2code.diy"
+  "explorermars.com"
+  "goldenticket2space.com"
+  "cryptoregions.com"
+  "marsfiat.com"
+  "aikre8tive.net"
+  "aikre8tive.info"
+  "aikre8tive.cloud"
+  "aikre8tive.xyz"
+  "aikre8tive.store"
+  "aikre8tive.shop"
+  "pennichain.com"
+  "videocourts.com"
+  "linq2.cloud"
+  "linq2.xyz"
+  "sovereignai.codes"
+  "sovereigngtp.xyz"
+  "sovereigngtp.online"
+  "sovereigngtp.us"
+  "myspac3.online"
+  "airecords.org"
+  "mybuyo.com"
+  "wandermars.com"
+  "hempchoices.co"
+  "thegoldencrypto.com"
+  "betfans.ltd"
+  "kleanteam.xyz"
+  "fedia.online"
+)
+
+# GoDaddy Websites + Marketing site hostnames (godaddysites.com)
+GODADDY_SITES=(
+  "just42night.godaddysites.com"
+  "hydre8.godaddysites.com"
+  "carolinacannabiscorp.godaddysites.com"
+  "carolinammj.godaddysites.com"
+  "potuscoin.godaddysites.com"
+  "skynav-aicom.godaddysites.com"
+  "skytrafficnews.godaddysites.com"
+  "cygelrealestate.godaddysites.com"
+  "cre8tivekoncepts.godaddysites.com"
+  "videocourts.godaddysites.com"
+  "selfiepay.godaddysites.com"
+  "goldenticket2space.godaddysites.com"
+  "cryptoregion.godaddysites.com"
+  "ibetucrypto.godaddysites.com"
+  "airecords.godaddysites.com"
+  "kre8tivekonceptz.godaddysites.com"
+  "eqallity.godaddysites.com"
+  "site-vp5uuy1yd.godaddysites.com"
+  "wwwexploremarscom.godaddysites.com"
+  "bitpayy.godaddysites.com"
+  "cryptokencoin.godaddysites.com"
+  "bitpayy1.godaddysites.com"
+  "bitpayy2.godaddysites.com"
+  "terpz.godaddysites.com"
+  "turbotvlive.godaddysites.com"
+  "videocourtstm.godaddysites.com"
+  "amcshareholdersclassactionlaws.godaddysites.com"
+  "faceprintpaytm.godaddysites.com"
+  "marfiat.godaddysites.com"
+  "legyc.godaddysites.com"
+  "5dolla.godaddysites.com"
+  "hempchoices2.godaddysites.com"
+  "buythadip.godaddysites.com"
+  "bitpayy9.godaddysites.com"
+  "apply4bitcoincredit.godaddysites.com"
+  "investingallium.godaddysites.com"
+  "highjackedpodcast9.godaddysites.com"
+  "highjackedpodcast.godaddysites.com"
+  "aitrade.godaddysites.com"
+  "hempchoices.godaddysites.com"
+  "nccannabiscorp.godaddysites.com"
+  "carolinammj2.godaddysites.com"
+  "buycryptodips.godaddysites.com"
+  "just42nightcom.godaddysites.com"
+  "greensborogradingandlandscaspi.godaddysites.com"
+  "mybuyyo.godaddysites.com"
+  "spin2wincrypto.godaddysites.com"
+  "cryptopostions.godaddysites.com"
+  "nftrecordlabelsart.godaddysites.com"
+  "peanutwiz.godaddysites.com"
+  "marsfiat.godaddysites.com"
+  "nftrocketfuel.godaddysites.com"
+  "googlemeus.godaddysites.com"
+  "fedpay.godaddysites.com"
+  "ailabs2.godaddysites.com"
+  "vegasdiscountcoupons.godaddysites.com"
+  "aidevstore.godaddysites.com"
+  "kre8tivecloud.godaddysites.com"
+  "yahwehltd.godaddysites.com"
+  "linq2.godaddysites.com"
+  "sovereigngtp2.godaddysites.com"
+)
+
+# ---------------------------
+# Vercel token resolution
+# ---------------------------
+if [ -z "${VERCEL_TOKEN}" ]; then
+  # Try: ~/.config/vercel/auth.json (common)
+  if [ -f "$HOME/.config/vercel/auth.json" ]; then
+    VERCEL_TOKEN="$(jq -r '.token // empty' "$HOME/.config/vercel/auth.json" || true)"
+  fi
+fi
+
+if [ -z "${VERCEL_TOKEN}" ]; then
+  # Try: ~/.vercel/token (some envs)
+  if [ -f "$HOME/.vercel/token" ]; then
+    VERCEL_TOKEN="$(cat "$HOME/.vercel/token" | tr -d '\n' || true)"
+  fi
+fi
+
+# ---------------------------
+# Build vercel_projects.json (best effort)
+# ---------------------------
+VERCEL_JSON="vercel_projects.json"
+if [ -n "${VERCEL_TOKEN}" ]; then
+  echo "[i] Fetching Vercel projects for team: $VERCEL_TEAM_ID"
+  curl -sS \
+    -H "Authorization: Bearer ${VERCEL_TOKEN}" \
+    "https://api.vercel.com/v9/projects?teamId=${VERCEL_TEAM_ID}&limit=100" \
+    | jq '{teamId:"'"$VERCEL_TEAM_ID"'", projects:(.projects // []) | map({name, framework, updatedAt, link, targets, alias, latestDeployments})}' \
+    > "$VERCEL_JSON" || echo '{"teamId":"","projects":[]}' > "$VERCEL_JSON"
+else
+  echo "[!] No VERCEL_TOKEN found — Vercel section will show empty until you export VERCEL_TOKEN."
+  echo '{"teamId":"","projects":[]}' > "$VERCEL_JSON"
+fi
+
+# ---------------------------
+# Ensure feed_database.json exists (GitHub repos list)
+# ---------------------------
+if [ ! -f "feed_database.json" ]; then
+  echo "[!] feed_database.json not found in repo root. Generating it quickly from GitHub..."
+  gh repo list "$ORG" --limit 500 --json name,url,description,updatedAt,isPrivate,stargazerCount,forkCount,pushedAt \
+    | jq '{
+        metadata:{generated:(now|todate), organization:"'"$ORG"'", domain:"'"$DOMAIN"'", total_projects:(length)},
+        projects: map({
+          name, description:(.description // "No description"),
+          github_url:.url,
+          deploy_url:("https://" + (.name|ascii_downcase|gsub("[^a-z0-9-]";"-")) + ".'"$DOMAIN"'"),
+          subdomain:(.name|ascii_downcase|gsub("[^a-z0-9-]";"-")),
+          last_updated:.updatedAt,
+          last_pushed:.pushedAt,
+          stars:.stargazerCount,
+          forks:.forkCount,
+          private:.isPrivate
+        })
+      }' > feed_database.json
+fi
+
+# ---------------------------
+# Build single mega index.html (shopping cart cards)
+# ---------------------------
+cat > index.html <<'HTML'
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kre8tive.Space — Portfolio Index</title>
+  <meta name="description" content="Kre8tive.Space Portfolio — GoDaddy Sites + GitHub Repos + Vercel Builds" />
+  <style>
+    :root{
+      --bg:#0a0e27; --card:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+      --text:#fff; --muted:rgba(255,255,255,.70);
+      --grad:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      --good:#00ff9f; --warn:#ff9f00;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+    header{padding:28px 16px;background:var(--grad);text-align:center}
+    header h1{margin:0;font-size:2rem;font-weight:900}
+    header p{margin:8px 0 0;opacity:.92}
+    .wrap{max-width:1200px;margin:0 auto;padding:18px 14px 60px}
+    .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0 18px}
+    .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:9px 12px;border-radius:999px;font-weight:800}
+    .search{flex:1;min-width:220px}
+    .search input{width:100%;padding:11px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.25);color:#fff;outline:none}
+    .section{margin-top:18px}
+    .section h2{margin:18px 0 10px;font-size:1.1rem;letter-spacing:.2px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+    .card{background:var(--card);border:1px solid var(--stroke);border-radius:16px;overflow:hidden}
+    .thumb{aspect-ratio:16/9;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .content{padding:12px}
+    .title{font-weight:900;font-size:1.02rem;display:flex;gap:8px;align-items:center}
+    .meta{margin-top:6px;color:var(--muted);font-size:.9rem;display:flex;gap:10px;flex-wrap:wrap}
+    .desc{margin-top:8px;color:rgba(255,255,255,.82);font-size:.92rem;line-height:1.35;min-height:2.2em}
+    .links{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    a.btn{display:inline-flex;gap:8px;align-items:center;text-decoration:none;font-weight:900;
+      padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);color:#fff}
+    a.primary{background:var(--grad);border-color:transparent}
+    .badge{font-size:.78rem;font-weight:900;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);opacity:.95}
+    .ok{color:var(--good);border-color:rgba(0,255,159,.35)}
+    .maybe{color:var(--warn);border-color:rgba(255,159,0,.35)}
+    footer{position:fixed;left:0;right:0;bottom:0;padding:10px 12px;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);
+      border-top:1px solid rgba(255,255,255,.10);display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    footer a{color:#fff;text-decoration:none;font-weight:900}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🛒 Kre8tive.Space Portfolio Cart</h1>
+  <p>Domains + GoDaddy Sites + GitHub Repos + Vercel Builds • single-pane-of-glass</p>
+</header>
+
+<div class="wrap">
+  <div class="bar">
+    <div class="pill" id="counts">Loading…</div>
+    <div class="search"><input id="q" placeholder="Search everything (domain, site, repo, vercel)..." /></div>
+    <div class="pill">🔗 Click cards to open</div>
+  </div>
+
+  <div class="section">
+    <h2>🌐 GoDaddy Domains</h2>
+    <div class="grid" id="domains"></div>
+  </div>
+
+  <div class="section">
+    <h2>🏗️ GoDaddy Websites + Marketing (godaddysites.com)</h2>
+    <div class="grid" id="sites"></div>
+  </div>
+
+  <div class="section">
+    <h2>💻 FacePrintPay GitHub Repos (from feed_database.json)</h2>
+    <div class="grid" id="repos"></div>
+  </div>
+
+  <div class="section">
+    <h2>🚀 Vercel Projects (from vercel_projects.json)</h2>
+    <div class="grid" id="vercel"></div>
+  </div>
+</div>
+
+<footer>
+  <a href="/feed.xml">📡 RSS</a>
+  <a href="/feed_database.json">🧾 feed_database.json</a>
+  <a href="/vercel_projects.json">🟦 vercel_projects.json</a>
+</footer>
+
+<script>
+  // --- Data injected by builder script ---
+  const DOMAINS = __DOMAINS__;
+  const SITES   = __SITES__;
+
+  // Cheap “active” signal: favicon load success
+  function faviconUrl(host){ return `https://${host}/favicon.ico`; }
+
+  // Thumbnail (screenshot) provider (no keys): thum.io
+  // If it fails, browser will still show the card + favicon fallback.
+  function thumbUrl(host){ return `https://image.thum.io/get/width/900/https://${host}`; }
+
+  function card({title, url, subtitle, desc, tags=[]}) {
+    const tagHtml = tags.map(t => `<span class="badge ${t.kind||'maybe'}">${t.text}</span>`).join('');
+    return `
+      <div class="card" data-search="${(title+' '+(subtitle||'')+' '+(desc||'')+' '+url).toLowerCase()}">
+        <div class="thumb">
+          <img src="${thumbUrl(new URL(url).host)}" alt="" onerror="this.onerror=null;this.src='${faviconUrl(new URL(url).host)}';this.style.objectFit='contain';this.style.padding='28px';" />
+        </div>
+        <div class="content">
+          <div class="title">🔗 ${title}</div>
+          <div class="meta"><span>${subtitle||''}</span>${tagHtml}</div>
+          <div class="desc">${desc||''}</div>
+          <div class="links">
+            <a class="btn primary" href="${url}" target="_blank" rel="noreferrer">Open</a>
+            <a class="btn" href="${faviconUrl(new URL(url).host)}" target="_blank" rel="noreferrer">Favicon</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderList(el, items){
+    el.innerHTML = items.join('');
+  }
+
+  function filterAll(q){
+    const query = (q||'').toLowerCase().trim();
+    document.querySelectorAll('[data-search]').forEach(node=>{
+      node.style.display = (!query || node.dataset.search.includes(query)) ? '' : 'none';
+    });
+  }
+
+  // Render domains + sites
+  const domainCards = DOMAINS.map(d => card({
+    title: d,
+    url: `https://${d}`,
+    subtitle: 'Apex domain',
+    desc: 'Primary property / brand surface.',
+    tags:[{text:'DOMAIN', kind:'ok'}]
+  }));
+
+  const siteCards = SITES.map(s => card({
+    title: s,
+    url: `https://${s}`,
+    subtitle: 'GoDaddy Sites',
+    desc: 'Websites + Marketing property.',
+    tags:[{text:'GODADDY SITE', kind:'ok'}]
+  }));
+
+  renderList(document.getElementById('domains'), domainCards);
+  renderList(document.getElementById('sites'), siteCards);
+
+  // GitHub repos (feed_database.json)
+  fetch('/feed_database.json')
+    .then(r=>r.json())
+    .then(data=>{
+      const projects = (data.projects||[]);
+      const repoCards = projects
+        .sort((a,b)=>(b.stars||0)-(a.stars||0))
+        .map(p => card({
+          title: p.name,
+          url: p.github_url,
+          subtitle: `⭐ ${p.stars||0}  •  🍴 ${p.forks||0}`,
+          desc: p.description || '',
+          tags:[{text:'GITHUB', kind:'ok'}]
+        }));
+      renderList(document.getElementById('repos'), repoCards);
+      updateCounts();
+    })
+    .catch(()=>{ document.getElementById('repos').innerHTML = '<div class="card"><div class="content">Missing feed_database.json</div></div>'; updateCounts(); });
+
+  // Vercel projects (vercel_projects.json)
+  fetch('/vercel_projects.json')
+    .then(r=>r.json())
+    .then(data=>{
+      const ps = (data.projects||[]);
+      const vcards = ps
+        .sort((a,b)=> (new Date(b.updatedAt||0) - new Date(a.updatedAt||0)))
+        .map(p => {
+          // best-effort public URL: alias[0] if present
+          const alias = (p.alias && p.alias.length) ? p.alias[0] : '';
+          const url = alias ? `https://${alias}` : 'https://vercel.com/dashboard';
+          return card({
+            title: p.name || 'Unnamed',
+            url,
+            subtitle: p.framework ? `Framework: ${p.framework}` : 'Vercel Project',
+            desc: alias ? `Alias: ${alias}` : 'No public alias captured (still linked in Vercel dashboard).',
+            tags:[{text:'VERCEL', kind:'ok'}]
+          });
+        });
+      renderList(document.getElementById('vercel'), vcards);
+      updateCounts();
+    })
+    .catch(()=>{ document.getElementById('vercel').innerHTML = '<div class="card"><div class="content">Missing vercel_projects.json</div></div>'; updateCounts(); });
+
+  function updateCounts(){
+    const total = document.querySelectorAll('.card[data-search]').length;
+    document.getElementById('counts').textContent = `Items: ${total} • Domains: ${DOMAINS.length} • GoDaddy Sites: ${SITES.length}`;
+  }
+
+  document.getElementById('q').addEventListener('input', e => filterAll(e.target.value));
+  updateCounts();
+</script>
+</body>
+</html>
+HTML
+
+# Inject arrays into HTML
+DOM_JSON="$(printf '%s\n' "${DOMAINS[@]}" | jq -R . | jq -s .)"
+SITE_JSON="$(printf '%s\n' "${GODADDY_SITES[@]}" | jq -R . | jq -s .)"
+
+tmp="$(mktemp)"
+sed "s#__DOMAINS__#${DOM_JSON}#g; s#__SITES__#${SITE_JSON}#g" index.html > "$tmp"
+mv "$tmp" index.html
+
+# Ensure vercel_projects.json is in repo root (already built)
+git add -A
+git commit -m "Kre8tive portfolio mega index (GoDaddy + GitHub + Vercel)" || echo "[i] Nothing new to commit"
+git push
+
+echo ""
+echo "✅ Updated and pushed."
+echo "• Site:  https://${DOMAIN}/"
+echo "• RSS:   https://${DOMAIN}/feed.xml"
+echo "• Data:  https://${DOMAIN}/feed_database.json"
+echo "• Vercel: https://${DOMAIN}/vercel_projects.json"

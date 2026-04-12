@@ -1,0 +1,8 @@
+# 📜 ARC.AI Terms of Service
+Effective: 2025-07-13T04:24:15.454693Z
+- Users agree to abide by creative sovereignty clauses.
+- Unauthorized cloning, scraping, or replication is forbidden.
+- Payments required for commercial or advanced usage.
+- All AI output is protected by sovereign IP under ARC.AI Protocol 1.
+
+This agreement is binding and digitally monitored via WhisperSync and VoiceLockAI.

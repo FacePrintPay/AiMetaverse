@@ -1,0 +1,11 @@
+{
+  "name": "Ceres",
+  "tier": "earth",
+  "role": "index",
+  "llm": "qwen",
+  "deps": "find,grep,fd",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "b07a6570511f44d5",
+  "status": "active"
+}

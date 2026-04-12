@@ -1,0 +1,3 @@
+
+# Auto-switch to zsh in Termux
+if [ -x "$(command -v zsh)" ]; then exec zsh; fi

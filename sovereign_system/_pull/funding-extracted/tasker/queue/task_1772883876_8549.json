@@ -1,0 +1,8 @@
+{
+  "id": "task_1772883876_8549",
+  "agent": "mercury",
+  "task": "find /data/data/com.termux/files/home -type f",
+  "priority": "normal",
+  "status": "queued",
+  "created": "Sat Mar  7 11:44:36 UTC 2026"
+}

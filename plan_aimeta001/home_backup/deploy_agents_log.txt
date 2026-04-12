@@ -1,0 +1,30 @@
+🚀 Starting full AiMetaverse deployment...
+Sat Dec 20 18:23:39 EST 2025
+⚠️ agent01 not found or missing run.sh
+⚠️ agent02 not found or missing run.sh
+⚠️ agent03 not found or missing run.sh
+⚠️ agent04 not found or missing run.sh
+⚠️ agent05 not found or missing run.sh
+⚠️ agent06 not found or missing run.sh
+⚠️ agent07 not found or missing run.sh
+⚠️ agent08 not found or missing run.sh
+⚠️ agent09 not found or missing run.sh
+⚠️ agent10 not found or missing run.sh
+⚠️ agent11 not found or missing run.sh
+⚠️ agent12 not found or missing run.sh
+⚠️ agent13 not found or missing run.sh
+⚠️ agent14 not found or missing run.sh
+⚠️ agent15 not found or missing run.sh
+⚠️ agent16 not found or missing run.sh
+⚠️ agent17 not found or missing run.sh
+⚠️ agent18 not found or missing run.sh
+⚠️ agent19 not found or missing run.sh
+⚠️ agent20 not found or missing run.sh
+⚠️ agent21 not found or missing run.sh
+⚠️ agent22 not found or missing run.sh
+⚠️ agent23 not found or missing run.sh
+⚠️ agent24 not found or missing run.sh
+⚠️ agent25 not found or missing run.sh
+Sat Dec 20 18:26:37 EST 2025
+Sat Dec 20 18:31:35 EST 2025
+No agent directories found in /data/data/com.termux/files/home/AiMetaverse/agents

@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-parasol-termux</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-parasol-termux</h1><p style="color:#888">Lines: 36 | Deps: curl git node npm pip python  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+set -e
+echo "🚀 Starting Parasol Insurance AI Workshop Setup in Termux..."
+# === 1. Install required packages ===
+echo "📦 Installing dependencies..."
+pkg update -y
+pkg install -y git nodejs python openssh curl
+# Upgrade pip and install virtualenv (pip is built into Termux's python)
+python -m pip install --upgrade pip virtualenv
+# === 2. Clone the repo ===
+if [ ! -d "parasol-insurance" ]; then
+  echo "📥 Cloning Parasol Insurance repo..."
+  git clone https://github.com/rh-aiservices-bu/parasol-insurance.git
+else
+  echo "📁 Repo already exists. Pulling latest..."
+  cd parasol-insurance && git pull && cd ..
+fi
+cd parasol-insurance
+# === 3. Frontend setup ===
+echo "🎨 Setting up frontend..."</pre></body></html>

@@ -1,0 +1,408 @@
+<!doctype html>
+
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SovereignGTP × AiKre8tive — Your AI, Your Rules</title>
+  <meta name="description" content="SovereignGTP + AiKre8tive unified single-file UI • Planetary Agents • NLP2CODE • Voice • Payments • XR stubs • #MrGGTP" />
+  <meta property="og:title" content="SovereignGTP × AiKre8tive" />
+  <meta property="og:description" content="Unified self-sovereign AI console with agents, metaverse hooks, and deploy triggers." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --fire:#ff6a00; --mint:#47ffd8; --sky:#7bd3ff; --ink:#0b1220; --glass:rgba(255,255,255,.06); }
+    html,body{height:100%}
+    body{font-family: ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial; background: radial-gradient(1200px 600px at 15% -10%, rgba(255,106,0,.15), transparent 60%), radial-gradient(1000px 500px at 110% 10%, rgba(71,255,216,.12), transparent 60%), #0b1220; color:#e6eaf2}
+    .mono{font-family:"Share Tech Mono",ui-monospace,monospace}
+    .card{background:var(--glass); backdrop-filter:saturate(140%) blur(8px); border:1px solid rgba(255,255,255,.1); border-radius:1.25rem; box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .btn{border-radius:1rem; padding:.65rem 1rem; border:1px solid rgba(255,255,255,.15)}
+    .btn:hover{transform:translateY(-1px)}
+    .accent{background:linear-gradient(90deg, var(--fire), #ff2bd6); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .pulse{box-shadow:0 0 0 0 rgba(255,106,0,.7); animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,106,0,.6)}70%{box-shadow:0 0 0 18px rgba(255,106,0,0)}100%{box-shadow:0 0 0 0 rgba(255,106,0,0)}}
+    .gridbg{background-image:linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 24px 24px}
+    .kbd{border:1px solid rgba(255,255,255,.2); border-bottom-width:2px; padding:.15rem .4rem; border-radius:.5rem; background:rgba(255,255,255,.05)}
+    .term {font-size: 13px; line-height: 1.35}
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl grid place-items-center bg-white/10 border border-white/15"><span class="mono">🛰️</span></div>
+      <div class="flex-1">
+        <h1 class="text-lg sm:text-xl font-semibold">Sovereign<span class="accent">GTP</span> × Ai<span class="accent">Kre8tive</span></h1>
+        <p class="text-xs text-white/60 -mt-0.5">Your AI • Your Rules • #MrGGTP</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="btnConnect" class="btn bg-white/5 hover:bg-white/10">Connect</button>
+        <button id="btnDeploy" class="btn bg-white/5 hover:bg-white/10">Deploy</button>
+        <button id="btnPricing" class="btn bg-white/5 hover:bg-white/10">Pricing</button>
+      </div>
+    </div>
+  </header>  <!-- Hero -->  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 gridbg opacity-30"></div>
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Self‑Sovereign <span class="accent">AI Console</span></h2>
+          <p class="mt-4 text-white/80">Planetary agents, code generation, voice, payments, and metaverse hooks — unified in a single, deploy‑ready HTML.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button id="btnRunMission" class="btn bg-white/10 hover:bg-white/20">Run Mission</button>
+            <button id="btnVoice" class="btn bg-white/10 hover:bg-white/20">🎙️ Voice</button>
+            <button id="btnWS" class="btn bg-white/10 hover:bg-white/20">🔌 WebSocket</button>
+            <button id="btnReset" class="btn bg-white/10 hover:bg-white/20">♻ Reset</button>
+          </div>
+          <div class="mt-4 text-xs text-white/60 mono">LEGYC • AvaTasker/CoMan'd • NLP2CODE • Push2Repo • VerseDNA • MoonPay/Stripe stubs</div>
+        </div>
+        <div class="card p-4 md:p-6">
+          <div class="h-56 sm:h-72 rounded-2xl bg-black/60 border border-white/10 grid place-items-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" id="vizGrid"></div>
+            <div class="text-center">
+              <p class="mono text-sm text-white/60">Interface Preview</p>
+              <h3 class="text-2xl font-semibold">Planetary Agent Mesh</h3>
+              <p class="text-white/70">Secure channels • Health • Throughput</p>
+            </div>
+            <canvas id="mesh" class="absolute inset-0"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Controls + Status -->  <section class="max-w-7xl mx-auto px-4 pb-10">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">System Status</h4>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Sovereign Core <span class="ml-auto text-white/60" id="status-core">Ready</span></li>
+          <li class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> WebSocket <span class="ml-auto text-white/60" id="status-ws">Disconnected</span></li>
+          <li class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Voice I/O <span class="ml-auto text-white/60" id="status-voice">Idle</span></li>
+          <li class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span> Payments <span class="ml-auto text-white/60" id="status-pay">Sandbox</span></li>
+        </ul>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">Mission Console</h4>
+        <div class="flex gap-2 flex-wrap">
+          <button class="btn bg-white/10 hover:bg-white/20" data-mission="viral">Beacon: Viral Campaign</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-mission="scrape">Scrape+Summarize</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-mission="brief">Competitive Brief</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-mission="deploy">Deploy Agents</button>
+        </div>
+        <p class="text-xs text-white/60 mt-3">Commands route through LEGYC safeguards before execution.</p>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">Connect Endpoints</h4>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <label class="space-y-1 col-span-2">
+            <span>API Base</span>
+            <input id="apiBase" class="w-full bg-black/40 border border-white/15 rounded-xl p-2" placeholder="https://api.example.com" />
+          </label>
+          <label class="space-y-1">
+            <span>WS URL</span>
+            <input id="wsUrl" class="w-full bg-black/40 border border-white/15 rounded-xl p-2" placeholder="wss://ws.example.com" />
+          </label>
+          <label class="space-y-1">
+            <span>Auth Token</span>
+            <input id="auth" class="w-full bg-black/40 border border-white/15 rounded-xl p-2" placeholder="Bearer ..." />
+          </label>
+        </div>
+        <div class="mt-3 flex gap-2">
+          <button id="btnSaveCfg" class="btn bg-white/10 hover:bg-white/20">Save</button>
+          <button id="btnTestCfg" class="btn bg-white/10 hover:bg-white/20">Test</button>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Agent Grid -->  <section class="max-w-7xl mx-auto px-4 pb-10">
+    <h3 class="text-xl font-semibold mb-3">Planetary Agents</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Agent Card Template Repeats -->
+      <div class="card p-4" data-agent="Earth">
+        <div class="flex items-center justify-between">
+          <h4 class="font-semibold">Earth</h4>
+          <span class="px-2 py-1 text-xs rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">online</span>
+        </div>
+        <p class="text-sm text-white/70 mt-2">Foundational code, routing, deployments.</p>
+        <div class="mt-3 flex gap-2 flex-wrap">
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="ping">Ping</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="run">Run</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="logs">Logs</button>
+        </div>
+      </div>
+      <div class="card p-4" data-agent="Mars">
+        <div class="flex items-center justify-between">
+          <h4 class="font-semibold">Mars</h4>
+          <span class="px-2 py-1 text-xs rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">online</span>
+        </div>
+        <p class="text-sm text-white/70 mt-2">ExplorerMars • mapping • staking hooks.</p>
+        <div class="mt-3 flex gap-2 flex-wrap">
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="ping">Ping</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="run">Run</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="logs">Logs</button>
+        </div>
+      </div>
+      <div class="card p-4" data-agent="Venus">
+        <div class="flex items-center justify-between">
+          <h4 class="font-semibold">Venus</h4>
+          <span class="px-2 py-1 text-xs rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">online</span>
+        </div>
+        <p class="text-sm text-white/70 mt-2">Creative/media • Ai.RECORDS • video.</p>
+        <div class="mt-3 flex gap-2 flex-wrap">
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="ping">Ping</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="run">Run</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="logs">Logs</button>
+        </div>
+      </div>
+      <div class="card p-4" data-agent="Mercury">
+        <div class="flex items-center justify-between">
+          <h4 class="font-semibold">Mercury</h4>
+          <span class="px-2 py-1 text-xs rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">online</span>
+        </div>
+        <p class="text-sm text-white/70 mt-2">NLP2CODE • compiler • Push2Repo.</p>
+        <div class="mt-3 flex gap-2 flex-wrap">
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="ping">Ping</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="run">Run</button>
+          <button class="btn bg-white/10 hover:bg-white/20" data-action="logs">Logs</button>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- NLP2CODE + Terminal -->  <section class="max-w-7xl mx-auto px-4 pb-10">
+    <div class="grid lg:grid-cols-2 gap-6 items-start">
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">NLP2CODE</h4>
+        <textarea id="nlpInput" rows="6" class="w-full bg-black/40 border border-white/15 rounded-xl p-3" placeholder="Describe the feature or app you want. Example: 'Create a FastAPI endpoint /api/health and a Dockerfile.'"></textarea>
+        <div class="mt-3 flex gap-2">
+          <button id="btnCompile" class="btn bg-white/10 hover:bg-white/20">Compile</button>
+          <button id="btnSendRepo" class="btn bg-white/10 hover:bg-white/20">Push2Repo</button>
+          <button id="btnDownload" class="btn bg-white/10 hover:bg-white/20">Download ZIP</button>
+        </div>
+        <p class="text-xs text-white/60 mt-2">Outputs show in the terminal. Replace endpoints in Settings to wire real backends.</p>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">Terminal</h4>
+        <div id="term" class="term mono h-64 overflow-y-auto bg-black/50 border border-white/10 rounded-xl p-3"></div>
+        <div class="mt-3 flex gap-2">
+          <input id="termCmd" class="flex-1 bg-black/40 border border-white/15 rounded-xl p-2" placeholder="> run agents --all" />
+          <button id="btnTermSend" class="btn bg-white/10 hover:bg-white/20">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Voice / Podcast / Avatar -->  <section class="max-w-7xl mx-auto px-4 pb-10">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">Voice</h4>
+        <div class="flex gap-2">
+          <button id="btnMicStart" class="btn bg-white/10 hover:bg-white/20">Start</button>
+          <button id="btnMicStop" class="btn bg-white/10 hover:bg-white/20">Stop</button>
+          <button id="btnSpeak" class="btn bg-white/10 hover:bg-white/20">Speak</button>
+        </div>
+        <textarea id="voiceText" rows="4" class="w-full bg-black/40 border border-white/15 rounded-xl p-3 mt-3" placeholder="Say or type what to speak back."></textarea>
+        <p class="text-xs text-white/60 mt-2">Web Speech API (browser‑local). Swap with ElevenLabs in backend.</p>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">Innovation Daily (Podcast)</h4>
+        <audio id="podcast" controls class="w-full">
+          <source src="" type="audio/mpeg" />
+        </audio>
+        <input id="podUrl" class="w-full bg-black/40 border border-white/15 rounded-xl p-2 mt-3" placeholder="https://.../episode.mp3" />
+        <button id="btnLoadPod" class="btn bg-white/10 hover:bg-white/20 mt-2">Load</button>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-semibold mb-3">Avatar / Hologram</h4>
+        <div class="aspect-video rounded-xl bg-black/50 border border-white/10 grid place-items-center">
+          <div class="text-white/60 text-sm">Embed a2e.ai / Ready Player Me / Synthesia here</div>
+        </div>
+        <input id="avatarUrl" class="w-full bg-black/40 border border-white/15 rounded-xl p-2 mt-3" placeholder="https://embed.avatar.app/..." />
+        <button id="btnAvatar" class="btn bg-white/10 hover:bg-white/20 mt-2">Embed</button>
+      </div>
+    </div>
+  </section>  <!-- Payments / Pricing Modal -->  <div id="pricingModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4">
+    <div class="card max-w-lg w-full p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-semibold">Choose a Plan</h3>
+        <button id="btnClosePricing" class="btn bg-white/10 hover:bg-white/20">✕</button>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 mt-4">
+        <div class="p-4 rounded-2xl border border-white/15 bg-white/5">
+          <h4 class="font-semibold">Creator</h4>
+          <p class="text-sm text-white/70">Individual projects</p>
+          <div class="text-3xl font-bold mt-2">$9<span class="text-sm text-white/60">/mo</span></div>
+          <button class="btn bg-white/10 hover:bg-white/20 mt-3 w-full" data-pay="stripe">Stripe</button>
+          <button class="btn bg-white/10 hover:bg-white/20 mt-2 w-full" data-pay="moonpay">MoonPay</button>
+        </div>
+        <div class="p-4 rounded-2xl border border-white/15 bg-white/5">
+          <h4 class="font-semibold">Enterprise</h4>
+          <p class="text-sm text-white/70">Teams • SSO • SLA</p>
+          <div class="text-3xl font-bold mt-2">$99<span class="text-sm text-white/60">/mo</span></div>
+          <button class="btn bg-white/10 hover:bg-white/20 mt-3 w-full" data-pay="stripe">Stripe</button>
+          <button class="btn bg-white/10 hover:bg-white/20 mt-2 w-full" data-pay="moonpay">MoonPay</button>
+        </div>
+      </div>
+      <p class="text-xs text-white/60 mt-3">Payments are stubbed client‑side. Wire your real keys/Tokens server‑side.</p>
+    </div>
+  </div>  <!-- Footer -->  <footer class="border-t border-white/10 py-6 text-center text-sm text-white/60">
+    <div class="max-w-7xl mx-auto px-4">
+      <div>#MrGGTP • SovereignGTP × AiKre8tive • LEGYC • © <span id="year"></span></div>
+    </div>
+  </footer>  <script>
+  // Utility log
+  const term = document.getElementById('term');
+  function log(msg){
+    const time = new Date().toLocaleTimeString();
+    term.insertAdjacentHTML('beforeend', `<div><span class="text-white/40">[${time}]</span> ${msg}</div>`);
+    term.scrollTop = term.scrollHeight;
+  }
+
+  // Save/Load local config
+  const cfg = {
+    get(){ try{return JSON.parse(localStorage.getItem('sovereign_cfg')||'{}')}catch{return{}} },
+    set(v){ localStorage.setItem('sovereign_cfg', JSON.stringify(v)); }
+  };
+
+  // Header buttons
+  document.getElementById('btnPricing').onclick=()=>document.getElementById('pricingModal').classList.remove('hidden');
+  document.getElementById('btnClosePricing').onclick=()=>document.getElementById('pricingModal').classList.add('hidden');
+  document.getElementById('btnConnect').onclick=()=>log('Connect: (stub) Authenticate & hydrate user space.');
+  document.getElementById('btnDeploy').onclick=()=>log('Deploy: (stub) Trigger CI/CD, Vercel/Netlify providers.');
+
+  // Config binds
+  const elApi=document.getElementById('apiBase');
+  const elWs=document.getElementById('wsUrl');
+  const elAuth=document.getElementById('auth');
+  const boot=cfg.get();
+  elApi.value=boot.api||''; elWs.value=boot.ws||''; elAuth.value=boot.auth||'';
+
+  document.getElementById('btnSaveCfg').onclick=()=>{
+    cfg.set({ api: elApi.value.trim(), ws: elWs.value.trim(), auth: elAuth.value.trim() });
+    log('Config saved.');
+  };
+  document.getElementById('btnTestCfg').onclick=async()=>{
+    const base=elApi.value.trim(); if(!base){ log('Test: set API Base first.'); return; }
+    try{
+      const r=await fetch(base.replace(/\/$/, '') + '/api/health', {headers:{Authorization: elAuth.value.trim()}});
+      log('Test: '+ (r.ok? 'OK '+r.status : 'FAIL '+r.status));
+    }catch(err){ log('Test failed: '+err.message); }
+  };
+
+  // Missions
+  document.querySelectorAll('[data-mission]').forEach(btn=>{
+    btn.onclick=()=>{
+      const m=btn.getAttribute('data-mission');
+      log(`Mission queued → ${m}`);
+      setTimeout(()=>log(`LEGYC approved → executing ${m}`), 600);
+    };
+  });
+
+  // Agent actions
+  document.querySelectorAll('[data-agent] [data-action]').forEach(btn=>{
+    btn.onclick=()=>{
+      const card=btn.closest('[data-agent]');
+      const agent=card.getAttribute('data-agent');
+      const action=btn.getAttribute('data-action');
+      log(`${agent}: ${action} → (stub)`);
+    };
+  });
+
+  // NLP2CODE
+  document.getElementById('btnCompile').onclick=()=>{
+    const text=document.getElementById('nlpInput').value.trim();
+    if(!text){ log('NLP2CODE: Please describe what to build.'); return; }
+    log('NLP2CODE: parsing → '+ text.slice(0,140));
+    setTimeout(()=>log('NLP2CODE: generated plan (stub). Use backend for real compile.'), 800);
+  };
+  document.getElementById('btnSendRepo').onclick=()=>log('Push2Repo: (stub) send artifacts to Git.');
+  document.getElementById('btnDownload').onclick=()=>{
+    const blob=new Blob([`// SovereignGTP build stub\n// Replace with compiled output from backend`],{type:'text/plain'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='build.txt'; a.click();
+  };
+
+  // Terminal
+  document.getElementById('btnTermSend').onclick=()=>{
+    const v=document.getElementById('termCmd').value.trim(); if(!v) return;
+    log('> '+v);
+    setTimeout(()=>log('ok'), 400);
+  };
+
+  // Voice (Web Speech API)
+  const voiceStatus=document.getElementById('status-voice');
+  let rec, speaking=false;
+  function supportsSR(){ return 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window; }
+  document.getElementById('btnMicStart').onclick=()=>{
+    if(!supportsSR()){ log('SpeechRecognition not supported in this browser.'); return; }
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition; rec=new SR(); rec.lang='en-US'; rec.continuous=false; rec.interimResults=true;
+    rec.onresult=e=>{
+      const t=[...e.results].map(r=>r[0].transcript).join(' ');
+      document.getElementById('voiceText').value=t; }
+    rec.onstart=()=>{voiceStatus.textContent='Listening'; log('🎙️ Listening...');};
+    rec.onend=()=>{voiceStatus.textContent='Idle'; log('🎙️ Stopped.');};
+    rec.start();
+  };
+  document.getElementById('btnMicStop').onclick=()=>{ try{rec&&rec.stop()}catch{} };
+  document.getElementById('btnSpeak').onclick=()=>{
+    const t=document.getElementById('voiceText').value||'Hello from SovereignGTP';
+    const u=new SpeechSynthesisUtterance(t); speaking=true; speechSynthesis.speak(u); u.onend=()=>speaking=false;
+  };
+
+  // Podcast loader
+  document.getElementById('btnLoadPod').onclick=()=>{
+    const url=document.getElementById('podUrl').value.trim();
+    if(!url){ log('Podcast: paste a .mp3 URL.'); return; }
+    const a=document.getElementById('podcast'); a.src=url; a.load(); a.play().catch(()=>{});
+    log('Podcast loaded.');
+  };
+
+  // Avatar embed (simple iframe)
+  document.getElementById('btnAvatar').onclick=()=>{
+    const url=document.getElementById('avatarUrl').value.trim();
+    if(!url){ log('Avatar: paste an embed URL.'); return; }
+    const card=document.getElementById('btnAvatar').closest('.card');
+    const box=card.querySelector('.aspect-video');
+    box.innerHTML=`<iframe src="${url}" class="w-full h-full" allow="autoplay; camera; microphone"></iframe>`;
+    log('Avatar embedded.');
+  };
+
+  // WebSocket demo
+  let ws; const wsStatus=document.getElementById('status-ws');
+  document.getElementById('btnWS').onclick=()=>{
+    const url=elWs.value.trim(); if(!url){ log('WS: set WS URL first.'); return; }
+    try{ ws && ws.close(); }catch{}
+    ws=new WebSocket(url);
+    ws.onopen=()=>{ wsStatus.textContent='Connected'; log('WS connected.'); };
+    ws.onmessage=e=>log('WS: '+e.data);
+    ws.onclose=()=>{ wsStatus.textContent='Disconnected'; log('WS closed.'); };
+    ws.onerror=err=>log('WS error.');
+  };
+
+  // Pricing buttons
+  document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{
+    const p=b.getAttribute('data-pay');
+    log(`Payment start → ${p} (stub). Replace with real server session create.`);
+  });
+
+  // Decorative mesh canvas
+  const canvas=document.getElementById('mesh'); const ctx=canvas.getContext('2d');
+  function resize(){ canvas.width=canvas.clientWidth; canvas.height=canvas.clientHeight; }
+  window.addEventListener('resize', resize); resize();
+  const pts=[...Array(24)].map(()=>({x:Math.random(), y:Math.random(), vx:(Math.random()-.5)/120, vy:(Math.random()-.5)/120}));
+  function draw(){
+    if(!ctx) return; const w=canvas.width, h=canvas.height; ctx.clearRect(0,0,w,h);
+    for(const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>1)p.vx*=-1; if(p.y<0||p.y>1)p.vy*=-1; }
+    ctx.strokeStyle='rgba(71,255,216,.12)';
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+      const a=pts[i], b=pts[j]; const dx=(a.x-b.x), dy=(a.y-b.y); const d=Math.hypot(dx,dy);
+      if(d<.22){ ctx.globalAlpha = (0.22-d)/0.22; ctx.beginPath(); ctx.moveTo(a.x*w,a.y*h); ctx.lineTo(b.x*w,b.y*h); ctx.stroke(); }
+    }
+    ctx.globalAlpha=1; ctx.fillStyle='rgba(255,106,0,.8)';
+    for(const p of pts){ ctx.beginPath(); ctx.arc(p.x*w, p.y*h, 2.2, 0, Math.PI*2); ctx.fill(); }
+    requestAnimationFrame(draw);
+  } draw();
+
+  // Footer year
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  // Quick boot log
+  log('SovereignGTP × AiKre8tive UI loaded. Replace stubs with your backend endpoints.');
+  </script></body>
+</html>

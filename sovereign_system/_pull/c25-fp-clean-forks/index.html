@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-fp-clean-forks</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-fp-clean-forks</h1><p style="color:#888">Lines: 36 | Deps: pip  | C25 FacePrintPay</p><pre>#!/bin/bash
+# FacePrintPay Fork Cleanup - Safe Delete Unused Forks (Termux Fixed)
+set -euo pipefail
+TEMP_DIR="$HOME/.tmp-forks"
+mkdir -p "$TEMP_DIR"
+echo -e "\033[0;34m╔════════════════════════════════════════════╗\033[0m"
+echo -e "\033[0;34m║  FacePrintPay Fork Cleanup                 ║\033[0m"
+echo -e "\033[0;34m╚════════════════════════════════════════════╝\033[0m"
+echo -e "\033[0;36mScanning for forked repos...\033[0m"
+# List all forks
+gh repo list FacePrintPay --json name,isFork,owner -q '.[] | select(.isFork == true) | .name' &gt; "$TEMP_DIR/forks.txt"
+if [ ! -s "$TEMP_DIR/forks.txt" ]; then
+    echo -e "\033[0;32m✅ No forked repos found.\033[0m"
+    rm -rf "$TEMP_DIR"
+    exit 0
+fi
+echo -e "\033[0;33mFound forked repos:\033[0m"
+cat "$TEMP_DIR/forks.txt"
+echo -e "\033[0;33m\nType 'DELETE' to confirm and remove all forks:\033[0m"
+read -r confirm</pre></body></html>

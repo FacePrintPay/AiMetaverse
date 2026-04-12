@@ -1,0 +1,50 @@
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:orion
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:perseus
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:pleiades
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:pluto
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:rigel
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:saturn
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:sirius
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:sol
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:uranus
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:vega
+[2026-03-20 20:26:52] [jupiter] RESTART_DETECTED dead_agent:venus
+[2026-03-20 20:27:38] [orion] QUEUE pending:0 done:0 oldest:none
+[2026-03-20 20:28:56] [sirius] DEPLOY_STATUS active_agents:25
+[2026-03-20 20:28:56] [lyra] MEDIA_STATUS files:0
+[2026-03-20 20:28:56] [pleiades] VENV_STATUS count:0
+[2026-03-20 20:28:56] [orion] QUEUE pending:0 done:0 oldest:none
+[2026-03-20 20:28:56] [cygnus] EVIDENCE_INTEGRITY manifest_entries:128 sha256:19e0cc847ddbcfac83f4adcb6c8819304c523bcff15d36c237dc17cd5f5f306f
+[2026-03-20 20:28:56] [saturn] FORENSIC_SNAPSHOT log_bytes:128747 log_lines:1770 manifest_entries:128 sha256:104fc40fe7f4cf1958919dba2475c854292485d5c5a8c516a1d3861b336528c7
+[2026-03-20 20:28:56] [luna] MEMORY_UPDATED tasks_done:0 tasks_pending:0
+[2026-03-20 20:28:57] [venus] DASHBOARD_UPDATED /data/data/com.termux/files/home/constellation25/ui/dashboard.html
+[2026-03-20 20:28:56] [perseus] SECURITY vault_perm:700 log_perm:777 scripts:22
+[2026-03-20 20:28:56] [neptune] NETWORK status:ONLINE ip:75.191.121.179
+[2026-03-20 20:28:56] [earth] DISK_FREE:71M C25_FILES:11413
+[2026-03-20 20:28:56] [jupiter] ORCHESTRATION agents_up:0 pending_tasks:0
+[2026-03-20 20:28:56] [cassiopeia] REPORT_GENERATED agents:0 tasks_done:0
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:andromeda
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:aquila
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:cassiopeia
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:cygnus
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:draco
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:earth
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:fomalhaut
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:hydra
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:jupiter
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:luna
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:lyra
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:mars
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:mercury
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:neptune
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:orion
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:perseus
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:pleiades
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:pluto
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:rigel
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:saturn
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:sirius
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:sol
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:uranus
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:vega
+[2026-03-20 20:28:56] [jupiter] RESTART_DETECTED dead_agent:venus

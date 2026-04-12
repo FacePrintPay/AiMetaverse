@@ -1,0 +1,11 @@
+{
+  "name": "Neptune",
+  "tier": "moon",
+  "role": "security",
+  "llm": "local",
+  "deps": "openssl,curl",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "43f82e7b70af9669",
+  "status": "active"
+}

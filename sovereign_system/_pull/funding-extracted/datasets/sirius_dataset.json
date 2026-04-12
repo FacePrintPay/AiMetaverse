@@ -1,0 +1,23 @@
+{
+  "task": "Cloud deployment",
+  "models": [
+    "ollama/llama3",
+    "mars-agent"
+  ],
+  "data": {
+    "platforms": [
+      "vercel",
+      "aws_lambda",
+      "gcp_run",
+      "azure_functions",
+      "termux_local"
+    ],
+    "configs": [
+      "dockerfile",
+      "vercel_json",
+      "github_actions",
+      "terraform",
+      "ansible"
+    ]
+  }
+}

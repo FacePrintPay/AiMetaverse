@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-constellation25</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-constellation25</h1><p style="color:#888">Lines: 36 | Deps: pip  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+WORKDIR="$HOME/constellation25"
+mkdir -p "$WORKDIR"/{agents,logs,tasks,results}
+cat &lt;&lt; 'BANNER'
+╔════════════════════════════════════════════════════════════════╗
+║           CONSTELLATION 25 - PLANETARY AGENTS                  ║
+║                1000-Task Automation System                     ║
+╚════════════════════════════════════════════════════════════════╝
+BANNER
+declare -A AGENTS=(
+    ["earth"]="Foundation"
+    ["moon"]="Debug"
+    ["sun"]="Optimization"
+    ["mercury"]="Testing"
+    ["venus"]="Regression"
+    ["mars"]="Security"
+    ["jupiter"]="Documentation"
+    ["saturn"]="Refactoring"
+    ["uranus"]="NLP"</pre></body></html>

@@ -1,0 +1,6 @@
+{
+  "appName": { "message": "Brave Omnibox" },
+  "appAuthor": { "message": "Adam Lui" },
+  "appDesc": { "message": "Brave AI-dən nəticələr əldə etmək üçün ünvan çubuğunda @brave yazın" },
+  "prefix_ask": { "message": "Soruşmag" }
+}

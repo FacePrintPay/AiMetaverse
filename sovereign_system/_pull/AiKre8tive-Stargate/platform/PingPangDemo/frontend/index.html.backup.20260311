@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PingPang Plugin Demo</title>
+<script type="module">
+class PingPang {
+  constructor(baseURL) {
+    this.baseURL = baseURL;
+    this.pollInterval = 3000;
+    this.polling = false;
+    this.pollTimer = null;
+  }
+
+  async pingHealth() {
+    try {
+      const response = await fetch(this.baseURL + '/healthz');
+      if (response.ok) {
+        const data = await response.json();
+        return data.status;
+      } else {
+        return 'unhealthy';
+      }
+    } catch {
+      return 'unreachable';
+    }
+  }
+
+  async runTask() {
+    try {
+      const response = await fetch(this.baseURL + '/run-task', { method: 'POST' });
+      if (response.ok) {
+        return await response.json();
+      } else {
+        throw new Error('Failed to run task');
+      }
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+
+  startPolling(statusCallback) {
+    if (this.polling) return;
+    this.polling = true;
+
+    const poll = async () => {
+      if (!this.polling) return;
+      const status = await this.pingHealth();
+      statusCallback(status);
+      this.pollTimer = setTimeout(poll, this.pollInterval);
+    };
+    poll();
+  }
+
+  stopPolling() {
+    this.polling = false;
+    if (this.pollTimer) clearTimeout(this.pollTimer);
+  }
+}
+
+window.PingPang = PingPang;
+</script>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; text-align: center; }
+  button { padding: 1rem 2rem; font-size: 1.25rem; cursor: pointer; margin: 1rem; }
+  #status { font-weight: bold; margin-top: 1rem; }
+</style>
+</head>
+<body>
+  <h1>PingPang Plugin Demo</h1>
+  <button id="start">Start Polling Health</button>
+  <button id="stop" disabled>Stop Polling</button>
+  <button id="runTask">Run Task</button>
+  <div id="status">Idle</div>
+
+  <script type="module">
+    const baseURL = 'http://localhost:8000';
+    const pingpang = new PingPang(baseURL);
+
+    const statusDiv = document.getElementById('status');
+    const startBtn = document.getElementById('start');
+    const stopBtn = document.getElementById('stop');
+    const runTaskBtn = document.getElementById('runTask');
+
+    startBtn.onclick = () => {
+      pingpang.startPolling(status => {
+        statusDiv.textContent = 'Health Status: ' + status;
+      });
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+    };
+
+    stopBtn.onclick = () => {
+      pingpang.stopPolling();
+      statusDiv.textContent = 'Polling stopped.';
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    };
+
+    runTaskBtn.onclick = async () => {
+      statusDiv.textContent = 'Running task...';
+      const result = await pingpang.runTask();
+      if (result.error) {
+        statusDiv.textContent = 'Error: ' + result.error;
+      } else {
+        statusDiv.textContent = 'Task Response: ' + JSON.stringify(result);
+      }
+    };
+  </script>
+</body>
+</html>

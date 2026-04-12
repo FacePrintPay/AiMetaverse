@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-constellation25-swarm</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-constellation25-swarm</h1><p style="color:#888">Lines: 94 | Deps: go npm pip python  | C25 FacePrintPay</p><pre>#!/usr/bin/env bash
+# ========================================================
+# CONSTELLATION 25 - FULL PLANETARY SWARM v3.0
+# Analyze, Compile, Parse, Prune, Configure, Debug, Package, Scaffold, Deploy
+# All build files in Termux home
+# ========================================================
+set -euo pipefail
+LOG="$HOME/.constellation25/swarm.log"
+REPORT="$HOME/CONSTELLATION25_SWARM_REPORT.html"
+mkdir -p "$(dirname "$LOG")"
+log() {
+  echo "[$(date '+%H:%M:%S')] $1" | tee -a "$LOG"
+}
+agent() {
+  log "🌌 $1 Agent: $2"
+}
+banner() {
+  clear
+  echo -e "\033[0;34m╔════════════════════════════════════════════════════════════╗\033[0m"
+  echo -e "\033[0;34m║           CONSTELLATION 25 - FULL PLANETARY SWARM v3.0     ║\033[0m"</pre></body></html>

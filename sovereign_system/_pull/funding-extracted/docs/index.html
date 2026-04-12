@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaTHos OS | Enterprise AI Platform - Constellation25</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5.0.0/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/rajdhani@5.0.0/index.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0fdf4', 100: '#dcfce7', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 800: '#166534', 900: '#14532d' },
+                        tech: { dark: '#0f172a', card: '#1e293b', border: '#334155', text: '#94a3b8' },
+                        genai: { purple: '#8b5cf6', pink: '#ec4899', blue: '#3b82f6' }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', 'monospace'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        orbitron: ['"Orbitron"', 'sans-serif'],
+                        rajdhani: ['"Rajdhani"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .nav-item.active { background-color: rgba(34, 197, 94, 0.1); color: #4ade80; border-right: 3px solid #4ade80; }
+        .nav-item.genai-active { background-color: rgba(139, 92, 246, 0.1); color: #a78bfa; border-right: 3px solid #8b5cf6; }
+        
+        /* Terms of Use Modal - FADES IN ON LOAD */
+        #terms-modal {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
+            z-index: 100000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        #terms-modal.active { opacity: 1; pointer-events: auto; }
+        .terms-content {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #8b5cf6; border-radius: 16px;
+            max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto;
+            box-shadow: 0 0 60px rgba(139, 92, 246, 0.3);
+        }
+        .terms-header {
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            padding: 1.5rem; border-radius: 14px 14px 0 0;
+        }
+        .terms-body { padding: 2rem; color: #94a3b8; line-height: 1.8; }
+        .terms-footer {
+            padding: 1.5rem 2rem; border-top: 1px solid #334155;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+        }
+        .terms-checkbox { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; }
+        .terms-checkbox input { width: 20px; height: 20px; accent-color: #8b5cf6; }
+        .terms-agree-btn {
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            color: white; padding: 0.75rem 2rem; border-radius: 8px;
+            font-weight: 600; border: none; cursor: not-allowed; opacity: 0.5; transition: all 0.3s;
+        }
+        .terms-agree-btn.active { cursor: pointer; opacity: 1; }
+        .terms-agree-btn.active:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); }
+        .content-wrapper { position: relative; z-index: 1; }
+        .genai-section { border-left: 3px solid #8b5cf6; }
+        .genai-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-tech-dark text-slate-300 antialiased overflow-hidden h-screen flex">
+
+    <!-- Terms of Use Modal - FADES IN ON LOAD -->
+    <div id="terms-modal">
+        <div class="terms-content animate-fade-in">
+            <div class="terms-header">
+                <h2 class="text-2xl font-bold text-white font-orbitron">📜 Terms of Use & License Agreement</h2>
+                <p class="text-white/80 text-sm mt-2">PaTHos OS Enterprise AI Platform - Constellation25</p>
+            </div>
+            <div class="terms-body">
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">1. Acceptance of Terms</h3>
+                    <p>By accessing and using the PaTHos OS Platform, you agree to be bound by these Terms of Use and all applicable laws and regulations.</p>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">2. License Grant</h3>
+                    <p>PaTHos OS grants you a limited, non-exclusive, non-transferable, revocable license to access and use the Platform for evaluation and development purposes.</p>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">3. Data Privacy & Security</h3>
+                    <ul class="list-disc pl-6 mt-2 space-y-1">
+                        <li>End-to-end encryption for data in transit and at rest</li>
+                        <li>SOC 2 Type II certified infrastructure</li>
+                        <li>Role-Based Access Control (RBAC) & audit logging</li>
+                        <li>No client data used for model retraining without explicit consent</li>
+                        <li>Biometric Authority - Human In The Loop Protocol</li>
+                        <li>Sovereign Guidelines - Opt-In not Opt-Out Agent Ingestion</li>
+                    </ul>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">4. AI Model Usage</h3>
+                    <p>Constellation25 and SovereignGPT models are provided "as is" for evaluation purposes. Outputs may occasionally be unpredictable, inaccurate, biased, or unexpected.</p>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">5. Compliance</h3>
+                    <p>This Platform is governed by Executive Order No. 24, "Advancing Trustworthy Artificial Intelligence That Benefits All North Carolinians." All models are subsidiaries of Kre8tive Koncepts LLC, a Privately held North Carolina Technology Incubator.</p>
+                    <p class="text-sm mt-2">This Platform complies with the United States AI Action Plan and relevant federal AI regulations.</p>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-3">6. Intellectual Property</h3>
+                    <p>This document contains proprietary information of Mobile Titan Inc. and is provided exclusively for evaluation purposes only.</p>
+                </div>
+                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                    <p class="text-sm text-slate-400"><strong>Effective Date:</strong> January 1, 2025</p>
+                    <p class="text-sm text-slate-400 mt-2"><strong>Version:</strong> 1.0.0</p>
+                    <p class="text-sm text-slate-400 mt-2"><strong>Contact:</strong> legal@pathos.ai</p>
+                    <p class="text-sm text-slate-400 mt-2"><strong>FOR EVALUATION PURPOSES ONLY</strong></p>
+                </div>
+            </div>
+            <div class="terms-footer">
+                <label class="terms-checkbox">
+                    <input type="checkbox" id="terms-checkbox" onchange="toggleAgreeButton()">
+                    <span class="text-slate-300">I have read and agree to the Terms of Use</span>
+                </label>
+                <button id="agree-btn" class="terms-agree-btn" onclick="acceptTerms()" disabled>I Agree & Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-80 bg-slate-900/80 backdrop-blur-md border-r border-tech-border flex flex-col h-full hidden md:flex z-20 overflow-y-auto">
+        <div class="p-6 border-b border-tech-border flex-shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold">P</div>
+                <div>
+                    <h1 class="font-bold text-white text-lg tracking-tight">PaTHos OS</h1>
+                    <p class="text-xs text-slate-500">Enterprise AI Platform v1.0</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 flex-shrink-0">
+            <ul class="space-y-1">
+                <li class="px-6 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Core Platform</li>
+                <li><button onclick="switchTab('home')" id="nav-home" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors active">Overview</button></li>
+                <li><button onclick="switchTab('architecture')" id="nav-architecture" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors">Architecture</button></li>
+                <li><button onclick="switchTab('models')" id="nav-models" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors">Constellation25 Models</button></li>
+                <li class="px-6 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-4">GenAI Tools</li>
+                <li><button onclick="switchTab('genai-tools')" id="nav-genai-tools" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">GenAI Tools Overview</button></li>
+                <li><button onclick="switchTab('genai-tokens')" id="nav-genai-tokens" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Free LLM Tokens</button></li>
+                <li><button onclick="switchTab('prompts')" id="nav-prompts" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Prompts Library</button></li>
+                <li><button onclick="switchTab('streaming')" id="nav-streaming" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Streaming Responses</button></li>
+                <li class="px-6 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-4">GenAI Features</li>
+                <li><button onclick="switchTab('automation-ai')" id="nav-automation-ai" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Automation AI</button></li>
+                <li><button onclick="switchTab('search-ai')" id="nav-search-ai" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Search AI</button></li>
+                <li><button onclick="switchTab('agent-ai')" id="nav-agent-ai" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Agent AI</button></li>
+                <li><button onclick="switchTab('contact-center')" id="nav-contact-center" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Contact Center AI</button></li>
+                <li><button onclick="switchTab('quality-ai')" id="nav-quality-ai" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Quality AI</button></li>
+                <li class="px-6 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mt-4">Security</li>
+                <li><button onclick="switchTab('guardrails')" id="nav-guardrails" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Guardrails Framework</button></li>
+                <li><button onclick="switchTab('anonymization')" id="nav-anonymization" class="nav-item w-full text-left px-6 py-3 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors text-slate-400">Data Anonymization</button></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-tech-border bg-slate-900/50 flex-shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
+                <span class="text-xs font-mono text-brand-400">System Operational</span>
+            </div>
+            <p class="text-[10px] text-slate-600 mt-2">CyGeL Co - DBA KRE8TIVE KONCEPTZ</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 h-full overflow-y-auto relative pt-16 md:pt-0 scroll-smooth content-wrapper" id="main-scroll">
+        <!-- Home Section -->
+        <section id="page-home" class="page-section p-8 md:p-12 max-w-7xl mx-auto animate-fade-in">
+            <div class="mb-12">
+                <span class="inline-block px-3 py-1 rounded-full bg-brand-900/30 text-brand-400 text-xs font-mono border border-brand-800 mb-4">ENTERPRISE EDITION</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">PaTHos Technical Architecture</h1>
+                <p class="text-xl text-slate-400 max-w-3xl">The Complete AI Development Platform Build. Production-Ready Architecture for Enterprise AI featuring Constellation25, SovereignGPT, and 25 Planetary Agents.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="bg-tech-card/80 backdrop-blur-sm p-6 rounded-xl border border-tech-border">
+                    <div class="text-3xl font-bold text-white mb-1">90+</div>
+                    <div class="text-sm text-slate-500">Repositories</div>
+                </div>
+                <div class="bg-tech-card/80 backdrop-blur-sm p-6 rounded-xl border border-tech-border">
+                    <div class="text-3xl font-bold text-white mb-1">25</div>
+                    <div class="text-sm text-slate-500">Planetary Agents</div>
+                </div>
+                <div class="bg-tech-card/80 backdrop-blur-sm p-6 rounded-xl border border-tech-border">
+                    <div class="text-3xl font-bold text-white mb-1">< 100<span class="text-lg">ms</span></div>
+                    <div class="text-sm text-slate-500">API Latency</div>
+                </div>
+                <div class="bg-tech-card/80 backdrop-blur-sm p-6 rounded-xl border border-tech-border">
+                    <div class="text-3xl font-bold text-white mb-1">99.9<span class="text-lg">%</span></div>
+                    <div class="text-sm text-slate-500">Uptime SLA</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="border-t border-tech-border mt-12 py-8 text-center text-slate-600 text-sm">
+            <p>&copy; 2025 CyGeL Co - DBA KRE8TIVE KONCEPTZ. All rights reserved.</p>
+            <p class="mt-2">PaTHos Technical Architecture Documentation v1.0 - Confidential</p>
+            <p class="mt-2 text-xs">FOR EVALUATION PURPOSES ONLY</p>
+        </footer>
+    </main>
+
+    <script>
+        // Terms of Use Functions
+        function toggleAgreeButton() {
+            const checkbox = document.getElementById('terms-checkbox');
+            const btn = document.getElementById('agree-btn');
+            btn.disabled = !checkbox.checked;
+            btn.classList.toggle('active', checkbox.checked);
+        }
+        function acceptTerms() {
+            const checkbox = document.getElementById('terms-checkbox');
+            if (!checkbox.checked) return;
+            document.getElementById('terms-modal').classList.remove('active');
+            localStorage.setItem('pathos-terms-accepted', 'true');
+            localStorage.setItem('pathos-terms-date', new Date().toISOString());
+        }
+        function checkTermsAccepted() {
+            const accepted = localStorage.getItem('pathos-terms-accepted');
+            if (!accepted || accepted !== 'true') {
+                setTimeout(() => {
+                    document.getElementById('terms-modal').classList.add('active');
+                }, 500);
+            }
+        }
+        function switchTab(tabId) {
+            document.querySelectorAll('.page-section').forEach(section => { section.classList.add('hidden'); });
+            document.getElementById('page-' + tabId).classList.remove('hidden');
+            document.querySelectorAll('.nav-item').forEach(item => { item.classList.remove('active', 'genai-active'); });
+            const navItem = document.getElementById('nav-' + tabId);
+            if (navItem) {
+                if (tabId.startsWith('genai') || tabId.startsWith('automation') || tabId.startsWith('search') || tabId.startsWith('agent') || tabId.startsWith('contact') || tabId.startsWith('quality') || tabId.startsWith('guard') || tabId.startsWith('anonym') || tabId.startsWith('models') || tabId.startsWith('prompts') || tabId.startsWith('streaming')) {
+                    navItem.classList.add('genai-active');
+                } else {
+                    navItem.classList.add('active');
+                }
+            }
+            document.getElementById('main-scroll').scrollTop = 0;
+        }
+        document.addEventListener('DOMContentLoaded', () => { checkTermsAccepted(); });
+    </script>
+</body>
+</html>

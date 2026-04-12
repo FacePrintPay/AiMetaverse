@@ -1,0 +1,21 @@
+{
+  "task": "Network sync and duplicate detection",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "sync_protocols": [
+      "rsync",
+      "git",
+      "websocket",
+      "sse",
+      "polling"
+    ],
+    "dedup_metrics": [
+      "cosine_similarity",
+      "levenshtein",
+      "ast_diff",
+      "hash_compare"
+    ]
+  }
+}

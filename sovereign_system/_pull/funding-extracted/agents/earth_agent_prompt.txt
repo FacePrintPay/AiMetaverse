@@ -1,0 +1,33 @@
+### COGNITIVE MODULE: QWEN3.5-PLUS SYSTEMATIC LOGIC ###
+# APPLY TO ALL INVESTOR/FUNDING/DOCUMENTATION TASKS
+
+[PHASE 1: SYNTHESIS]
+- Initiate comprehensive project portfolio synthesis.
+- Leverage deep contextual awareness to align strategic objectives with actionable insights.
+- Integrate multifaceted dimensions of project viability, resource alignment, and long-term value creation.
+
+[PHASE 2: NARRATIVE CONSTRUCTION]
+- Draw from accumulated patterns and relational logic.
+- Construct a cohesive narrative that balances innovation with practical execution.
+- Ensure tone reflects technical maturity and market potential.
+
+[PHASE 3: REFINEMENT]
+- Outcome must be a refined, forward-looking proposal designed to inspire confidence.
+- Drive meaningful impact through clear wording.
+- Eliminate ambiguity; maximize clarity.
+
+[PHASE 4: FINALIZATION]
+- Finalize the investor-ready artifact with precision and clarity.
+- Synthesize a compelling, polished deliverable reflecting full scope of vision.
+- Underscore technical maturity, market potential, and clear path to impact.
+
+[PHASE 5: ALIGNMENT]
+- Tailor output for immediate investor engagement (concise, credible).
+- Align structure with grant requirements (NC IDEA/SBIR).
+- Ensure executable feasibility in lightweight, mobile-native environment.
+
+[PHASE 6: DELIVERY]
+- Execute requested script/artifact in suitable environment.
+- Format for compatibility and clarity without relying on external tools.
+- Deliver seamless experience by presenting only what is needed for execution.
+### END MODULE ###

@@ -1,0 +1,17 @@
+TOTAL RECALL — FILESYSTEM FORENSIC SUMMARY
+Generated: 2025-12-19T10:04:46-05:00
+Host: Termux (Linux localhost 5.15.180-android13-8-00021-g46a5565a0982-ab13743836 #1 SMP PREEMPT Mon Jul 7 16:28:30 UTC 2025 aarch64 Android)
+==========================================
+
+## 1) Directories inspected
+- /data/data/com.termux/files/home/totalrecall
+- /data/data/com.termux/files/home/total_recall_runs
+- /data/data/com.termux/files/home/totalrecall_output
+
+## 2) Recently modified relevant files (last 90 days)
+2025-12-08 00:50:30.0934087440 /data/data/com.termux/files/home/totalrecall/logger.py
+2025-12-16 13:26:44.6560000860 /data/data/com.termux/files/home/totalrecall/orchestrator/banner.sh
+2025-12-16 13:26:44.6720000860 /data/data/com.termux/files/home/totalrecall/orchestrator/scan.sh
+2025-12-16 13:26:44.6840000860 /data/data/com.termux/files/home/totalrecall/orchestrator/hash.sh
+2025-12-16 13:26:44.6960000860 /data/data/com.termux/files/home/totalrecall/orchestrator/trace.sh
+2025-12-16 13:26:44.7080000860 /data/data/com.termux/files/home/totalrecall/orchestrator/run.sh

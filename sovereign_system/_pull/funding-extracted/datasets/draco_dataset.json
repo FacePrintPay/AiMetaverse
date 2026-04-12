@@ -1,0 +1,20 @@
+{
+  "task": "Automation scripts",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "automation_types": [
+      "cron",
+      "webhook",
+      "file_watcher",
+      "git_hook",
+      "mcp_trigger"
+    ],
+    "languages": [
+      "bash",
+      "python",
+      "javascript"
+    ]
+  }
+}

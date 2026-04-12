@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Santa 2025 – Tree Packing Optimizer</title>
+<style>
+body{font-family:system-ui;background:linear-gradient(135deg,#fee2e2,#dcfce7,#dbeafe);padding:20px}
+canvas{border:2px solid #3b82f6;background:#f9fafb}
+button{margin-top:12px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer}
+.info{margin-top:10px;font-family:monospace;white-space:pre}
+</style>
+</head>
+<body>
+
+<h1>🎄 Santa 2025 – Tree Packing Optimizer</h1>
+<canvas id="canvas" width="600" height="600"></canvas><br>
+<button onclick="optimize()">Run Optimizer</button>
+<div class="info" id="info"></div>
+
+<script>
+const NUM_TREES=180,FRACTAL_CENTER_PULL=.15,FRACTAL_JITTER=.8;
+const treeShape=[{x:0,y:-8},{x:-5,y:2},{x:-6,y:2},{x:-4,y:6},{x:-2,y:6},{x:-2,y:8},{x:2,y:8},{x:2,y:6},{x:4,y:6},{x:6,y:2},{x:5,y:2}];
+const rotate=(p,d)=>{const r=d*Math.PI/180;return{x:p.x*Math.cos(r)-p.y*Math.sin(r),y:p.x*Math.sin(r)+p.y*Math.cos(r)}};
+const coll=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y)<16;
+const inBounds=(t,s)=>treeShape.map(p=>rotate(p,t.r)).every(p=>t.x+p.x>=0&&t.x+p.x<=s&&t.y+p.y>=0&&t.y+p.y<=s);
+
+function greedy(n,s){
+ const g=[],grid=8,cx=s/2,cy=s/2;
+ for(let i=0;i<n;i++){
+  const r=(i%6)*60;let ok=false;
+  for(let y=10;y<s-10&&!ok;y+=grid)for(let x=10;x<s-10&&!ok;x+=grid){
+   const t={x,y,r};
+   if(!inBounds(t,s)||g.some(o=>coll(o,t)))continue;
+   t.x+=FRACTAL_CENTER_PULL*(cx-t.x);
+   t.y+=FRACTAL_CENTER_PULL*(cy-t.y);
+   const a=Math.atan2(t.y-cy,t.x-cx);
+   t.x+=Math.cos(a+Math.PI/2)*FRACTAL_JITTER;
+   t.y+=Math.sin(a+Math.PI/2)*FRACTAL_JITTER;
+   g.push(t);ok=true;
+  }
+ }
+ return g;
+}
+
+function anneal(n){
+ let s=Math.sqrt(n)*20,t=greedy(n,s),T=100;
+ while(T>.1){
+  const ns=s-Math.max(.4,s*.015),nt=greedy(n,ns);
+  if(nt.length===n){s=ns;t=nt}else if(Math.random()<Math.exp(-1/T))s-=.2;
+  T*=.95;
+ }
+ return{size:s,trees:t};
+}
+
+function draw(t,s){
+ const c=document.getElementById("canvas"),x=c.getContext("2d"),k=600/s,o=(600-s*k)/2;
+ x.clearRect(0,0,600,600);x.strokeRect(o,o,s*k,s*k);
+ t.forEach((e,i)=>{const p=treeShape.map(q=>rotate(q,e.r));
+  x.beginPath();p.forEach((q,j)=>{const X=o+(e.x+q.x)*k,Y=o+(e.y+q.y)*k;j?x.lineTo(X,Y):x.moveTo(X,Y)});
+  x.closePath();x.fillStyle=`hsla(${(i*137.5)%360},70%,50%,.7)`;x.fill();x.stroke();
+ });
+}
+
+function optimize(){
+ const r=anneal(NUM_TREES);
+ draw(r.trees,r.size);
+ document.getElementById("info").textContent=
+  `Trees: ${r.trees.length}/${NUM_TREES}\nBox size: ${r.size.toFixed(3)}\nScore: ${((r.size*r.size)/NUM_TREES).toFixed(3)}`;
+}
+optimize();
+</script>
+</body>
+</html>

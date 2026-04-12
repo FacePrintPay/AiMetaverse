@@ -1,0 +1,6 @@
+[📋] ENUMERATED CASE MANIFEST – COMPRESSED ARCHIVES (.zip/.gz/.zst/etc.)
+Generated: Wed Apr  8 22:21:44 EDT 2026
+Search ID: zfiles_grep_20260408_2221
+Keywords: White.*v\.?\s*Google|EDNC|BlackBox\s*AI|CCPA|Consumer\s*Request|Damages|Forensic|Exhibit|Complaint|Alphabet|Cure\s*Notice|1798\.|Privacy.*Act|Eastern.*District.*North.*Carolina
+========================================
+

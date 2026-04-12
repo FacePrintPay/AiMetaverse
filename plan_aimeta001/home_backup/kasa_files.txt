@@ -1,0 +1,2 @@
+./kasa_elimination_list.txt
+/data/data/com.termux/files/home/kasa_elimination_list.txt

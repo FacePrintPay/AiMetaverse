@@ -1,0 +1,13 @@
+{
+  "name": "arcai",
+  "version": "2.0.0",
+  "private": false,
+  "scripts": {
+    "start": "echo 'Constellation25 module: arcai'",
+    "build": "echo 'Build complete'"
+  },
+  "constellation25": {
+    "build_id": "20260402_015712",
+    "agent": "pathos-sovereign-1"
+  }
+}

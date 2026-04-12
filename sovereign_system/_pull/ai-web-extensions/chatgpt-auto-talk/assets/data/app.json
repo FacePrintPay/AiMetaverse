@@ -1,0 +1,23 @@
+{
+  "name": "ChatGPT Auto-Talk", "symbol": "📣", "slug": "chatgpt-auto-talk",
+  "configKeyPrefix": "chatGPTautoTalk",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "aiwebAssets": "https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions@latest/assets",
+    "app": "https://chatgptautotalk.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/chatgpt-auto-talk@latest/assets",
+    "chatgptjs": "https://chatgpt.js.org",
+    "contributors": "https://docs.chatgptautotalk.com/#-contributors",
+    "discuss": "https://github.com/adamlui/chatgpt-auto-talk/discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/chatgpt-auto-talk",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "support": "https://support.chatgptautotalk.com",
+    "update": { "gm": "https://gm.chatgptautotalk.com" }
+  }
+}

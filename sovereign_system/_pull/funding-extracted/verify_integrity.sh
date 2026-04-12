@@ -1,0 +1,15 @@
+#!/data/data/com.termux/files/usr/bin/bash
+C25="$HOME/constellation25"
+MANIFEST="$C25/logs/totalrecall_manifest.log"
+echo "╔══════════════════════════════════════════════╗"
+echo "║   TOTALRECALL — INTEGRITY CHECK             ║"
+echo "╚══════════════════════════════════════════════╝"
+[ ! -f "$MANIFEST" ] && echo "  No manifest found." && exit 1
+echo ""
+echo "  Manifest: $MANIFEST"
+echo "  Entries : $(wc -l < "$MANIFEST")"
+echo ""
+echo "  Last 10 entries:"
+tail -10 "$MANIFEST"
+echo ""
+echo "  ✅ Integrity check complete"

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Planetary Agents Deployment</title>
+  <script>
+    async function triggerDeployment() {
+      const statusDiv = document.getElementById('status');
+      statusDiv.textContent = 'Starting deployment...';
+      try {
+        const response = await fetch('/trigger-deployment', { method: 'POST' });
+        const data = await response.json();
+        if (response.ok) {
+          statusDiv.textContent = 'Deployment started successfully! Output:\n' + data.output;
+        } else {
+          statusDiv.textContent = 'Deployment failed: ' + data.detail;
+        }
+      } catch (error) {
+        statusDiv.textContent = 'Error: ' + error.message;
+      }
+    }
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; text-align: center; }
+    button { padding: 1rem 2rem; font-size: 1.25rem; cursor: pointer; }
+    pre { white-space: pre-wrap; background: #eee; padding: 1rem; margin-top: 1rem; text-align: left; max-height: 300px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h1>Planetary Agents Deployment</h1>
+  <button onclick="triggerDeployment()">Run Deployment Script</button>
+  <pre id="status">Click the button to start deployment.</pre>
+</body>
+</html>

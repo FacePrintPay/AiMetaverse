@@ -1,0 +1,24 @@
+{
+  "task": "NL to AI code generation",
+  "models": [
+    "ollama/llama3",
+    "ollama/codellama"
+  ],
+  "data": {
+    "nl_patterns": [
+      "create_a",
+      "build_a",
+      "generate_a",
+      "write_a",
+      "implement_a"
+    ],
+    "output_types": [
+      "function",
+      "class",
+      "api",
+      "component",
+      "script",
+      "pipeline"
+    ]
+  }
+}

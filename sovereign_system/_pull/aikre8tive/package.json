@@ -1,0 +1,14 @@
+{
+  "name": "aikre8tive",
+  "version": "1.0.0",
+  "description": "AiKre8tive Sovereign Agent System",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build completed'",
+    "start": "python3 -m http.server 3000",
+    "dev": "python3 sovereign_launch.sh"
+  },
+  "keywords": ["ai", "agents", "planetary", "sovereign"],
+  "author": "Constellation25",
+  "license": "MIT"
+}

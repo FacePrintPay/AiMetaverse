@@ -1,0 +1,20 @@
+{
+  "task": "Task queue and scheduling",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "queue_types": [
+      "fifo",
+      "priority",
+      "delayed",
+      "recurring"
+    ],
+    "mcp_endpoint": "http://localhost:3000/task",
+    "retry_strategies": [
+      "exponential_backoff",
+      "fixed_delay",
+      "immediate"
+    ]
+  }
+}

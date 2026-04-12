@@ -1,0 +1,22 @@
+{
+  "task": "Code refactoring and modernization",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "patterns": [
+      "extract_method",
+      "rename",
+      "inline",
+      "move",
+      "decompose",
+      "consolidate"
+    ],
+    "modernization": [
+      "es6_to_esm",
+      "callbacks_to_async",
+      "class_to_hooks",
+      "sql_to_orm"
+    ]
+  }
+}

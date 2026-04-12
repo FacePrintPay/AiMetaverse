@@ -1,0 +1,21 @@
+{
+  "task": "Memory and context persistence",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "storage": [
+      "sqlite",
+      "redis",
+      "json_file",
+      "memoria_db"
+    ],
+    "context_types": [
+      "conversation",
+      "session",
+      "user_prefs",
+      "agent_state",
+      "build_history"
+    ]
+  }
+}

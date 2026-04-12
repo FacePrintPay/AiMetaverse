@@ -1,0 +1,11 @@
+{
+    "agent": "earth",
+    "task": "Create project structure",
+    "build_id": "c25_master_1772877905_12735",
+    "context": "{
+        "directories": ["agents", "tools", "user-library", "vault", "integrations"],
+        "files": ["run.sh", "README.md", ".gitignore", "package.json"]
+    }",
+    "status": "running",
+    "started_at": "2026-03-07T10:05:05Z"
+}

@@ -1,0 +1,30 @@
+========================================
+[🏛️] EASTERN DISTRICT OF NORTH CAROLINA – FILING TEMPLATE
+========================================
+UNITED STATES DISTRICT COURT
+EASTERN DISTRICT OF NORTH CAROLINA
+[DIVISION, e.g., RALEIGH/WILMINGTON/GREENVILLE] DIVISION
+
+[PLAINTIFF NAME],
+    Plaintiff,
+
+v.                                           Case No.: [ASSIGNED UPON FILING]
+
+[DEFENDANT NAME(S)],
+    Defendants.
+________________________________________
+
+[DOCUMENT TITLE, e.g., COMPLAINT FOR DAMAGES AND INJUNCTIVE RELIEF]
+
+[EDNC LOCAL RULE REFERENCES]
+• Rule 5.1(a): All filings must comply with ECF formatting (PDF, text-searchable, <10MB unless waived)
+• Rule 4(m): Summons & complaint must be served within 90 days of filing
+• Rule 10(b): Paragraph numbering required; separate counts for each claim
+• Rule 26(a)(1)(A): Initial disclosures required 14 days after Rule 26(f) conference
+• N.D.E.N.C. Civ. R. 5.2: Privacy redaction requirements (SSN, DOB, financials)
+
+[SERVICE CHECKLIST]
+☐ Summons issued by Clerk
+☐ Process server/US Marshal assigned
+☐ Certificate of Service drafted & attached
+☐ Proof of service filed within 5 days of completion

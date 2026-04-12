@@ -1,0 +1,11 @@
+{
+  "name": "Mercury",
+  "tier": "earth",
+  "role": "intake",
+  "llm": "local",
+  "deps": "bash,python3,curl",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "b9033cdad9a24860",
+  "status": "active"
+}

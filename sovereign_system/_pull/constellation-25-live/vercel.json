@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "public": true,
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/", "dest": "/constellation/index.html" },
+    { "src": "/constellation", "dest": "/constellation/index.html" },
+    { "src": "/constellation/", "dest": "/constellation/index.html" },
+    { "src": "/constellation/dashboard", "dest": "/constellation/dashboard.html" },
+    { "src": "/constellation/dashboard.html", "dest": "/constellation/dashboard.html" },
+    { "src": "/constellation/(.*)", "dest": "/constellation/$1" }
+  ],
+  "github": { "enabled": true, "silent": false, "autoJobCancelation": true }
+}

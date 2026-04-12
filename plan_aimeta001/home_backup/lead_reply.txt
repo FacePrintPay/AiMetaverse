@@ -1,0 +1,17 @@
+Hi —
+
+Thanks for reaching out.
+
+If you have a Bash or Python script that’s broken or repetitive, I fix and automate those locally (Linux / Termux).
+
+Flat $50 for small fixes.
+Larger scope is $75/hr (confirmed before starting).
+
+If useful, reply with:
+- the script (or relevant part)
+- the error output
+- what you want it to do
+
+I can start today.
+
+— CyGeL

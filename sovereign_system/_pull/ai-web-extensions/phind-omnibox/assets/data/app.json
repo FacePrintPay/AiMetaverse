@@ -1,0 +1,21 @@
+{
+  "name": "Phind Omnibox", "symbol": "🤖", "slug": "phind-omnibox",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "app": "https://phindomnibox.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/phind-omnibox@latest/assets",
+    "discuss": "https://github.com/adamlui/phind-omnibox/discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/phind-omnibox",
+    "publisher": "https://aiwebextensions.com",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": { "firefox": "https://ff.phindomnibox.com" },
+    "support": "https://support.phindomnibox.com",
+    "uninstall": "https://forms.gle/z1cxDAPgw63tDnhP9"
+  }
+}

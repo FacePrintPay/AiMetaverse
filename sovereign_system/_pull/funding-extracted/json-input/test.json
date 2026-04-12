@@ -1,0 +1,1 @@
+{"intent":"build","project":"demo","agents":["earth","mars"],"timestamp":"'"$(date -u)"'"}

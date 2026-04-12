@@ -1,0 +1,25 @@
+{
+  "name": "Brave Omnibox", "symbol": "🦁", "slug": "brave-omnibox",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "app": "https://braveomnibox.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/brave-omnibox@latest/assets",
+    "discuss": "https://github.com/adamlui/brave-omnibox/discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/brave-omnibox",
+    "publisher": "https://aiwebextensions.com",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": {
+      "chrome": "https://chrome.braveomnibox.com/reviews",
+      "edge": "https://edge.braveomnibox.com/reviews",
+      "firefox": "https://ff.braveomnibox.com"
+    },
+    "support": "https://support.braveomnibox.com",
+    "uninstall": "https://forms.gle/Jetu6BSezVws8nXb9"
+  }
+}

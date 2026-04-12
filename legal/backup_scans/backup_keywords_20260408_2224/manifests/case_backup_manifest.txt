@@ -1,0 +1,16 @@
+[📋] ENUMERATED CASE MANIFEST – BACKUP KEYWORD SCAN
+Generated: Wed Apr  8 22:25:27 EDT 2026
+Search ID: backup_keywords_20260408_2224
+Keywords: DOJ | TOTAL Recall | Checkmate | Epik
+Scope: Backup storage only (empire-backups, Obsidian forensic, AiMetaverse)
+========================================
+
+     1	[PLAIN] /sdcard/Documents/Obsidian/termux-home/.npm/_npx/8b377f6eec906bc4/package-lock.json → 110:      "integrity": "sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A=="
+     2	[PLAIN] /sdcard/Documents/Obsidian/termux-home/TotalRecall/complaint_project/final_output/LEGAL_STRATEGY_MASTER_20251108.txt → 2960:TOTAL RECALL – STRATEGIC TOOLKIT VERIFICATION MANIFEST
+     3	[PLAIN] /sdcard/Documents/Obsidian/termux-home/TotalRecall/complaint_project/final_output/STRATEGIC_BUNDLE_MANIFEST.txt → 2:TOTAL RECALL – STRATEGIC TOOLKIT VERIFICATION MANIFEST
+     4	[PLAIN] /sdcard/Documents/Obsidian/termux-home/TotalRecall/complaint_project/final_output/complaint_snapshot_20251108_041034.txt → 2:TOTAL RECALL – FULL COMPLAINT SNAPSHOT
+     5	[PLAIN] /sdcard/Documents/Obsidian/termux-home/TotalRecall/complaint_project/final_output/complaint_snapshot_20251108_041335.txt → 1:TOTAL RECALL – FULL COMPLAINT SNAPSHOT
+     6	[PLAIN] /sdcard/Documents/Obsidian/termux-home/TotalRecall/complaint_project/final_output/complaint_snapshot_20251108_041444.txt → 1:TOTAL RECALL – FULL COMPLAINT SNAPSHOT
+     7	[PLAIN] /sdcard/Documents/Obsidian/termux-home/TotalRecall/analysis_output/comprehensive_analysis_20260129_072243.md → 1:# TOTAL RECALL FORENSIC ANALYSIS REPORT
+
+[✓] Scan complete. Total enumerated entries: 7

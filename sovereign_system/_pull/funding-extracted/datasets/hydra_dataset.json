@@ -1,0 +1,23 @@
+{
+  "task": "CI/CD pipeline management",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "tools": [
+      "github_actions",
+      "gitlab_ci",
+      "jenkins",
+      "circleci",
+      "vercel"
+    ],
+    "stages": [
+      "lint",
+      "test",
+      "build",
+      "deploy",
+      "rollback",
+      "notify"
+    ]
+  }
+}

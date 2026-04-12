@@ -1,0 +1,11 @@
+/sdcard/Download/sovereign_empire_mvp.html
+/sdcard/Download/empire-backups-20260218
+/sdcard/Download/empire-backups-20260218/sovereign-ai-empire-monorepo.tar.gz
+/sdcard/Download/c25_backup_20260319.tar.gz
+/sdcard/Download/Akashthakar_Remote-Evidence-Collector_ Lightweight Bash scripts for remote evidence collection. It includes sender and receiver scripts for secure data transfer during incident response or forensic investigations..mht
+/sdcard/Download/cygel_empire_dashboard.html
+/sdcard/Download/c25-forensic-scan-365d__index.html
+/sdcard/Download/index_backup.html
+/sdcard/Download/c25_backup_20260307.tar.gz
+/sdcard/Download/c25_backup_20260320.tar.gz
+/sdcard/Download/c25_backup_20260322.tar.gz

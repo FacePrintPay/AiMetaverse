@@ -1,0 +1,21 @@
+{
+  "task": "Reports and monitoring dashboard",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "report_types": [
+      "build_intelligence",
+      "agent_status",
+      "gamma_run",
+      "totalrecall_summary"
+    ],
+    "formats": [
+      "html",
+      "pdf",
+      "markdown",
+      "json",
+      "pptx"
+    ]
+  }
+}

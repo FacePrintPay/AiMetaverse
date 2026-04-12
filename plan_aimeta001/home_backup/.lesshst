@@ -1,0 +1,35 @@
+.less-history-file:
+.search
+"termux_all_files.txt ~/termux_clean_files.txt
+"termux_clean_home.tgz" -T "$HOME/termux_clean_files.txt"
+"PATHOS_OS/pathos
+".cache/pip
+"termux_all_files.txt ~/termux_clean_files.txt
+"swarm_watch.sh status
+"swarm_watch.sh status'
+"tasks/logs/swarm_watch.log | grep -E "income|gig|SUCCESS"
+"tasks/done/task_*_output.json | less
+"swarm_watch.sh status
+"swarm_watch.sh status'
+"tasks/logs/swarm_watch.log | grep -E "income|gig|SUCCESS"
+"tasks/done/task_*_output.json | less
+.shell
+" Copy inventory in
+" Create archive from the clean list (relative paths)
+" Hash everything in OUT (deterministic evidence vibes)
+"MrGGTP  |  Timestamp: Sat Aug 30 16:27:14 EDT 2025
+"!/bin/bash
+" =================================================================
+" TIMELINE FORENSIC ANALYZER
+" =================================================================
+" Investigates temporal discrepancies in file metadata
+" Specifically designed to detect API usage before official releases
+" =================================================================
+" 1) Check live status
+" 2) Real-time monitor (best view)
+" 3) Tail the money flow
+" 4) Peek at a real income output
+" 1) Check live status
+" 2) Real-time monitor (best view)
+" 3) Tail the money flow
+" 4) Peek at a real income output

@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  videocourts:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+  
+  # Future Agents
+  # mars-agent:
+  #   build: ./agents/mars
+  #   depends_on:
+  #     - videocourts

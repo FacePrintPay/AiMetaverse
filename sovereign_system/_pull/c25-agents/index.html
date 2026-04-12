@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-agents</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-agents</h1><p style="color:#888">Lines: 36 | Deps: python  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+# ═══════════════════════════════════════════════════════════════════
+# CONSTELLATION 25 - TERMUX EDITION (WORKS IMMEDIATELY)
+# ═══════════════════════════════════════════════════════════════════
+# Colors
+C='\033[0;36m'; G='\033[0;32m'; R='\033[0;31m'; Y='\033[1;33m'; NC='\033[0m'
+# Biometric auth gate (skip if Termux:API not installed)
+if command -v termux-biometric-auth &&gt;/dev/null; then
+  termux-biometric-auth -t "Constellation 25 Access" || { echo -e "${R}❌ Auth failed${NC}"; exit 1; }
+fi
+while true; do
+  clear
+  echo -e "${C}╔════════════════════════════════════════════════════════════╗${NC}"
+  echo -e "${C}║${NC}          ${G}🌌 CONSTELLATION 25 - PLANETARY AGENTS${NC}         ${C}║${NC}"
+  echo -e "${C}║${NC}      Time: $(date '+%Y-%m-%d %H:%M:%S')                    ${C}║${NC}"
+  echo -e "${C}╠════════════════════════════════════════════════════════════╣${NC}"
+  echo -e "${C}║${NC}  1  Earth      - Code structure analysis                  ${C}║${NC}"
+  echo -e "${C}║${NC}  2  Moon       - Fix syntax errors                        ${C}║${NC}"
+  echo -e "${C}║${NC}  3  Sun        - Performance scan                          ${C}║${NC}"
+  echo -e "${C}║${NC}  4  Mercury    - Generate unit tests                      ${C}║${NC}"</pre></body></html>

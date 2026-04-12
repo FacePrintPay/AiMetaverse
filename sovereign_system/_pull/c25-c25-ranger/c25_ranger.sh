@@ -1,0 +1,20 @@
+#!/bin/bash
+REPORT="$HOME/C25_RANGER_$(date +%Y%m%d_%H%M%S).txt"
+{
+echo "# C25 FILE TYPE SUMMARY"
+echo "--- .sh:   $(find $HOME -name '*.sh' 2>/dev/null | wc -l)"
+echo "--- .py:   $(find $HOME -name '*.py' 2>/dev/null | wc -l)"
+echo "--- .html: $(find $HOME -name '*.html' 2>/dev/null | wc -l)"
+echo "--- .md:   $(find $HOME -name '*.md' 2>/dev/null | wc -l)"
+echo "--- .mht:  $(find $HOME -name '*.mht' 2>/dev/null | wc -l)"
+echo "--- .json: $(find $HOME -name '*.json' 2>/dev/null | wc -l)"
+echo "--- .zip:  $(find $HOME -name '*.zip' 2>/dev/null | wc -l)"
+echo "--- .jsx:  $(find $HOME -name '*.jsx' 2>/dev/null | wc -l)"
+echo "--- .sql:  $(find $HOME -name '*.sql' 2>/dev/null | wc -l)"
+echo "--- .log:  $(find $HOME -name '*.log' 2>/dev/null | wc -l)"
+echo "--- TOTAL: $(find $HOME 2>/dev/null | wc -l)"
+echo ""
+echo "## DISK USAGE TOP 30"
+du -sh "$HOME"/*/ 2>/dev/null | sort -rh | head -30
+} | tee "$REPORT"
+echo "✓ Saved: $REPORT"

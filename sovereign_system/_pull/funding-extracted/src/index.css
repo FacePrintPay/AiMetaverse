@@ -1,0 +1,11 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  background: #0f0f1a; 
+  color: #e0e0ff; 
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #161625; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }

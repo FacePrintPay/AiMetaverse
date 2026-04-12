@@ -1,0 +1,249 @@
+
+
+# Step 4: Agent shell wrapper
+# ------------------------------------------------
+.
+echo -e "${BLUE}[4/9] Creating agent_architect.sh...${NC}"
+.
+
+cat > agents/agent_architect.sh << 'AGENT_SH_EOF'
+.
+#!/bin/bash
+.
+# Sovereign Architect Agent - shell wrapper
+.
+
+GOAL="$*"
+if [[ -z "$GOAL" ]]; then
+.
+  echo "Usage: agent_architect.sh \"your goal here\""
+  exit 1
+.
+fi
+.
+
+# Run from repo root
+.CRIPT_~
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+python "$REPO_ROOT/agents/architect_planner.py" "$GOAL"
+AGENT_SH_EOF
+
+chmod +x agents/agent_architect.sh
+echo -e "${GREEN}  ✓ agents/agent_architect.sh created${NC}"
+
+# ------------------------------------------------
+# Step 5: Planner (Python)
+# ------------------------------------------------
+echo -e "${BLUE}[5/9] Creating architect_planner.py...${NC}"
+
+cat > agents/architect_planner.py << 'PLANNER_PY_EOF'
+#!/usr/bin/env python3
+import json, os, sys, uuid, datetime
+from rich.console import Console
+
+console = Console()
+
+goal = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else ""
+
+if not goal:
+    console.print("[red]No goal provided[/red]")
+    sys.exit(1)
+
+plan_id = str(uuid.uuid4())[:8]
+timestamp = datetime.datetime.now().isoformat()
+
+plan = {
+    "plan_id": plan_id,
+    "goal": goal,
+    "created_at": timestamp,
+    "status": "planned",
+    "steps": [
+        {
+            "step_id": 1,
+            "title": "Market & Problem Validation",
+            "objective": "Deep dive into target users, pain points, and TAM for this goal",
+            "status": "pending"
+        },
+        {
+            "step_id": 2,
+            "title": "Offer & Product Architecture",
+            "objective": "Define concrete offers, pricing tiers, and the core product experience",
+            "status": "pending"
+        },
+        {
+            "step_id": 3,
+            "title": "Financial Model & Valuation",
+            "objective": "Build a 3–5 year P&L, unit economics, and funding targets",
+            "status": "pending"
+        },
+        {
+            "step_id": 4,
+            "title": "Competitive Moat",
+            "objective": "Map competitors and carve out a defensible edge (sovereign + biometric + legal)",
+            "status": "pending"
+        },
+        {
+            "step_id": 5,
+            "title": "Regulatory & Compliance",
+            "objective": "Frame GDPR/AI Act/data sovereignty + risk narrative for investors and partners",
+            "status": "pending"
+        },
+        {
+            "step_id": 6,
+            "title": "Go-to-Market & Traction",
+            "objective": "Define ICPs, first 10–20 paying customers, channels, and timeline",
+            "status": "pending"
+        },
+        {
+            "step_id": 7,
+            "title": "Team & Advisory Layer",
+            "objective": "Design the minimum viable team + advisory roster that makes this credible",
+            "status": "pending"
+        },
+        {
+            "step_id": 8,
+            "title": "Deck / Narrative System",
+            "objective": "Outline the 10-slide \"Banani-ready\" deck tied to this plan",
+            "status": "pending"
+        },
+        {
+            "step_id": 9,
+            "title": "Investor / Buyer Target List",
+            "objective": "Generate a list of 30–50 funds, angels, or buyers aligned with this thesis",
+            "status": "pending"
+        },
+        {
+            "step_id": 10,
+            "title": "Outreach & Follow-up Engine",
+            "objective": "Design the outreach copy, follow-up cadences, and calendar booking flow",
+            "status": "pending"
+        }
+    ]
+}
+
+plans_dir = os.path.expanduser("~/plans")
+os.makedirs(plans_dir, exist_ok=True)
+
+filename = f"plan_{plan_id}_{int(datetime.datetime.now().timestamp())}.json"
+plan_path = os.path.join(plans_dir, filename)
+
+with open(plan_path, "w") as f:
+    json.dump(plan, f, indent=2)
+
+console.print(f"[bold green]Plan created![/bold green] → {plan_path}")
+console.print(f"[bold]Goal:[/bold] {goal}")
+PLANNER_PY_EOF
+
+chmod +x agents/architect_planner.py
+echo -e "${GREEN}  ✓ agents/architect_planner.py created${NC}"
+
+# ------------------------------------------------
+# Step 6: Enqueue placeholder
+# ------------------------------------------------
+echo -e "${BLUE}[6/9] Creating architect_enqueue.py (stub)...${NC}"
+
+cat > agents/architect_enqueue.py << 'ENQUEUE_PY_EOF'
+#!/usr/bin/env python3
+import sys
+
+# Placeholder for future queue/worker system
+print("Enqueue system coming soon…")
+if len(sys.argv) > 1:
+    print("Requested task:", " ".join(sys.argv[1:]))
+ENQUEUE_PY_EOF
+
+chmod +x agents/architect_enqueue.py
+echo -e "${GREEN}  ✓ agents/architect_enqueue.py created${NC}"
+
+# ------------------------------------------------
+# Step 7: Sovereign profile
+# ------------------------------------------------
+echo -e "${BLUE}[7/9] Creating sovereign_architect_profile.json...${NC}"
+
+cat > profiles/sovereign_architect_profile.json << 'PROFILE_EOF'
+{
+  "name": "Sovereign Architect",
+  "persona": "Relentless builder of sovereign AI infrastructure. No compromise on data ownership, privacy, or long-term alignment.",
+  "tone": "direct, high-signal, zero fluff",
+  "banned_words": ["excited", "delighted", "leverage", "synergy"]
+}
+PROFILE_EOF
+
+echo -e "${GREEN}  ✓ profiles/sovereign_architect_profile.json created${NC}"
+
+# ------------------------------------------------
+# Step 8: Generate first plan
+# ------------------------------------------------
+echo -e "${BLUE}[8/9] Generating first plan...${NC}"
+
+./agents/agent_architect.sh \
+"Build a 10-slide Banani-ready deck and revenue roadmap for the Sovereign AI stack that automates operations, legal workflows, and biometric-secured access."
+
+echo ""
+echo -e "${CYAN}Available plans in ~/plans:${NC}"
+ls -lt ~/plans/plan_*.json 2>/dev/null || echo "No plans found (something went wrong)"
+
+LATEST_PLAN=$(ls -t ~/plans/plan_*.json 2>/dev/null | head -n1 || true)
+
+if [ -n "$LATEST_PLAN" ]; then
+  echo ""
+  echo -e "${CYAN}Latest plan summary:${NC}"
+  jq '{plan_id, goal, status, step_count: (.steps | length), created_at}' "$LATEST_PLAN"
+
+  echo ""
+  echo -e "${CYAN}Full numbered steps:${NC}"
+  jq -r '.steps[] | "\(.step_id). \(.title)\n   → \(.objective)\n   Status: \(.status)\n"' "$LATEST_PLAN"
+else
+  echo -e "${RED}Could not locate latest plan JSON in ~/plans${NC}"
+fi
+
+# ------------------------------------------------
+# Step 9: GitHub wiring (gh auth + repo)
+# ------------------------------------------------
+echo ""
+echo -e "${BLUE}[9/9] Wiring repo to GitHub...${NC}"
+
+# Ensure logged in
+if ! gh auth status >/dev/null 2>&1; then
+  echo -e "${YELLOW}  → You are not logged into GitHub via gh.${NC}"
+  echo -e "${YELLOW}    Running: gh auth login${NC}"
+  gh auth login
+fi
+
+# Add everything
+git add .
+
+# Commit if nothing yet
+if ! git log >/dev/null 2>&1; then
+  git commit -m "Initial sovereign architect stack + first plan"
+else
+  git commit -m "Update sovereign architect stack" || true
+fi
+
+# Set up remote if needed
+if ! git remote get-url origin >/dev/null 2>&1; then
+  echo -e "${YELLOW}  → Creating GitHub repo $REPO_NAME (private)...${NC}"
+  gh repo create "$REPO_NAME" --private --source=. --remote=origin --push
+else
+  echo -e "${GREEN}  ✓ Remote origin already set${NC}"
+  echo -e "${BLUE}  → Pushing to GitHub...${NC}"
+  git push -u origin main
+fi
+
+echo ""
+echo -e "${GREEN}══════════════════════════════════════════════${NC}"
+echo -e "${GREEN}  ✅ SOVEREIGN ARCHITECT STACK IS LIVE        ${NC}"
+echo -e "${GREEN}══════════════════════════════════════════════${NC}"
+echo ""
+echo -e "${CYAN}Repo directory:${NC} $REPO_DIR"
+echo -e "${CYAN}Plans directory:${NC} ~/plans"
+echo ""
+echo -e "${YELLOW}To create a new plan any time:${NC}"
+echo -e "  cd $REPO_DIR"
+echo -e "  ./agents/agent_architect.sh \"New goal here\""
+echo ""
+echo -e "${YELLOW}To view your repo in browser:${NC}"
+echo -e "  cd $REPO_DIR && gh repo view --web"
+echo ""

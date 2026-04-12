@@ -1,0 +1,65 @@
+# ----- Basic Zsh Config for Termux -----
+export EDITOR=vim
+export PAGER=less
+
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias update='pkg update -y && pkg upgrade -y'
+alias py='python'
+alias pip='pip'
+
+# quick HTTP server in current dir
+alias serve='python -m http.server 8000'
+
+# stop being annoying
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
+
+# Prompt
+PROMPT='%F{cyan}%n@termux%f %F{yellow}%1~%f %# '
+
+# ----- yt-dlp helpers -----
+YTDL_BASE="$HOME/ytdl"
+mkdir -p "$YTDL_BASE/video" "$YTDL_BASE/audio"
+
+ydl_video() {
+  if [ -z "$1" ]; then
+    echo "Usage: ydl_video <url>"
+    return 1
+  fi
+  yt-dlp -f 'bv*+ba/b' \
+    -o "$YTDL_BASE/video/%(title)s.%(ext)s" \
+    "$1"
+}
+
+ydl_audio() {
+  if [ -z "$1" ]; then
+    echo "Usage: ydl_audio <url>"
+    return 1
+  fi
+  yt-dlp -x --audio-format mp3 \
+    -o "$YTDL_BASE/audio/%(title)s.%(ext)s" \
+    "$1"
+}
+
+# ----- Proot Ubuntu helper -----
+enter_ubuntu() {
+  proot-distro login ubuntu
+}
+
+# ----- SSH helpers -----
+ssh_termux_start() {
+  mkdir -p "$HOME/.ssh"
+  if [ ! -f "$HOME/.ssh/id_rsa" ]; then
+    ssh-keygen -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -N ""
+  fi
+  echo "[*] Starting sshd on port 8022..."
+  sshd
+  echo "[*] Connect using: ssh -p 8022 $(whoami)@<device_ip>"
+}
+
+ssh_termux_stop() {
+  pkill sshd || true
+}

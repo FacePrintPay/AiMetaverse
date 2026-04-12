@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMetaverse — Sovereign Creative Intelligence</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap">
+  <style>
+    :root {
+      --primary: #0ff;
+      --secondary: #f0f;
+      --accent: #0af;
+      --bg: #020814;
+      --card-bg: rgba(10, 20, 40, 0.7);
+      --success: #0f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: white;
+      font-family: 'Exo 2', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    #stars {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    section {
+      padding: 4rem 0;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Orbitron', monospace;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; color: var(--primary); }
+    h3 { font-size: 1.8rem; margin-top: 2rem; }
+    p { margin-bottom: 1rem; opacity: 0.9; }
+
+    /* Global Button */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #000;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Orbitron', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px var(--primary);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 6rem 0;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(0,50,100,0.2) 0%, transparent 70%);
+    }
+    .hero h1 {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+    .hero-subtitle {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+    .generators {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .generator {
+      background: rgba(0, 40, 80, 0.5);
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      border: 1px solid var(--primary);
+      font-weight: 600;
+    }
+    .avatar-prompt {
+      background: rgba(0, 20, 40, 0.7);
+      border: 1px solid rgba(0, 200, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      font-style: italic;
+      text-align: center;
+      color: var(--primary);
+    }
+
+    /* Features Grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(0, 100, 255, 0.2);
+    }
+    .feature-card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* Planets Section */
+    .planets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .planet {
+      background: var(--card-bg);
+      border-radius: 50%;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid rgba(0, 100, 255, 0.3);
+    }
+    .planet:hover {
+      transform: scale(1.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+    }
+    .planet-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.5rem;
+    }
+    .planet-label {
+      font-size: 0.8rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Footer CTA */
+    .cta-section {
+      text-align: center;
+      background: rgba(0, 10, 30, 0.5);
+      border-top: 1px solid rgba(0, 200, 255, 0.2);
+      padding: 4rem 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      .generators { flex-direction: column; align-items: center; }
+      .hero { padding: 4rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Stars Background -->
+  <div id="stars"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>START YOUR FREE TRIAL TODAY</h1>
+      <div class="generators">
+        <div class="generator">TEXT GENERATION</div>
+        <div class="generator">IMAGE GENERATION</div>
+        <div class="generator">VIDEO GENERATION</div>
+        <div class="generator">OBJECT GENERATION</div>
+      </div>
+      <div class="avatar-prompt">
+        "Clone yourself virtually by taking a selfie, uploading a voice snippet & entering your birthday to mimic horoscope traits"
+      </div>
+      <button class="btn">CREATE YOUR FREE ACCOUNT</button>
+      <p class="hero-subtitle">WELCOME TO A WORLD THAT REVOLVES AROUND CREATIVE INTELLIGENCE! TAP IMAGE BELOW TO START PROMPTING</p>
+    </div>
+  </section>
+
+  <!-- Versed AI Hub -->
+  <section class="container">
+    <div style="text-align: center; margin: 2rem 0;">
+      <h2>VERSED'AI</h2>
+      <p><strong>Ai FOR ALL — APP HUB FOR AI</strong></p>
+    </div>
+
+    <!-- Key Features -->
+    <h3>Key Features and Services</h3>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Social & Interactive</h3>
+        <p>Virtual meetings, concerts, shopping, and social network with revenue from digital assets.</p>
+      </div>
+      <div class="feature-card">
+        <h3>AI-Powered Tools</h3>
+        <p>Craiyon AI art, plagiarism checker, bird predictor, AI model training & deployment.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Digital Economy</h3>
+        <p>Secure payments, blockchain metaverse, trading virtual assets.</p>
+      </div>
+      <div class="feature-card">
+        <h3>VR & Experiences</h3>
+        <p>Cardboard VR, 3D scanning, AI-powered wearables, virtual world creation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Enterprise Solutions</h3>
+        <p>Digital twins, professional metaverse for training and collaboration.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Gaming & Entertainment</h3>
+        <p>Blockchain gaming, social VR, user-built games and experiences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sovereign Planetary Agents -->
+  <section class="container">
+    <h2>COSMIC SOVEREIGN AGENTS</h2>
+    <p>Command your planetary AI agents — each a sovereign node in your metaverse.</p>
+    <div class="planets-grid" id="planets"></div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>JOIN THE AiMetaverse Community</h2>
+      <p>Access 20,000+ AI models, virtual worlds, exclusive events, and sovereign tools.</p>
+      <button class="btn">START TURNING YOUR AMBITIONS INTO REALITIES</button>
+      <p style="margin-top: 1.5rem; opacity: 0.7;">Empowering individuals and businesses with creative intelligence.</p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    // Stars
+    const stars = document.getElementById('stars');
+    for (let i = 0; i < 200; i++) {
+      const s = document.createElement('div');
+      s.style.position = 'absolute';
+      s.style.background = 'white';
+      s.style.borderRadius = '50%';
+      s.style.width = s.style.height = Math.random() * 3 + 'px';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.opacity = Math.random() * 0.8 + 0.2;
+      stars.appendChild(s);
+    }
+
+    // Planets
+    const agents = [
+      { name: 'Launch', icon: 'Rocket' },
+      { name: 'Web', icon: 'Globe' },
+      { name: 'Agent', icon: 'Cpu' },
+      { name: 'Data', icon: 'Database' },
+      { name: 'Code', icon: 'Code' },
+      { name: 'AI', icon: 'Brain' },
+      { name: 'Video', icon: 'Video' },
+      { name: 'Audio', icon: 'Mic' },
+      { name: 'NLP2Code', icon: 'FileText' },
+      { name: 'PaTHos', icon: 'Zap' },
+      { name: 'SovereignGTP', icon: 'Shield' },
+      { name: 'Biometric', icon: 'Fingerprint' }
+    ];
+
+    const container = document.getElementById('planets');
+    agents.forEach(agent => {
+      const planet = document.createElement('div');
+      planet.className = 'planet';
+      planet.innerHTML = `
+        <div class="planet-icon" data-lucide="${agent.icon}"></div>
+        <div class="planet-label">${agent.name}</div>
+      `;
+      planet.onclick = () => alert(`Opening ${agent.name} Agent Portal...`);
+      container.appendChild(planet);
+    });
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>

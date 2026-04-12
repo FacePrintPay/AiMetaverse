@@ -1,0 +1,5 @@
+import torch; model = torch.nn.Linear(10,1); print(model)
+import torch; model = torch.nn.Linear(10,1); print(model)
+import torch; model = torch.nn.Linear(10,1); print(model)
+import torch; model = torch.nn.Linear(10,1); print(model)
+import torch; model = torch.nn.Linear(10,1); print(model)

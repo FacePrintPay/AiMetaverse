@@ -1,0 +1,123 @@
+{
+  "fiverr_setup": {
+    "title": "FIVERR SETUP - DO THIS TONIGHT",
+    "gigs": [
+      {
+        "name": "AI-Powered Business Plans",
+        "price": 150,
+        "deliverables": [
+          "15–20 page business plan",
+          "Market analysis using your AI stack",
+          "Executive summary",
+          "48 hr delivery"
+        ]
+      },
+      {
+        "name": "Pitch Deck Automation",
+        "price": 200,
+        "deliverables": [
+          "12–15 slide pitch deck",
+          "Template setup",
+          "AI research engine"
+        ]
+      },
+      {
+        "name": "Custom Automation Workflows",
+        "price": "75–300",
+        "deliverables": [
+          "Custom automation for small businesses",
+          "Workflow mapping",
+          "Integrations (Zapier, Make, API)"
+        ]
+      }
+    ]
+  },
+
+  "upwork_profile": {
+    "title": "AI Automation Engineer | Custom Agent Systems | Document Intelligence",
+    "overview": "I build custom AI automation systems for businesses that need to scale without hiring.",
+    "specialties": [
+      "AI agent orchestration",
+      "Document automation",
+      "OpenAI/Anthropic API integrations",
+      "Government & compliance workflows",
+      "On-prem/private AI deployment"
+    ],
+    "recent_projects": [
+      "VideoCourts AI for multiple county governments",
+      "Sovereign AI infrastructure (GDPR/HIPAA aligned)",
+      "Automated business plan generation system",
+      "Custom agent orchestration framework"
+    ],
+    "availability": {
+      "fixed_price": "300–5000",
+      "hourly": 45,
+      "long_term": true
+    },
+    "portfolio_instructions": [
+      "Upload screenshot of orchestrator",
+      "Upload Series A deck"
+    ]
+  },
+
+  "county_sales_sequence": {
+    "pipeline_counties": 47,
+    "goal": "Close 3 → ~$60K",
+    "emails": [
+      {
+        "id": 1,
+        "name": "The Offer",
+        "subject": "VideoCourts AI - Free 60-day pilot for [County Name]",
+        "body": [
+          "Following up on VideoCourts — saving major counties ~$400K/year.",
+          "FREE 60-day pilot:",
+          "• Zero upfront cost",
+          "• No commitment",
+          "• Full setup included",
+          "• ROI analysis",
+          "15-min intro call?"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Case Study",
+        "subject": "Case Study — How Cook County cut case time 40%",
+        "body": [
+          "Cook County processed 2,400 more cases in Q4 using VideoCourts AI.",
+          "Still interested in the pilot?"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Urgency",
+        "subject": "Only 3 pilot slots left in Q1",
+        "body": [
+          "Limiting Q1 pilots to 5.",
+          "2 confirmed → 3 open.",
+          "Want a slot for [County Name]?"
+        ]
+      }
+    ]
+  },
+
+  "gumroad_products": {
+    "product_1": {
+      "name": "Sovereign Architect Starter Kit",
+      "price": 49,
+      "contents": [
+        "Full planning system",
+        "Agent orchestrator",
+        "10 pre-built plan templates",
+        "Setup documentation",
+        "Example outputs"
+      ],
+      "steps": [
+        "Create directory: ~/products/sovereign_starter/",
+        "Copy agents/, plans/, profiles/",
+        "Write README.md with setup instructions",
+        "Zip folder",
+        "Upload to Gumroad"
+      ]
+    }
+  }
+}

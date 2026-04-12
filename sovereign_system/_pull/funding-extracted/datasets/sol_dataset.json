@@ -1,0 +1,23 @@
+{
+  "task": "Core AI inference",
+  "models": [
+    "ollama/llama3",
+    "ollama/mistral",
+    "ollama/phi3"
+  ],
+  "data": {
+    "inference_types": [
+      "completion",
+      "classification",
+      "embedding",
+      "summarization",
+      "translation"
+    ],
+    "routing": [
+      "task_complexity",
+      "model_capability",
+      "response_speed",
+      "context_length"
+    ]
+  }
+}

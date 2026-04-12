@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-build-bash</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-build-bash</h1><p style="color:#888">Lines: 36 | Deps: go  | C25 FacePrintPay</p><pre>#!/bin/bash
+#
+###############################################################################
+#
+# Build a binary package on Windows with MinGW and MSYS
+#
+# Set the paths where MinGW, Mingw-w32, or MinGW-w64 are installed. If both
+# MinGW and MinGW-w32 are specified, MinGW-w32 will be used. If there is no
+# 32-bit or 64-bit compiler at all, it is simply skipped.
+#
+# Optionally, 7-Zip is used to create the final .zip and .7z packages.
+# If you have installed it in the default directory, this script should
+# find it automatically. Otherwise adjust the path manually.
+#
+# If you want to use a cross-compiler e.g. on GNU/Linux, this script won't
+# work out of the box. You need to omit "make check" commands and replace
+# u2d with some other tool to convert newlines from LF to CR+LF. You will
+# also need to pass the --host option to configure.
+#
+###############################################################################</pre></body></html>

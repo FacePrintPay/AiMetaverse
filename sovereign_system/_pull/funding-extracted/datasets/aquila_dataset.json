@@ -1,0 +1,22 @@
+{
+  "task": "Search and discovery",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "search_types": [
+      "semantic",
+      "keyword",
+      "fuzzy",
+      "regex",
+      "ast"
+    ],
+    "sources": [
+      "github_repos",
+      "obsidian_vault",
+      "totalrecall",
+      "memoria_db",
+      "vercel"
+    ]
+  }
+}

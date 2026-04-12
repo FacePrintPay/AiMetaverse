@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-build</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-build</h1><p style="color:#888">Lines: 36 | Deps: go  | C25 FacePrintPay</p><pre>#!/bin/sh
+###############################################################################
+# Author: Anders F Björklund &lt;afb@users.sourceforge.net&gt;
+#
+# This file has been put into the public domain.
+# You can do whatever you want with this file.
+###############################################################################
+mkdir -p Root
+mkdir -p Resources
+# Abort immediately if something goes wrong.
+set -e
+GCC="gcc-4.2"
+SDK="/Developer/SDKs/MacOSX10.5.sdk"
+MDT="10.5"
+GTT=i686-apple-darwin9
+ARCHES1="-arch ppc -arch ppc64 -arch i386 -arch x86_64"
+ARCHES2="-arch ppc -arch i386"
+PKGFORMAT="10.5" # xar
+# avoid "unknown required load command: 0x80000022" from linking on Snow Leopard
+uname -r | grep ^1 &gt;/dev/null && LDFLAGS="$LDFLAGS -Wl,-no_compact_linkedit"</pre></body></html>

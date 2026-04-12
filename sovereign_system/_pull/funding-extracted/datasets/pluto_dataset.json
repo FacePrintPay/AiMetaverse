@@ -1,0 +1,20 @@
+{
+  "task": "Archive and backup",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "formats": [
+      "tar_gz",
+      "zip",
+      "sha256_manifest",
+      "git_bundle"
+    ],
+    "strategies": [
+      "incremental",
+      "full",
+      "differential",
+      "continuous"
+    ]
+  }
+}

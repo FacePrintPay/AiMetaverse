@@ -1,0 +1,23 @@
+{
+  "task": "Revenue and monetization",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "products": [
+      "ARTie_$49.99_one_time",
+      "ARTie_$1.99_month",
+      "FacePrintPay",
+      "MyBuyo",
+      "VideoCourts"
+    ],
+    "metrics": [
+      "mrr",
+      "arr",
+      "ltv",
+      "cac",
+      "churn"
+    ],
+    "valuation": "$50M-$100M acquisition target"
+  }
+}

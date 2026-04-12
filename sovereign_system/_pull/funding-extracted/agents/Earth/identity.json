@@ -1,0 +1,11 @@
+{
+  "name": "Earth",
+  "tier": "earth",
+  "role": "orchestrate",
+  "llm": "local",
+  "deps": "bash,git,python3",
+  "booted": "2026-03-17T02:54:07-04:00",
+  "pid": 23293,
+  "sha": "4c5e7a5b1a6d0f86",
+  "status": "active"
+}

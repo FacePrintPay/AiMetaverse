@@ -1,0 +1,9 @@
+body { font-family: system-ui; background: #0f0f1a; color: #fff; margin: 0; padding: 2rem; }
+.hero { text-align: center; padding: 3rem 1rem; }
+#biometric-auth { 
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); 
+  border: none; padding: 1rem 2rem; color: white; 
+  border-radius: 12px; font-weight: 600; cursor: pointer; 
+  margin: 1rem 0;
+}
+#agent-status { margin-top: 1rem; font-family: monospace; }

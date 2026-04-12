@@ -1,0 +1,26 @@
+═══════════════════════════════════════════════════════════
+TOTAL RECALL - DENIAL IMAGES FORENSIC ANALYSIS
+Analysis Time: 2025-12-19 09:50:35 EST
+═══════════════════════════════════════════════════════════
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANALYZING: denial_1.png
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  FILE NOT FOUND: /data/data/com.termux/files/home/total_recall_runs/input/denial_1.png
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANALYZING: denial_2.png
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  FILE NOT FOUND: /data/data/com.termux/files/home/total_recall_runs/input/denial_2.png
+
+═══════════════════════════════════════════════════════════
+COMPARISON ANALYSIS
+═══════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════
+EVIDENCE CHAIN OF CUSTODY
+═══════════════════════════════════════════════════════════
+Evidence Location: ~/total_recall_runs/input/
+Analysis Report: /data/data/com.termux/files/home/denial_images_analysis_20251219_095035.txt
+Analyst: Total Recall Forensic Engine
+Integrity Hash: 13cd3bf7e0641a0cce7f4590d0958060286755bdaa835bfcc3522ea0b357e22f

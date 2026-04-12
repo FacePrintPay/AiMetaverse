@@ -1,0 +1,4 @@
+version: '3.8'
+services:
+[0;32m[07:00:32][0m 🐳 Generating config for [0;32m[07:00:31][0m → :3001
+[1;33m⚠️  [0;32m[07:00:31][0m: Missing Dockerfile.universal, copying template...[0m

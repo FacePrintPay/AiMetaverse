@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-kre8tive-portfolio-build</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-kre8tive-portfolio-build</h1><p style="color:#888">Lines: 36 | Deps: apt curl git go node pip  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+# ==========================================================
+# KRE8TIVE.SPACE PORTFOLIO BUILDER (Cloudflare Pages via Git)
+# - GoDaddy domains + GoDaddy sites (cards w/ thumbnails)
+# - GitHub repos (from feed_database.json already in repo)
+# - Vercel projects (via Vercel API)
+# Output: index.html + vercel_projects.json
+# Then: git commit + push (Cloudflare Pages auto-deploys)
+# ==========================================================
+set -euo pipefail
+DOMAIN="${DOMAIN:-kre8tive.space}"
+ORG="${ORG:-FacePrintPay}"
+# Your Pages-connected repo is this repo (RepoDepot-Stargate)
+REPO_DIR="$(pwd)"
+# Pick your Vercel team (default = faceprintpays-projects)
+VERCEL_TEAM_ID="${VERCEL_TEAM_ID:-team_o5UPga40oCf1HZghhny7eiDN}"
+# Try to read Vercel token from common locations (you can also export VERCEL_TOKEN)
+VERCEL_TOKEN="${VERCEL_TOKEN:-}"
+need() { command -v "$1" &gt;/dev/null 2&gt;&1 || { echo "[x] missing: $1"; exit 1; }; }
+need jq</pre></body></html>

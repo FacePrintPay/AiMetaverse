@@ -1,0 +1,8 @@
+{
+  "agent": "Venus",
+  "mirror_created": "2026-03-17T02:54:07-04:00",
+  "source": "/data/data/com.termux/files/home/constellation25/agents/Venus",
+  "mirror": "/data/data/com.termux/files/home/constellation25/mirrors/Venus",
+  "sync_interval": 30,
+  "status": "live"
+}

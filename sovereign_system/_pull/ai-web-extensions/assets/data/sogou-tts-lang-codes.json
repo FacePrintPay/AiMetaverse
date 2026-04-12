@@ -1,0 +1,21 @@
+{
+  "ar": { "isoOrNamePattern": "^(ara?(bic)?|اللغة العربية)$" },
+  "cs": { "isoOrNamePattern": "^(cze(ch)?|[cč]e[sš].*|cs)$" },
+  "da": { "isoOrNamePattern": "^dan?(ish|sk)?$" },
+  "de": { "isoOrNamePattern": "^(german|deu?(tsch)?)$" },
+  "en": { "isoOrNamePattern": "^(eng(lish)?|en(-\\w\\w)?)$" },
+  "es": { "isoOrNamePattern": "^(spa(nish)?|espa.*|es(-\\w\\w)?)$" },
+  "fi": { "isoOrNamePattern": "^(fin?(nish)?|suom.*)$" },
+  "fr": { "isoOrNamePattern": "^fr" },
+  "hu": { "isoOrNamePattern": "^(hun?(garian)?|magyar)$" },
+  "it": { "isoOrNamePattern": "^ita?(lian[ao]?)?$" },
+  "ja": { "isoOrNamePattern": "^(ja?pa?n(ese)?|日本語|ja)$" },
+  "nl": { "isoOrNamePattern": "^(dut(ch)?|flemish|nederlandse?|vlaamse?|nld?)$" },
+  "pl": { "isoOrNamePattern": "^po?l(ish|ski)?$" },
+  "pt": { "isoOrNamePattern": "^(por(tugu[eê]se?)?|pt(-\\w\\w)?)$" },
+  "ru": { "isoOrNamePattern": "^(rus?(sian)?|русский)$" },
+  "sv": { "isoOrNamePattern": "^(swe?(dish)?|sv(enska)?)$" },
+  "tr": { "isoOrNamePattern": "^t[uü]?r(k.*)?$" },
+  "vi": { "isoOrNamePattern": "^vi[eệ]?t?(namese)?$" },
+  "zh-CHS": { "isoOrNamePattern": "^(chi(nese)?|zh|中[国國])" }
+}

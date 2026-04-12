@@ -1,0 +1,23 @@
+{
+  "task": "UI/Frontend regression testing",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "frameworks": [
+      "playwright",
+      "cypress",
+      "selenium"
+    ],
+    "components": [
+      "navbar",
+      "hero",
+      "form",
+      "card",
+      "modal",
+      "footer",
+      "button",
+      "input"
+    ]
+  }
+}

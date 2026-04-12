@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-find-videocourts</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-find-videocourts</h1><p style="color:#888">Lines: 36 | Deps: go  | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+TS=$(date +%Y%m%d_%H%M%S)
+OUT="$HOME/videocourts_scan_$TS.txt"
+echo "[*] Starting VideoCourts scan..."
+echo "[*] Output: $OUT"
+echo
+SEARCH_ROOTS="$HOME"
+EXT_REGEX='\.(js|ts|jsx|tsx|py|rs|go|sh|html|htm|css|md|txt|json|yml|yaml|pdf)$'
+&gt; "$OUT"
+find "$SEARCH_ROOTS" -type f 2&gt;/dev/null | while read -r FILE; do
+  # filter by extension
+  if echo "$FILE" | grep -Eiq "$EXT_REGEX"; then
+    # filename match
+    if echo "$FILE" | grep -Eiq 'videocourts'; then
+      echo "$FILE" | tee -a "$OUT"
+      continue
+    fi
+    # content match (text only)
+    if file "$FILE" | grep -qi text; then
+      grep -Eiq 'videocourts' "$FILE" 2&gt;/dev/null && \</pre></body></html>

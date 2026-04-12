@@ -1,0 +1,42 @@
+{
+  "author": {
+    "name": "Adam Lui",
+    "email": "adam@kudoai.com",
+    "url": "https://github.com/adamlui"
+  },
+  "homepage": "https://www.perplexityomnibox.com",
+  "license": "MIT",
+  "funding": [
+    { "type": "cashapp", "url": "https://cash.app/$AdamLui" },
+    { "type": "github", "url": "http://github.com/sponsors/adamlui" },
+    { "type": "ko-fi", "url": "https://ko-fi.com/adamlui" },
+    { "type": "paypal", "url": "https://paypal.me/adamlui" }
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "lint": "eslint . --cache",
+    "lint:all": "eslint .",
+    "lint:fix": "eslint . --fix --cache",
+    "lint:fix-all": "eslint . --fix",
+    "translate": "py chromium/utils/translate-en-messages.py",
+    "translate:chrome": "py chromium/utils/translate-en-messages.py",
+    "translate:chromium": "py chromium/utils/translate-en-messages.py",
+    "bump": "node utils/bump/extension-manifests",
+    "bump:ext": "node utils/bump/extension-manifests",
+    "bump:ext-nc": "node utils/bump/extension-manifests --no-commit",
+    "bump:ext-np": "node utils/bump/extension-manifests --no-push",
+    "bump:extension": "node utils/bump/extension-manifests",
+    "bump:extensions": "node utils/bump/extension-manifests",
+    "bump:manifest": "node utils/bump/extension-manifests",
+    "bump:manifests": "node utils/bump/extension-manifests"
+  },
+  "devDependencies": {
+    "@eslint/json": "^0.13.2",
+    "@eslint/markdown": "^7.3.0",
+    "@stylistic/eslint-plugin": "^5.4.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-yml": "^1.18.0",
+    "husky": "^9.1.7"
+  }
+}

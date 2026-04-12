@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-direct-agent-activation</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-direct-agent-activation</h1><p style="color:#888">Lines: 36 | Deps: none | C25 FacePrintPay</p><pre>#!/bin/bash
+# Configuration
+HEARTBEAT_INTERVAL=14
+AGENT_COUNT=17
+LOG_DIR="$HOME/agent_logs"
+LOCK_DIR="$HOME/.agent_locks"
+PID_DIR="$HOME/.agent_pids"
+# Create all required directories
+mkdir -p "$LOG_DIR"
+mkdir -p "$LOCK_DIR"
+mkdir -p "$PID_DIR"
+mkdir -p "$HOME/.agent_temp"
+# Agent constellation mapping
+declare -A AGENT_MAP=(
+    [1]="Earth" [2]="Moon" [3]="Sun" [4]="Mercury" [5]="Venus" 
+    [6]="Mars" [7]="Jupiter" [8]="Saturn" [9]="Uranus" [10]="Neptune"
+    [11]="Cygnus" [12]="Orion" [13]="Andromeda" [14]="Pleiades" 
+    [15]="Sirius" [16]="CanisMajor" [17]="Hydra"
+)
+# Direct agent start function (simplified)</pre></body></html>

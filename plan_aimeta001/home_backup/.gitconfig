@@ -1,0 +1,19 @@
+[user]
+	name = CyGel White
+	email = cygel.co@gmail.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/data/data/com.termux/files/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/data/data/com.termux/files/usr/bin/gh auth git-credential
+[safe]
+	directory = /storage/emulated/0/AiMetaverse/plan_aimeta001/repos/RepoDepot-Stargate
+	directory = /storage/emulated/0/AiMetaverse/plan_aimeta001
+	directory = /data/data/com.termux/files/home/storage/shared/AiMetaverse/plan_aimeta001
+	directory = /storage/emulated/0/AiMetaverse/plan_aimeta001
+	directory = /storage/emulated/0/AiMetaverse/plan_aimeta001

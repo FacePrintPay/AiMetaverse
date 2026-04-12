@@ -1,0 +1,20 @@
+{
+  "task": "Security vault and encryption",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "algorithms": [
+      "sha256",
+      "aes256",
+      "rsa",
+      "ed25519"
+    ],
+    "vault_types": [
+      "env_file",
+      "keystore",
+      "secrets_manager",
+      "totalrecall_manifest"
+    ]
+  }
+}

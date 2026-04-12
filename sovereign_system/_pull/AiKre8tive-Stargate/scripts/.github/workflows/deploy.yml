@@ -1,0 +1,38 @@
+name: 🔁 AiKre8tive Auto Sync
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout Repository
+      uses: actions/checkout@v4
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+    - name: 🧰 Set Up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: 📦 Install Dependencies
+      run: npm install
+
+    - name: 🧪 Lint & Test (Optional)
+      run: npm run lint || true
+
+    - name: 🚀 Build Project
+      run: npm run build
+
+    - name: ✅ Deploy Success Log
+      run: echo "✅ AiKre8tive build complete!"

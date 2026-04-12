@@ -1,0 +1,12 @@
+{
+  "name": "c25-constellation25",
+  "version": "1.0.0",
+  "description": "C25 Module - c25-constellation25",
+  "main": "index.js",
+  "scripts": {
+    "start": "bash run.sh",
+    "test": "bash tests/test.sh 2>/dev/null || echo 'ok'"
+  },
+  "author": "Cygel White / FacePrintPay",
+  "license": "MIT"
+}

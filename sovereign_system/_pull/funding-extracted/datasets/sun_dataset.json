@@ -1,0 +1,24 @@
+{
+  "task": "Performance optimization",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "techniques": [
+      "caching",
+      "lazy_loading",
+      "async",
+      "memoization",
+      "indexing",
+      "batching",
+      "compression"
+    ],
+    "metrics": [
+      "response_time",
+      "memory_usage",
+      "cpu_load",
+      "throughput",
+      "latency"
+    ]
+  }
+}

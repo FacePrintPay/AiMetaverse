@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-bioauth</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-bioauth</h1><p style="color:#888">Lines: 36 | Deps: none | C25 FacePrintPay</p><pre>#!/data/data/com.termux/files/usr/bin/bash
+echo "🔒 Sovereign BioAuth: Scan fingerprint/face"
+termux-fingerprint -t "CyGeL White #MrGGTP Deploy" -d "Unlock keys & tokens"
+if [ $? -eq 0 ]; then
+  echo "✅ Bio verified"
+  # Optional decrypt if secrets.enc exists
+  if [ -f ~/vault/secrets.enc ]; then
+    read -s -p "Enter passphrase (Enter to skip): " pass
+    echo
+    if [ -n "$pass" ]; then
+      openssl enc -aes-256-cbc -d -in ~/vault/secrets.enc -out ~/vault/secrets.tmp -pass pass:"$pass" && \
+      source ~/vault/secrets.tmp && \
+      shred -u ~/vault/secrets.tmp
+    fi
+  fi
+  exit 0
+else
+  echo "❌ Bio failed — aborted"
+  exit 1
+fi</pre></body></html>

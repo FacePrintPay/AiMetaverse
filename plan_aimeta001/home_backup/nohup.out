@@ -1,0 +1,24 @@
+/data/data/com.termux/files/home/agent-dashboard/server.py:12: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z",
+📡 Dashboard live at http://127.0.0.1:8080
+ * Serving Flask app 'server'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.33:8080
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [07/Dec/2025 00:38:33] "GET /api/status HTTP/1.1" 200 -
+/data/data/com.termux/files/home/agent-dashboard/server.py:53: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  STATUS["timestamp"] = datetime.utcnow().isoformat() + "Z"
+127.0.0.1 - - [07/Dec/2025 00:38:36] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:38:41] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:38:46] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:38:47] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:38:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Dec/2025 00:38:51] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:38:56] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:39:01] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:39:06] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:39:11] "POST /api/status HTTP/1.1" 200 -
+127.0.0.1 - - [07/Dec/2025 00:39:16] "POST /api/status HTTP/1.1" 200 -

@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>c25-mars-sharecrop</title>
+<style>body{background:#0a0a1a;color:#e0e0ff;font-family:monospace;padding:20px;max-width:900px;margin:0 auto}h1{color:#7af}.badge{background:#1a3a1a;border:1px solid #4f4;padding:3px 10px;border-radius:20px;font-size:.8em;color:#4f4}pre{background:#111128;border:1px solid #333;border-radius:8px;padding:20px;overflow-x:auto;margin-top:20px}</style>
+</head><body><span class="badge">✅ CONFIRMED RAN</span><h1>c25-mars-sharecrop</h1><p style="color:#888">Lines: 36 | Deps: curl pip python  | C25 FacePrintPay</p><pre>#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$HOME/monorepo"
+INBOX="$ROOT/inbox/shared_links"
+OUT="$ROOT/out/extracted"
+PROV="$ROOT/docs/provenance"
+echo "[MARS] 🌾 Sharecrop ingest starting"
+mkdir -p "$INBOX/html" "$INBOX/pdfs" "$OUT" "$PROV"
+URLS_FILE="$INBOX/urls.txt"
+if [[ -f "$URLS_FILE" ]]; then
+  echo "[MARS] Fetching share links from $URLS_FILE"
+  while read -r url; do
+    [[ -z "${url// }" ]] && continue
+    fname="$(printf "%s" "$url" | sha256sum | awk '{print $1}' | cut -c1-12).html"
+    curl -LsS "$url" -o "$INBOX/html/$fname"
+  done &lt; "$URLS_FILE"
+fi
+if compgen -G "$INBOX/html/*.html" &gt; /dev/null; then
+  echo "[MARS] Carving HTML"
+  python3 "$ROOT/tools/carve/carve_shared_html.py"</pre></body></html>

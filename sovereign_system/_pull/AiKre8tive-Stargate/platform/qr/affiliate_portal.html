@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AiKre8tive Affiliate Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-green-300 font-mono p-10">
+  <div class="text-center">
+    <h1 class="text-4xl mb-6">🔗 AiKre8tive Affiliate Portal</h1>
+    <img src="/qr_affiliate.png" alt="Affiliate QR Code" class="mx-auto w-64 border-4 border-green-400 rounded" />
+    <p class="mt-4 text-gray-300">Scan this QR or click the button below to visit:</p>
+
+    <div class="mt-6">
+      <select id="redirect-options" class="text-black px-4 py-2 rounded">
+        <option value="https://blackbox.ai?ref=MrGGTP">Blackbox.ai</option>
+        <option value="https://huggingface.co?ref=MrGGTP">Hugging Face</option>
+        <option value="https://replicate.com?ref=MrGGTP">Replicate</option>
+      </select>
+
+      <button onclick="goRedirect()" class="ml-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded shadow">
+        Launch AI IDE
+      </button>
+    </div>
+  </div>
+
+  <!-- 1x1 pixel tracker -->
+  <img src="/pixel.gif" style="display:none;" />
+
+  <script>
+    function goRedirect() {
+      const url = document.getElementById('redirect-options').value;
+      fetch('/log_click?dest=' + encodeURIComponent(url));
+      window.location.href = '/redirect?url=' + encodeURIComponent(url);
+    }
+  </script>
+</body>
+</html>

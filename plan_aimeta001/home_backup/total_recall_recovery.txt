@@ -1,0 +1,178 @@
+  300  # Colors
+  301  CYAN='\033[96m'; GREEN='\033[92m'; YELLOW='\033[93m'; RED='\033[91m'; RESET='\033[0m'
+  302  say(){ echo -e "${CYAN}▶${RESET} $*"; }
+  303  ok(){  echo -e "${GREEN}✓${RESET} $*"; }
+  304  warn(){echo -e "${YELLOW}⚠${RESET} $*"; }
+  305  #!/usr/bin/env bash
+  306  set -euo pipefail
+  307  if [ "$#" -ne 2 ]; then   echo "Usage: $0 <image_A> <image_B>";   exit 1; fi
+  308  if [ "$#" -ne 2 ]; then   echo "Usage: $0 <image_A> <image_B>";   exit 1; fi
+  309  #!/usr/bin/env bash
+  310  set -euo pipefail
+  311  if [ "$#" -ne 2 ]; then   echo "Usage: $0 <image_A> <image_B>";   exit 1; fi
+  312  #!/usr/bin/env bash
+  313  set -euo pipefail
+  314  if [ "$#" -ne 2 ]; then   echo "Usage: $0 <image_A> <image_B>";   exit 1; fi
+  315  #!/usr/bin/env bash
+  316  # -----------------------------
+  317  # Total Recall – Fail-Soft Mode
+  318  # -----------------------------
+  319  IMG_A="$1"
+  320  IMG_B="$2"
+  321  if [ -z "$IMG_A" ] || [ -z "$IMG_B" ]; then   echo "⚠️  Usage: $0 <image_A> <image_B>";   echo "⚠️  No images processed. Exiting cleanly.";   exit 0; fi
+  322  #!/usr/bin/env bash
+  323  # -----------------------------
+  324  # Total Recall – Fail-Soft Mode
+  325  # -----------------------------
+  326  IMG_A="$1"
+  327  IMG_B="$2"
+  328  if [ -z "$IMG_A" ] || [ -z "$IMG_B" ]; then   echo "⚠️  Usage: $0 <image_A> <image_B>";   echo "⚠️  No images processed. Exiting cleanly.";   exit 0; fi
+  329  #!/usr/bin/env bash
+  330  # -----------------------------
+  331  # Total Recall – Fail-Soft Mode
+  332  # -----------------------------
+  333  IMG_A="$1"
+  334  IMG_B="$2"
+  335  if [ -z "$IMG_A" ] || [ -z "$IMG_B" ]; then   echo "⚠️  Usage: $0 <image_A> <image_B>";   echo "⚠️  No images processed. Exiting cleanly.";   exit 0; fi
+  336  # Example: downscale before OCR
+  337  if command -v convert >/dev/null; then   convert "$IMG" -resize 50% "$DIR/resized.jpg";   tesseract "$DIR/resized.jpg" "$DIR/ocr";   rm "$DIR/resized.jpg"; fi
+  338  #!/usr/bin/env bash
+  339  # -----------------------------
+  340  # 1basher – One-Image Total Recall Lite
+  341  # Single-image forensic snapshot (your lightweight companion to the full dual-image Total Recall)
+  342  # -----------------------------
+  343  IMG="$1"
+  344  if [ -z "$IMG" ]; then   echo "⚠️  Usage: $0 <image_file>";   echo "⚠️  No image provided. Exiting cleanly.";   exit 0; fi
+  345  1basher denial_1.png
+  346  1basher denial_2.png
+  347  total_recall denial_1.png denial_2.png
+  348  #!/usr/bin/env bash
+  349  # -----------------------------
+  350  # Total Recall Forensic Engine – Wake / Start Sequence
+  351  # Quick launcher with wake-lock, storage check, and lightweight warm-up
+  352  # Run this to reliably "wake" your engine on Android/Termux without crashes
+  353  # -----------------------------
+  354  # Acquire wake lock first – prevents Android from killing the session
+  355  termux-wake-lock
+  356  # Ensure storage access (critical after reboots or updates)
+  357  termux-setup-storage
+  358  # Optional: Quick diagnostic echo
+  359  echo "✔ Total Recall Forensic Engine waking..."
+  360  echo "✔ Wake lock acquired"
+  361  echo "✔ Storage access confirmed"
+  362  echo "✔ Ready for 1basher or full Total Recall runs"
+  363  echo ""
+  364  # Warm-up: List recent runs (helps confirm everything is mounted)
+  365  if [ -d "$HOME/total_recall_runs" ]; then   echo "Recent runs:";   ls -lt "$HOME/total_recall_runs" | head -5; else   echo "No previous runs found – starting fresh";   mkdir -p "$HOME/total_recall_runs"; fi
+  366  echo ""
+  367  echo "Next steps:"
+  368  echo "   1basher <image.png>           → Quick single-image snapshot"
+  369  echo "   total_recall <imgA.png> <imgB.png> → Full dual-image forensic comparison"
+  370  echo ""
+  371  echo "Engine is fully awake and stable. Fire away, #MrGGTP."
+  372  # Keep wake lock active until you manually release or close Termux
+  373  # To release later: termux-wake-unlock
+  374  exit 0
+  375  #!/usr/bin/env bash
+  376  # -----------------------------
+  377  # Total Recall Forensic Engine – Wake / Start Sequence
+  378  # Quick launcher with wake-lock, storage check, and lightweight warm-up
+  379  # Run this to reliably "wake" your engine on Android/Termux without crashes
+  380  # -----------------------------
+  381  # Acquire wake lock first – prevents Android from killing the session
+  382  termux-wake-lock
+  383  # Ensure storage access (critical after reboots or updates)
+  384  termux-setup-storage
+  385  # Optional: Quick diagnostic echo
+  386  echo "✔ Total Recall Forensic Engine waking..."
+  387  echo "✔ Wake lock acquired"
+  388  echo "✔ Storage access confirmed"
+  389  echo "✔ Ready for 1basher or full Total Recall runs"
+  390  echo ""
+  391  # Warm-up: List recent runs (helps confirm everything is mounted)
+  392  if [ -d "$HOME/total_recall_runs" ]; then   echo "Recent runs:";   ls -lt "$HOME/total_recall_runs" | head -5; else   echo "No previous runs found – starting fresh";   mkdir -p "$HOME/total_recall_runs"; fi
+  393  echo ""
+  394  echo "Next steps:"
+  395  echo "   1basher <image.png>           → Quick single-image snapshot"
+  396  echo "   total_recall <imgA.png> <imgB.png> → Full dual-image forensic comparison"
+  397  echo ""
+  398  echo "Engine is fully awake and stable. Fire away, #MrGGTP."
+  399  # Keep wake lock active until you manually release or close Termux
+  400  # To release later: termux-wake-unlock
+  401  exit 0
+  402  Default/safest (no extra apps):
+  403  Screenshot → saves automatically to /sdcard/DCIM/Screenshots/ or /sdcard/Pictures/Screenshots/.
+  404  Run termux-setup-storage → creates ~/storage symlinks.
+  405  Then: cp ~/storage/dcim/Screenshots/*.png ~/total_recall_runs/input/
+  406  Direct capture (bypass gallery entirely):
+  407  Use termux-camera-photo or Android's screencap:
+  408  touch "file(data).txt" or touch 'file(data).txt'
+  409  no
+  410  Command Thunar in package thunar from the x11-repo repository
+  411  curl -L https://github.com/xyproto/orbiton/releases/download/vX.Y.Z/orbiton-X.Y.Z-linux_amd64_static.tar.xz | tar xJ
+  412  sudo install -Dm755 o /usr/local/bin/o
+  413  sudo install -Dm644 o.1.gz /usr/share/man/man1/o.1.gz  # optional man page
+  414  y
+  415  xbps-install -S go git
+  416  git clone https://github.com/xyproto/orbiton.git
+  417  cd orbiton
+  418  go build
+  419  sudo install -Dm755 o /usr/local/bin/o
+  420  n
+  421  go mod init
+  422  pkg update
+  423  pkg install golang git make
+  424  make install PREFIX=$PREFIX
+  425  o somefile.txt
+  426  #!/usr/bin/env python3
+  427  """
+  428  TOTAL RECALL - DATA WIPE DETECTION ENGINE
+  429  Forensic Analysis Tool for Identifying Systematic Data Destruction
+  430  Analyzes multiple evidence streams to detect:
+  431  - Chat history deletions
+  432  - DSAR response gaps
+  433  - API log purges
+  434  - Database record removal
+  435  - Timestamp anomalies
+  436  - Retention policy violations
+  437  """
+  438  import json
+  439  import os
+  440  from datetime import datetime, timedelta
+  441  from pathlib import Path
+  442  from collections import defaultdict
+  443  import hashlib
+  444  class DataWipeDetector:
+  445  if __name__ == "__main__":;     main() .
+  446  grep -RIn --color=always   -E "Total[[:space:]_-]*Recall|TOTAL[[:space:]_-]*RECALL|Forensic[[:space:]_-]*Analysis|FORENSIC|Evidence[[:space:]_-]*Secured"   $HOME 2>/dev/null
+  447  ls
+  448  ls -ltr
+  449  #!/data/data/com.termux/files/usr/bin/bash
+  450  # TOTAL RECALL – FIRST ENGINE RUNTIME DETECTOR
+  451  # Purpose: identify earliest execution timestamp of Total Recall
+  452  set -euo pipefail
+  453  BASE="$HOME"
+  454  TARGETS=(   "$BASE/totalrecall"   "$BASE/total_recall_runs"   "$BASE/totalrecall_output" )
+  455  echo "══════════════════════════════════════════════"
+  456  echo "TOTAL RECALL ENGINE – FIRST RUN TIMESTAMP"
+  457  echo "══════════════════════════════════════════════"
+  458  FOUND=0
+  459  for dir in "${TARGETS[@]}"; do   if [ -d "$dir" ]; then     find "$dir" -type f -printf '%TY-%Tm-%Td %TH:%TM:%TS %p\n';     FOUND=1;   fi; done | sort | head -1
+  460  if [ "$FOUND" -eq 0 ]; then   echo "No Total Recall runtime artifacts found.";   exit 1; fi
+  461  # For bash
+  462  history | grep -i "total recall"
+  463  history | grep -i "forensic"
+  464  # If it's a function in your .bashrc or .bash_profile
+  465  grep -n "total_recall" ~/.bashrc ~/.bash_profile ~/.bash_aliases 2>/dev/null
+  466  # Show the full script from history line 428 area
+  467  history | sed -n '420,470p'
+  468  # If it's a function in your .bashrc or .bash_profile
+  469  grep -n "total_recall" ~/.bashrc ~/.bash_profile ~/.bash_aliases 2>/dev/null
+  470  # Show the full script from history line 428 area
+  471  history | sed -n '420,470p'
+  472  # If it's a function in your .bashrc or .bash_profile
+  473  grep -n "total_recall" ~/.bashrc ~/.bash_profile ~/.bash_aliases 2>/dev/null
+  474  # Show the full script from history line 428 area
+  475  history | sed -n '420,470p'
+  476  history | sed -n '428,460p'
+  477  history | sed -n '300,500p' > ~/total_recall_recovery.txt

@@ -1,0 +1,17 @@
+{
+  "name": "constellation25",
+  "version": "2.0.0",
+  "homepage": "https://faceprintpay.github.io/constellation25",
+  "scripts": {
+    "build:all": "npm run build --workspaces --if-present",
+    "deploy": "gh-pages -d public -m 'Big Tree deploy'",
+    "ship": "npm run build:all && zip -r ../funding-package-$(date +%Y%m%d).zip . -x '*/node_modules/*' '*/.git/*'",
+    "build": "echo \"Build complete\""
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "gh-pages": "^6.1.0"
+  }
+}

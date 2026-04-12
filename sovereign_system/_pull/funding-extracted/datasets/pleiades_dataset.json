@@ -1,0 +1,21 @@
+{
+  "task": "Virtual environment management",
+  "models": [
+    "ollama/llama3"
+  ],
+  "data": {
+    "tools": [
+      "venv",
+      "conda",
+      "nix",
+      "docker",
+      "termux_pkg"
+    ],
+    "lockfiles": [
+      "requirements_txt",
+      "package_json",
+      "pipfile",
+      "pyproject_toml"
+    ]
+  }
+}

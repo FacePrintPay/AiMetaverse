@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AGENTIK — Public Repo Hygiene Snapshot</title>
+  <style>
+    :root { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial; }
+    body { margin: 0; padding: 24px; background: #0b0f14; color: #e6edf3; }
+    h1 { margin: 0 0 8px; font-size: 20px; }
+    .sub { margin: 0 0 18px; color: #9fb0c0; font-size: 13px; line-height: 1.4; max-width: 980px; }
+    .warn { padding: 10px 12px; border: 1px solid #3a2a00; background: #1a1406; border-radius: 12px; color: #ffd27a; margin: 10px 0 16px; }
+    .bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0 16px; }
+    input[type="search"], textarea{
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #223044;
+      background: #0f1621;
+      color: #e6edf3;
+      border-radius: 10px;
+      outline: none;
+    }
+    textarea { min-height: 120px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+    button{
+      padding: 10px 12px;
+      border: 1px solid #223044;
+      background: #111a26;
+      color: #e6edf3;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    button:hover{ background:#162235; }
+    .meta { display:flex; gap: 12px; flex-wrap: wrap; color:#9fb0c0; font-size: 12px; }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .card {
+      border: 1px solid #223044;
+      background: #0f1621;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .cardhead{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #223044;
+      background: #0d131c;
+    }
+    .tag { font-size: 12px; color:#9fb0c0; }
+    .list { margin-top: 14px; }
+    .row { display:flex; gap: 10px; align-items: baseline; padding: 8px 12px; border-top: 1px solid #162235; }
+    .row:first-child { border-top: none; }
+    .path { flex: 1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+    .pill { font-size: 11px; color:#0b0f14; background:#9fb0c0; padding: 2px 8px; border-radius: 999px; }
+    .hidden { display: none; }
+    .k { color:#9fb0c0; }
+    .section { padding: 12px; }
+  </style>
+</head>
+<body>
+  <h1>AGENTIK — Public “Untracked Files” Snapshot</h1>
+  <p class="sub">
+    This page is designed for public sharing without leaking secrets. Paste any <span class="k">git status</span> untracked output into the box, and it will
+    sanitize + categorize the paths. (Anything that looks like secrets gets redacted automatically.)
+  </p>
+
+  <div class="warn">
+    <b>Security note:</b> This page intentionally hides paths that look like keys, tokens, SSH material, env files, private logs, etc.
+    If you try to paste them, they will show as <b>[REDACTED]</b>.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="cardhead">
+        <div class="tag">Paste raw untracked output</div>
+        <button id="loadSample">Load sample</button>
+      </div>
+      <div class="section">
+        <textarea id="rawInput" placeholder="Paste untracked file list here..."></textarea>
+        <div class="bar">
+          <button id="process">Sanitize & Render</button>
+          <button id="copyFiltered">Copy sanitized</button>
+          <button id="exportFiltered">Export sanitized .txt</button>
+        </div>
+        <div class="meta">
+          <div>Total parsed: <span id="total">0</span></div>
+          <div>Visible: <span id="shown">0</span></div>
+          <div>Generated: <span id="gen"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead">
+        <div class="tag">Filter</div>
+      </div>
+      <div class="section">
+        <input id="q" type="search" placeholder="Filter sanitized paths (e.g. TotalRecall, scripts, .tar.gz)..." />
+        <div class="bar">
+          <button data-cat="all" class="cat">All</button>
+          <button data-cat="scripts" class="cat">Scripts</button>
+          <button data-cat="archives" class="cat">Archives</button>
+          <button data-cat="dirs" class="cat">Directories</button>
+          <button data-cat="configs" class="cat">Configs</button>
+          <button data-cat="other" class="cat">Other</button>
+        </div>
+        <p class="sub" style="margin:0;">
+          Public view is sanitized. If you want to show exact file trees, do it from a repo browser (GitHub) — not from your live home directory dump.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card list" style="margin-top:14px;">
+    <div class="cardhead">
+      <div class="tag">Sanitized paths (click a line to copy)</div>
+      <div class="tag">Category: <span id="activeCat">all</span></div>
+    </div>
+    <div id="rows"></div>
+  </div>
+
+<script>
+(() => {
+  const rawInput = document.getElementById("rawInput");
+  const rowsEl = document.getElementById("rows");
+  const qEl = document.getElementById("q");
+  const totalEl = document.getElementById("total");
+  const shownEl = document.getElementById("shown");
+  const genEl = document.getElementById("gen");
+  const activeCatEl = document.getElementById("activeCat");
+
+  // Patterns that should NEVER be shown publicly
+  const SECRET_PATTERNS = [
+    /(^|\/)\.aimetaverse/i,
+    /\.env$/i,
+    /(^|\/)\.ssh(\/|$)/i,
+    /(^|\/)\.gnupg(\/|$)/i,
+    /(^|\/)\.config(\/|$)/i,
+    /(^|\/)\.bash_history$/i,
+    /(^|\/)\.zshrc/i,
+    /(^|\/)\.bashrc/i,
+    /(^|\/)\.cloudflared(\/|$)/i,
+    /(^|\/).*token/i,
+    /(^|\/).*secret/i,
+    /(^|\/).*key/i,
+    /\.pem$/i, /\.p12$/i, /\.crt$/i
+  ];
+
+  const classify = (p) => {
+    const lower = p.toLowerCase();
+    if (lower.endsWith("/")) return "dirs";
+    if (/\.(sh|py)$/i.test(lower)) return "scripts";
+    if (/\.(zip|tar\.gz|tgz|gz|7z|rar|sha256)$/i.test(lower)) return "archives";
+    if (/(^|\/)\.(npmrc|gitconfig)$/i.test(lower) || /package\.json$|package-lock\.json$/i.test(lower)) return "configs";
+    return "other";
+  };
+
+  const sanitize = (p) => {
+    // Remove leading "../" to avoid advertising directory traversal on a public page
+    let clean = p.replace(/^(\.\.\/)+/g, "");
+    // Redact secrets
+    if (SECRET_PATTERNS.some(rx => rx.test(clean))) return "[REDACTED]";
+    return clean;
+  };
+
+  function parseRaw(text){
+    // Pull tokens that look like paths beginning with ../ or ./
+    const tokens = text.split(/\s+/g).map(s => s.trim()).filter(Boolean);
+    const candidates = tokens.filter(s => s.startsWith("../") || s.startsWith("./"));
+
+    // Sanitize + dedupe
+    const out = [];
+    const seen = new Set();
+
+    for (const c of candidates) {
+      const s = sanitize(c.replace(/^\.\//, "")); // normalize "./" to ""
+      if (!s) continue;
+      if (!seen.has(s)) {
+        seen.add(s);
+        out.push({ raw: c, safe: s, cat: (s === "[REDACTED]" ? "configs" : classify(s)) });
+      }
+    }
+    return out.sort((a,b) => a.safe.localeCompare(b.safe));
+  }
+
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+
+  let DATA = [];
+  let ACTIVE_CAT = "all";
+
+  function render(){
+    const f = qEl.value.trim().toLowerCase();
+    rowsEl.innerHTML = "";
+
+    const filtered = DATA.filter(item => {
+      const catOk = (ACTIVE_CAT === "all") || (item.cat === ACTIVE_CAT);
+      const qOk = !f || item.safe.toLowerCase().includes(f);
+      return catOk && qOk;
+    });
+
+    totalEl.textContent = String(DATA.length);
+    shownEl.textContent = String(filtered.length);
+    activeCatEl.textContent = ACTIVE_CAT;
+
+    filtered.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "row";
+      row.title = "Click to copy this sanitized path";
+
+      const path = document.createElement("div");
+      path.className = "path";
+      path.textContent = item.safe;
+
+      const pill = document.createElement("div");
+      pill.className = "pill";
+      pill.textContent = item.cat;
+
+      row.appendChild(path);
+      row.appendChild(pill);
+
+      row.addEventListener("click", async () => {
+        await copyText(item.safe);
+        pill.textContent = "copied";
+        setTimeout(() => pill.textContent = item.cat, 700);
+      });
+
+      rowsEl.appendChild(row);
+    });
+
+    window.__SANITIZED_LIST = filtered.map(x => x.safe);
+  }
+
+  document.getElementById("process").addEventListener("click", () => {
+    DATA = parseRaw(rawInput.value || "");
+    genEl.textContent = new Date().toLocaleString();
+    render();
+  });
+
+  qEl.addEventListener("input", render);
+
+  document.querySelectorAll(".cat").forEach(btn => {
+    btn.addEventListener("click", () => {
+      ACTIVE_CAT = btn.dataset.cat;
+      render();
+    });
+  });
+
+  document.getElementById("copyFiltered").addEventListener("click", async () => {
+    const list = window.__SANITIZED_LIST || [];
+    await copyText(list.join("\n"));
+    alert("Copied sanitized list.");
+  });
+
+  document.getElementById("exportFiltered").addEventListener("click", () => {
+    const list = window.__SANITIZED_LIST || [];
+    const blob = new Blob([list.join("\n") + "\n"], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "untracked_sanitized.txt";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById("loadSample").addEventListener("click", () => {
+    rawInput.value =
+`Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+    ../TotalRecall/
+    ../YesQuid_FullStack_Build/
+    ../1M5B_REVENUE_ROUTING.sh
+    ../.env
+    ../.ssh/
+    ../PATHOS_COMPILE_SNAPSHOT_20251205_151506.tar.gz`;
+  });
+
+  // Initial render
+  genEl.textContent = new Date().toLocaleString();
+})();
+</script>
+</body>
+</html>

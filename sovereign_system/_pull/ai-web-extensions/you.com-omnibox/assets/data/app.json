@@ -1,0 +1,21 @@
+{
+  "name": "You.com Omnibox", "symbol": "🤖", "slug": "you-omnibox",
+  "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
+  "urls": {
+    "app": "https://youomnibox.com",
+    "assets": "https://cdn.jsdelivr.net/gh/adamlui/you.com-omnibox@latest/assets",
+    "discuss": "https://github.com/adamlui/you-omnibox/discussions",
+    "donate": {
+      "cashapp": "https://cash.app/$adamlui",
+      "github": "https://github.com/sponsors/adamlui",
+      "ko-fi": "https://ko-fi.com/adamlui",
+      "paypal": "https://paypal.me/adamlui"
+    },
+    "github": "https://github.com/adamlui/you-omnibox",
+    "publisher": "https://aiwebextensions.com",
+    "relatedExtensions": "https://aiwebextensions.com",
+    "review": { "firefox": "https://ff.youomnibox.com" },
+    "support": "https://support.youomnibox.com",
+    "uninstall": "https://forms.gle/HkJFqQ7LEFCxNz6a6"
+  }
+}
